@@ -1,18 +1,29 @@
-/* --- RESET BÁSICO --- */
+/* ==========================================
+   1. RESET Y CONFIGURACIÓN GLOBAL
+   ========================================== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: Arial, sans-serif;
+html, body {
+  background-color: #ffffff !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333333;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* --- LOGOS SUPERIORES --- */
+/* Regla general de ocultar */
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================
+   2. LOGOS SUPERIORES Y HEADER
+   ========================================== */
 .top-header {
   display: flex;
   justify-content: space-between;
@@ -21,15 +32,12 @@ body {
   background-color: #ffffff;
 }
 
-.logo-left img {
-  height: 65px;
-}
+.logo-left img { height: 65px; }
+.logo-right img { height: 50px; }
 
-.logo-right img {
-  height: 50px;
-}
-
-/* --- BARRA DE NAVEGACIÓN VERDE --- */
+/* ==========================================
+   3. BARRA DE NAVEGACIÓN (NAVBAR)
+   ========================================== */
 .navbar {
   background-color: #008744; /* Verde institucional */
   width: 100%;
@@ -48,6 +56,7 @@ body {
   display: flex;
   list-style: none;
   gap: 2.5rem;
+  align-items: center;
 }
 
 .nav-link {
@@ -58,11 +67,10 @@ body {
   transition: opacity 0.2s;
 }
 
-.nav-link:hover {
-  opacity: 0.8;
+.nav-link:hover, .nav-link.active {
+  opacity: 0.85;
 }
 
-/* El botón de hamburguesa se oculta en PC */
 .nav-toggle {
   display: none;
   background: transparent;
@@ -72,7 +80,720 @@ body {
   cursor: pointer;
 }
 
-/* --- FOOTER --- */
+/* MENÚ DESPLEGABLE (DROPDOWN IN NAVBAR) */
+.dropdown-item {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #008744;
+  min-width: 260px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  z-index: 1000;
+  border-radius: 0 0 8px 8px;
+}
+
+.dropdown-item:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li a {
+  color: #ffffff;
+  padding: 10px 18px;
+  display: block;
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: background 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #006b35;
+}
+
+/* ==========================================
+   4. BANNERS Y HERO
+   ========================================== */
+.hero-banner {
+  width: 100% !important;
+  height: 200px !important;
+  min-height: 200px !important;
+  max-height: 200px !important;
+  overflow: hidden !important;
+  display: block !important;
+  background-color: #008744;
+  position: relative !important;
+}
+
+.hero-banner img,
+.hero-banner .banner-img {
+  width: 100% !important;
+  height: 200px !important; /* En lugar de 100%, forzamos la altura absoluta */
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+/* ==========================================
+   5. INICIO (HOME / DIAPOSITIVA 1)
+   ========================================== */
+.home-container {
+  display: grid;
+  grid-template-columns: 280px 1fr 220px;
+  gap: 20px;
+  max-width: 1300px;
+  margin: 30px auto;
+  padding: 0 20px;
+  align-items: center;
+  background-color: #ffffff !important;
+}
+
+.left-aside {
+  display: flex;
+  justify-content: center;
+}
+
+.left-aside .castor-img {
+  width: 100%;
+  max-width: 270px;
+  height: auto;
+}
+
+.content-body {
+  text-align: center;
+  line-height: 1.6;
+}
+
+.content-body h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  color: #000000;
+}
+
+.content-body .subtitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #000000;
+}
+
+.content-body p {
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+  color: #222222;
+}
+
+.highlight-text {
+  font-weight: 600;
+}
+
+.right-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+}
+
+/* POST-IT IMC */
+.postit-btn {
+  position: relative;
+  width: 170px;
+  background-color: #fef08a;
+  color: #222222;
+  text-decoration: none;
+  text-align: center;
+  padding: 25px 15px 15px 15px;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  box-shadow: 4px 5px 12px rgba(0, 0, 0, 0.2);
+  transform: rotate(3deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+.postit-btn .pin {
+  position: absolute;
+  top: -12px;
+  font-size: 1.4rem;
+  text-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+}
+
+.postit-btn p { margin: 8px 0; }
+.postit-btn strong { font-weight: bold; }
+.postit-btn .scale-icon { font-size: 1.3rem; margin-top: 4px; }
+
+.postit-btn:hover {
+  transform: scale(1.06) rotate(0deg);
+  box-shadow: 6px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.heart-img {
+  width: 130px;
+  height: auto;
+}
+
+/* ==========================================
+   6. CALCULADORA IMC & PLATO DEL BIEN COMER
+   ========================================== */
+.calc-section-container {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 40px;
+  max-width: 1300px;
+  margin: 40px auto;
+  padding: 0 20px;
+  align-items: start;
+}
+
+.info-plato h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 15px;
+}
+
+.desc-plato {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.lista-grupos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.grupo-item {
+  position: relative;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.grupo-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 6px;
+  height: 90%;
+  border-radius: 3px;
+}
+
+.grupo-item.verde::before { background-color: #00b050; }
+.grupo-item.naranja::before { background-color: #ff9900; }
+.grupo-item.rojo::before { background-color: #ff0000; }
+
+.grupo-item strong { font-size: 1rem; color: #1e293b; }
+.grupo-item span { font-size: 0.88rem; color: #64748b; line-height: 1.4; }
+
+.link-imss {
+  color: #2563eb;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.calc-card { background: #ffffff !important; }
+
+.calc-header h3 {
+  font-size: 1.25rem;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.calc-header p {
+  color: #64748b;
+  font-size: 0.88rem;
+  margin-bottom: 25px;
+}
+
+.calc-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 30px;
+  align-items: start;
+}
+
+.imc-form { display: flex; flex-direction: column; gap: 15px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group.full-width { grid-column: 1 / -1; }
+
+.form-group label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #334155;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  font-size: 0.95rem;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #008744;
+  background-color: #ffffff;
+}
+
+.btn-calcula-green {
+  background-color: #00b027;
+  color: #ffffff;
+  border: none;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-calcula-green:hover {
+  background-color: #008744;
+  transform: translateY(-1px);
+}
+
+/* BARRA DE IMC Y RESULTADOS */
+.imc-visual-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.bar-wrapper {
+  position: relative;
+  width: 100%;
+  height: 22px;
+}
+
+.bar-gradient {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(
+    to right,
+    #e54d42 0%, #e54d42 20%,
+    #2ecc71 20%, #2ecc71 50%,
+    #f39c12 50%, #f39c12 75%,
+    #e74c3c 75%, #e74c3c 100%
+  );
+}
+
+.arrow-indicator {
+  position: absolute;
+  top: -12px;
+  left: 37.5%;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #2d3748;
+  transform: translateX(-50%);
+  transition: left 0.4s ease-in-out;
+}
+
+.bar-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.bar-labels span {
+  font-size: 0.70rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.box-resultados {
+  margin-top: 20px;
+  padding: 14px;
+  background-color: #f1f5f9;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #1e293b;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   7. SECCIÓN ¿QUIÉNES SOMOS?
+   ========================================== */
+.about-section {
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px 60px;
+  text-align: center;
+  background-color: #ffffff !important;
+}
+
+.about-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 35px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  width: 100%;
+}
+
+.about-card {
+  padding: 35px 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.about-card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 15px;
+}
+
+.about-card p {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.blue-card { background-color: #EBF5FF; }
+.green-card { background-color: #E6F9F0; }
+
+/* ==========================================
+   8. SECCIÓN ¿SABÍAS QUÉ?
+   ========================================== */
+.facts-section {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px 60px;
+  background-color: #ffffff !important;
+}
+
+.facts-main-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #111827;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.topic-selector-container {
+  background-color: #f3f4f6;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.topic-selector-container label {
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.topic-select {
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid #008744;
+  border-radius: 8px;
+  outline: none;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.facts-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.facts-aside { flex: 0 0 240px; }
+
+.postit-facts {
+  background-color: #fef08a;
+  padding: 25px 18px;
+  border-radius: 6px;
+  box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.12);
+  position: relative;
+  text-align: center;
+}
+
+.postit-facts .pin {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+}
+
+.postit-facts h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #854d0e;
+  margin: 10px 0 5px;
+}
+
+.postit-facts p {
+  font-size: 0.88rem;
+  color: #a16207;
+  margin-bottom: 12px;
+}
+
+.facts-counter {
+  background-color: #facc15;
+  color: #713f12;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+.facts-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.fact-card {
+  background-color: #ffffff;
+  border-left: 5px solid #008744;
+  border-radius: 8px;
+  padding: 16px 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.fact-number {
+  background-color: #e6f9f0;
+  color: #008744;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.fact-content h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.fact-content p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   9. VISTA DE TEMAS DE INTERÉS
+   ========================================== */
+.topic-section-container {
+  max-width: 1250px;
+  margin: 40px auto;
+  padding: 0 20px 60px;
+}
+
+/* TEMA ESTÁNDAR (LATERAL 2 COLUMNAS) */
+.topic-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.topic-main-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #111827;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.topic-desc {
+  font-size: 1.05rem;
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.topic-quote {
+  font-size: 1.1rem;
+  color: #111827;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0284c7;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.video-btn:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
+
+.topic-right-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ESTRUCTURA CENTRADA TEMA 2 (GRID 5x2) */
+.topic-header-full {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 30px auto;
+}
+
+.topic-main-title-center {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.topic-desc-center {
+  font-size: 1.1rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.grid-5-col {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.card-header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.card-icon {
+  font-size: 1.4rem;
+  color: #008744;
+}
+
+/* TARJETAS DE CARACTERÍSTICAS/RECOMENDACIONES */
+.feature-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.card-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.feature-card h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 0.88rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.topic-footer-action {
+  text-align: center;
+  margin-top: 25px;
+}
+
+/* BADGES DE COLORES (INSIGNIAS NUMÉRICAS) */
+.blue-badge { background-color: #e0f2fe; color: #0284c7; }
+.purple-badge { background-color: #f3e8ff; color: #9333ea; }
+.green-badge { background-color: #dcfce7; color: #16a34a; }
+.cyan-badge { background-color: #cff4fc; color: #0891b2; }
+.red-badge { background-color: #ffe4e6; color: #e11d48; }
+.light-green-badge { background-color: #d1fae5; color: #059669; }
+
+/* ==========================================
+   10. PIE DE PÁGINA (FOOTER)
+   ========================================== */
 .footer-site {
   background-color: #f4f4f4;
   padding: 2rem 1rem 1rem;
@@ -97,25 +818,23 @@ body {
   margin-top: 1rem;
 }
 
-/* --- ADAPTACIÓN MÓVIL Y TABLET (Responsive) --- */
-@media (max-width: 900px) {
-  .top-header {
-    padding: 0.5rem 1rem;
+/* ==========================================
+   11. MEDIA QUERIES (RESPONSIVO)
+   ========================================== */
+@media (max-width: 1100px) {
+  .grid-5-col {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
 
+@media (max-width: 900px) {
+  .top-header { padding: 0.5rem 1rem; }
   .logo-left img { height: 45px; }
   .logo-right img { height: 35px; }
 
-  /* Muestra la hamburguesa en el lado derecho */
-  .nav-container {
-    justify-content: flex-end;
-  }
+  .nav-container { justify-content: flex-end; }
+  .nav-toggle { display: block; }
 
-  .nav-toggle {
-    display: block;
-  }
-
-  /* Oculta los enlaces y los pone en lista vertical desplegable */
   .nav-menu {
     display: none;
     flex-direction: column;
@@ -129,12 +848,861 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   }
 
-  /* Se activa con tu código JS al dar clic */
-  .nav-menu.active {
-    display: flex;
+  .nav-menu.active { display: flex; }
+  .nav-item { text-align: center; }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background-color: #006b35;
+    border-radius: 0;
   }
 
-  .nav-item {
+  .home-container {
+    grid-template-columns: 1fr;
     text-align: center;
+  }
+
+  .right-aside {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .calc-section-container,
+  .calc-body-grid,
+  .topic-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .facts-layout {
+    flex-direction: column;
+  }
+
+  .facts-aside {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-5-col,
+  .topic-right-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+/* ==========================================
+   DISEÑO MAXIMIZADO Y UNIFICADO DE LA JARRA
+   ========================================== */
+/* ==========================================
+   DISEÑO 100% FULL WIDTH (SIN MÁRGENES EN BLANCO)
+   ========================================== */
+
+/* 1. Forzar que el contenedor principal de temas no tenga restricciones de ancho ni padding excesivo */
+/* Corrección de ancho en Jarra/Plato */
+.topic-section-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 10px 0 30px 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.jarra-wrapper {
+  width: 100%;
+  max-width: 1400px; /* Ancho máximo controlado para evitar empujar la pantalla */
+  margin: 0 auto;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.jarra-header-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.jarra-title {
+  color: #0f172a;
+  font-size: 2.3rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.jarra-subtitle {
+  color: #64748b;
+  font-size: 1.05rem;
+}
+
+/* 3. Tarjeta Gigante Full-Width */
+.jarra-main-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 35px 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  display: grid;
+  /* Reparto proporcional en 3 columnas anchas */
+  grid-template-columns: 320px 420px 1fr; 
+  gap: 40px;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .jarra-main-card {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 25px;
+  }
+}
+
+/* --- COLUMNA 1: CASTOR Y GLOBO DE DIÁLOGO --- */
+.mascot-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.speech-bubble {
+  position: relative;
+  background: #f8fafc;
+  border: 2px solid #2e7d32;
+  border-radius: 16px;
+  padding: 18px;
+  font-size: 0.95rem;
+  color: #1e293b;
+  line-height: 1.5;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: #2e7d32 transparent;
+  display: block;
+  width: 0;
+}
+
+.castor-img-wrapper {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+.castor-jarra-img {
+  width: 230px;
+  height: auto;
+  mix-blend-mode: multiply;
+  animation: floatCastor 3.5s ease-in-out infinite;
+}
+
+@keyframes floatCastor {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* --- COLUMNA 2: JARRA EXPANDIDA (CORREGIDO SIN FONDO GRIS) --- */
+.jarra-visual-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff; /* Fondo blanco limpio en lugar de gris */
+  border-radius: 20px;
+  padding: 30px 20px;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.jarra-svg {
+  width: 100%;
+  max-width: 360px; /* Jarra grande y prominente */
+  height: auto;
+  filter: drop-shadow(0 8px 15px rgba(0,0,0,0.08));
+}
+
+.jarra-layer {
+  cursor: pointer;
+  opacity: 0.2;
+  transition: opacity 0.35s ease, fill 0.35s ease;
+}
+
+.jarra-layer.active {
+  opacity: 1;
+}
+
+.jarra-layer:hover {
+  opacity: 0.85;
+}
+
+.jarra-text-lbl {
+  fill: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* --- COLUMNA 3: PANEL INFORMACIÓN Y BOTONES --- */
+.jarra-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.info-card-display {
+  background: #ffffff; /* Fondo blanco en lugar de gris */
+  border-radius: 18px;
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  border-left: 6px solid #2563eb;
+  transition: border-color 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.fade-in-card {
+  animation: cardSlide 0.3s ease-out;
+}
+
+@keyframes cardSlide {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.level-badge-tag {
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 5px 16px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.info-card-display h3 {
+  font-size: 1.65rem;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.recommended-quantity {
+  font-weight: 700;
+  color: #16a34a;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+#jarra-info-desc {
+  color: #475569;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* BOTONES SELECTORES */
+.jarra-btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.jarra-btn {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #334155;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.jarra-btn:hover, .jarra-btn.active {
+  border-color: var(--btn-color);
+  background-color: #ffffff;
+  color: var(--btn-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* ALERTA CRÍTICA Y ENLACE DE PROFECO */
+.alert-box-stat {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 0.92rem;
+}
+
+.alert-box-stat i {
+  font-size: 1.5rem;
+}
+
+.profeco-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #15803d;
+  font-weight: 700;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.profeco-link:hover {
+  color: #166534;
+  text-decoration: none;
+}
+
+.profeco-link i {
+  font-size: 0.8rem;
+  margin-left: 4px;
+}
+/* ==========================================
+   PLATO DEL BUEN COMER: FULL-WIDTH & PIE CHART
+   ========================================== */
+
+/* 1. Reset estricto del contenedor del tema */
+#topic-content,
+.plato-container-full {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* 2. Envoltorio general con margen lateral controlado */
+.plato-wrapper {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 20px auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* 3. Rejilla principal para ocupar todo el ancho disponible */
+.plato-main-card {
+  display: grid !important;
+  grid-template-columns: 280px 360px 1fr !important;
+  gap: 30px !important;
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 30px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid #e2e8f0 !important;
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* 4. Estilos del Gráfico de Pastel (SVG) */
+.plato-visual-col {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding: 10px !important;
+}
+
+.plato-pie-svg {
+  width: 100% !important;
+  max-width: 320px !important;
+  height: auto !important;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.1));
+  transform: rotate(-90deg); /* Orienta el primer sector hacia arriba */
+}
+
+.pie-slice {
+  cursor: pointer;
+  stroke: #ffffff;
+  stroke-width: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease, stroke-width 0.25s ease;
+  transform-origin: center;
+  opacity: 0.85;
+}
+
+.pie-slice:hover,
+.pie-slice.active {
+  opacity: 1;
+  stroke: #ffffff;
+  stroke-width: 4px;
+  transform: scale(1.04);
+}
+
+/* 5. Adaptación Móvil / Tablets */
+@media (max-width: 1024px) {
+  .plato-main-card {
+    grid-template-columns: 1fr !important;
+    gap: 25px !important;
+    padding: 20px !important;
+  }
+}
+/* ==========================================
+   recomendaciones de ejercicio 
+   ========================================== */
+/* ==========================================
+   ESTILOS TEMA 6: EJERCICIO Y MOVIMIENTO
+   ========================================== */
+/* ==========================================
+   ESTILOS TEMA 6: EJERCICIO Y MOVIMIENTO
+   ========================================== */
+.ejercicio-wrapper {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding: 20px 30px 50px 30px !important;
+  box-sizing: border-box !important;
+}
+
+.ejercicio-header { 
+  text-align: center; 
+  margin-bottom: 40px; 
+}
+
+.ejercicio-title { 
+  font-size: 2.2rem; 
+  color: #1e293b; 
+  font-weight: 800; 
+  margin-bottom: 10px; 
+  text-transform: none; 
+}
+
+.ejercicio-subtitle { 
+  color: #64748b; 
+  font-size: 1.05rem; 
+  max-width: 800px; 
+  margin: 0 auto; 
+  line-height: 1.6; 
+  font-style: italic; 
+}
+
+.ejercicio-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 30px; 
+}
+
+.ejercicio-card { 
+  background: #ffffff; 
+  border-radius: 20px; 
+  padding: 30px 25px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+  border: 1px solid #e2e8f0; 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.ejercicio-icon-box { 
+  width: 52px; 
+  height: 52px; 
+  border-radius: 14px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 1.35rem; 
+  margin-bottom: 20px; 
+}
+
+.icon-cardio { background: #e0f2fe; color: #0284c7; }
+.icon-fuerza { background: #dcfce7; color: #16a34a; }
+.icon-flex { background: #f3e8ff; color: #9333ea; }
+
+.ejercicio-card-title { 
+  font-size: 1.3rem; 
+  font-weight: 800; 
+  color: #1e293b; 
+  margin-bottom: 12px; 
+}
+
+.ejercicio-card-desc { 
+  font-size: 0.92rem; 
+  color: #475569; 
+  line-height: 1.6; 
+  margin-bottom: 20px; 
+}
+
+.ejercicio-checklist { 
+  list-style: none; 
+  padding: 0; 
+  margin-top: auto; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+}
+
+.ejercicio-checklist li { 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+  font-size: 0.88rem; 
+  color: #64748b; 
+  font-weight: 600; 
+}
+
+.ejercicio-checklist li i { 
+  color: #0284c7; 
+}
+
+@media (max-width: 900px) { 
+  .ejercicio-grid { grid-template-columns: 1fr; } 
+}
+/* ==========================================
+   ESTILOS TEMA 8: PLANIFICACIÓN Y HÁBITOS
+   ========================================== */
+
+/* Contenedor principal de la sección de ejercicios / hábitos */
+.ejercicio-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ejercicio-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.ejercicio-title {
+  font-size: 2rem;
+  color: #1e293b;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.ejercicio-subtitle {
+  font-size: 1.05rem;
+  color: #64748b;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Rejilla de tarjetas */
+.ejercicio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* Tarjeta individual */
+.feature-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 2px solid #e2e8f0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card:hover,
+.feature-card.active {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border-color: #22c55e;
+}
+
+/* Encabezado e íconos en tarjetas */
+.card-header-flex {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+/* Variaciones de insignias por color */
+.blue-badge {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.purple-badge {
+  background-color: #f3e8ff;
+  color: #9333ea;
+}
+
+.green-badge {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+/* Tipografía de tarjetas */
+.feature-card h3 {
+  font-size: 1.2rem;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.feature-card ul {
+  margin-top: auto;
+  padding-left: 20px;
+  color: #64748b;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+  .ejercicio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ejercicio-title {
+    font-size: 1.6rem;
+  }
+}
+/* ==========================================
+   VARIABLES GLOBALES Y RESET
+   ========================================== */
+:root {
+  --primary-color: #2e7d32;
+  --primary-hover: #1b5e20;
+  --secondary-color: #0288d1;
+  --text-color: #2c3e50;
+  --bg-light: #f8fafc;
+  --white: #ffffff;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-light);
+  line-height: 1.6;
+}
+
+/* ==========================================
+   ESTILOS GENERALES Y UTILIDADES
+   ========================================== */
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================
+   ESTILOS DE LA SECCIÓN "TU OPINIÓN"
+   ========================================== */
+.opinion-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.opinion-form-section {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.opinion-main-title {
+  font-size: 2rem;
+  color: #2e7d32;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.opinion-intro {
+  color: #64748b;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+/* BLOQUE DE PREGUNTA */
+.question-block {
+  background: #f1f5f9;
+  border-left: 4px solid #2e7d32;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0 12px 12px 0;
+  transition: all 0.3s ease;
+}
+
+.question-block:hover {
+  background: #e2e8f0;
+}
+
+.question-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.option-item input[type="radio"],
+.option-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2e7d32;
+  cursor: pointer;
+}
+
+.option-item label {
+  cursor: pointer;
+  font-size: 0.98rem;
+  color: #334155;
+  user-select: none;
+}
+
+/* BOTÓN Y MENSAJE DE AGRADECIMIENTO */
+.form-actions {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+.btn-submit-opinion {
+  background-color: #2e7d32;
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-submit-opinion:hover {
+  background-color: #1b5e20;
+  transform: translateY(-2px);
+}
+
+.thankyou-message {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #f0fdf4;
+  border: 2px solid #bbf7d0;
+  border-radius: 12px;
+}
+
+.thankyou-icon {
+  font-size: 3.5rem;
+  color: #16a34a;
+  margin-bottom: 1rem;
+}
+
+.thankyou-message h2 {
+  color: #15803d;
+  margin-bottom: 0.5rem;
+}
+
+.thankyou-message p {
+  color: #166534;
+}
+
+/* ASIDE LATERAL Y RESPONSIVO */
+.opinion-aside {
+  position: sticky;
+  top: 2rem;
+}
+
+.castor-sticky-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 1px solid #e2e8f0;
+}
+
+.castor-opinion-img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.castor-dialog-bubble {
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .opinion-container {
+    grid-template-columns: 1fr;
+  }
+  .opinion-aside {
+    position: static;
   }
 }

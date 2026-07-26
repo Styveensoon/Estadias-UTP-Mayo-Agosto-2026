@@ -5,46 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WellDataLab - UTP</title>
 
-  <!-- FAVICON IMPLEMENTADO (Parte A de la tarea) -->
+  <!-- FAVICON IMPLEMENTADO -->
   <link rel="icon" type="image/png" href="Resources/logo-welldatalab.png">
 
   <!-- Font Awesome para los íconos del menú -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- Tu Hoja de Estilos -->
+  <!-- Hoja de Estilos Principal -->
   <link rel="stylesheet" href="Styles/Style_components.css">
 </head>
 <body>
 
   <!-- ENCABEZADO CON LOGOS Y NAVEGACIÓN -->
   <header class="header-site">
-    <!-- Fila superior con los logos -->
     <div class="top-header">
       <div class="logo-left">
-        <img src="Resources/logo-utp.png.jpeg" alt="Universidad Tecnológica de Puebla">
+        <img src="Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla">
       </div>
       <div class="logo-right">
         <img src="Resources/logo-welldatalab.png" alt="WellDataLab">
       </div>
     </div>
 
-    <!-- Barra de navegación verde -->
-    <nav class="navbar">
+    <!-- Barra de navegación principal -->
+    <nav class="navbar" aria-label="Navegación principal">
       <div class="nav-container">
-        <!-- Botón Hamburguesa -->
         <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
           <i class="fa-solid fa-bars"></i>
         </button>
 
-        <!-- Lista de navegación -->
         <ul class="nav-menu" id="nav-menu">
-          <li class="nav-item"><a href="#" class="nav-link">Inicio</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">¿Quiénes somos?</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Temas</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">¿Sabías qué?</a></li>
+          <li class="nav-item"><a href="index.html" class="nav-link active">Inicio</a></li>
+          <li class="nav-item"><a href="Views/quienes_somos.html" class="nav-link">¿Quiénes somos?</a></li>
+          
+          <!-- APARTADO DE TEMAS CON MENÚ DESPLEGABLE -->
+          <li class="nav-item dropdown-item">
+            <a href="Views/temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down"></i></a>
+            <ul class="dropdown-menu" id="topics-dropdown">
+              <li><a href="Views/temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
+              <li><a href="Views/temas.html" data-topic="2">Guías alimentarias</a></li>
+              <li><a href="Views/temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
+              <li><a href="Views/temas.html" data-topic="4">El Plato del Buen Comer</a></li>
+              <li><a href="Views/temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
+              <li><a href="Views/temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
+              <li><a href="Views/temas.html" data-topic="7">Videos de recetas</a></li>
+              <li><a href="Views/temas.html" data-topic="8">Marco normativo y Hábitos</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="Views/sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Videos</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Recursos</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Tu opinión</a></li>
+          <li class="nav-item"><a href="Views/tu_opinion.html" class="nav-link">Tu opinión</a></li>
         </ul>
       </div>
     </nav>
@@ -52,6 +64,45 @@
 
   <!-- CONTENIDO PRINCIPAL -->
   <main class="main-content">
+
+    <!-- BANNER VISUAL SUPERIOR -->
+    <div class="hero-banner">
+      <img src="Resources/home/banner-comida.jpg" alt="Alimentos saludables" class="banner-img">
+    </div>
+
+    <!-- CONTENEDOR INTERACTIVO DE LA SECCIÓN PRINCIPAL -->
+    <div class="home-container">
+      
+      <!-- ILUSTRACIÓN IZQUIERDA: CASTOR -->
+      <aside class="left-aside">
+        <img src="Resources/home/castor.png" alt="El Castor Nutritivo" class="castor-img">
+      </aside>
+
+      <!-- TEXTO CENTRAL MOTIVACIONAL -->
+      <section class="content-body">
+        <h1>TU SALUD, TU MEJOR INVERSIÓN</h1>
+        <p class="subtitle">El futuro de tu cuerpo se construye con tus decisiones de hoy.<br>Cuidar de ti no es un lujo, es una necesidad.</p>
+
+        <p>Lo que comes, cómo te mueves y cuánto descansas hoy, define la energía y la salud que tendrás mañana. No busques soluciones mágicas; el secreto está en el poder de tus hábitos diarios.</p>
+
+        <p>Te damos las herramientas para prevenir enfermedades y transformar tu estilo de vida, un paso a paso a la vez.</p>
+
+        <p class="highlight-text">El cambio no empieza mañana, empieza en tu próxima decisión. 🍎</p>
+      </section>
+
+      <!-- ELEMENTOS DERECHA: NOTA IMC Y CORAZÓN -->
+      <aside class="right-aside">
+        <a href="Views/calculadora.html" class="postit-btn" title="Ir a la Calculadora de IMC">
+          <div class="pin">📌</div>
+          <p>Calcula tu<br><strong>índice de<br>masa corporal</strong><br>aquí</p>
+          <div class="scale-icon">⚖️</div>
+        </a>
+        
+        <img src="Resources/home/corazon.png" alt="Corazón saludable" class="heart-img">
+      </aside>
+
+    </div>
+
   </main>
 
   <!-- PIE DE PÁGINA -->
@@ -63,7 +114,7 @@
     </div>
   </footer>
 
-  <!-- Tu script principal desde la carpeta Js -->
+  <!-- ARCHIVOS JAVASCRIPT -->
   <script src="Js/main.js"></script>
 </body>
 </html>

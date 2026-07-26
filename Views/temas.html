@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explora los temas de salud, hidratación, nutrición y guías alimentarias en WellDataLab en colaboración con la UTP.">
+  <title>Temas de Interés - WellDataLab</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../Resources/logo-welldatalab.png">
+
+  <!-- Estilos Externos y Locales -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../Styles/Style_components.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO CON LOGOS Y NAVEGACIÓN -->
+  <header class="header-site">
+    <div class="top-header">
+      <div class="logo-left">
+        <!-- Logo corregido sin la extensión doble .jpeg -->
+        <img src="../Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla">
+      </div>
+      <div class="logo-right">
+        <img src="../Resources/logo-welldatalab.png" alt="WellDataLab">
+      </div>
+    </div>
+
+    <nav class="navbar" aria-label="Navegación principal">
+      <div class="nav-container">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="quienes_somos.html" class="nav-link">¿Quiénes somos?</a></li>
+          
+          <li class="nav-item dropdown-item">
+            <a href="#" class="nav-link active" aria-haspopup="true" aria-expanded="false">
+              Temas <i class="fa-solid fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" id="topics-dropdown">
+              <li><a href="javascript:void(0)" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
+              <li><a href="javascript:void(0)" data-topic="2">Guías alimentarias</a></li>
+              <li><a href="javascript:void(0)" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
+              <li><a href="javascript:void(0)" data-topic="4">El Plato del Buen Comer</a></li>
+              <li><a href="javascript:void(0)" data-topic="5">Sostenibilidad alimentaria</a></li>
+              <li><a href="javascript:void(0)" data-topic="6">Recomendaciones de ejercicio</a></li>
+              <li><a href="javascript:void(0)" data-topic="7">Videos de recetas</a></li>
+              <li><a href="javascript:void(0)" data-topic="8">Marco normativo</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Videos</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Recursos</a></li>
+          <!-- ENLACE A TU OPINIÓN CORREGIDO -->
+          <li class="nav-item"><a href="tu_opinion.html" class="nav-link">Tu opinión</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-content">
+
+    <!-- BANNER SUPERIOR -->
+    <div class="hero-banner">
+      <img src="../Resources/home/banner-comida.jpg" alt="Alimentos saludables y nutrición" class="banner-img">
+    </div>
+
+    <!-- CONTENEDOR DONDE SE RENDERIZAN DINÁMICAMENTE LOS TEMAS DESDE JAVASCRIPT -->
+    <div class="topic-section-container">
+      <section id="topic-content" aria-live="polite">
+        <!-- Contenido inyectado dinámicamente por temas.js -->
+      </section>
+    </div>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer-site">
+    <div class="footer-container">
+      <h3 class="footer-title">WellDataLab</h3>
+      <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      <p class="copyright">© 2026 WellDataLab - UTP. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ARCHIVOS JAVASCRIPT -->
+  <script src="../Js/main.js"></script>
+  <script src="../Js/temas.js?v=2.0"></script>
+</body>
+</html>

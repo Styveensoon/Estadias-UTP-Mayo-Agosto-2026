@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tu Opinión - WellDataLab</title>
+
+  <link rel="icon" type="image/png" href="../Resources/logo-welldatalab.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../Styles/Style_components.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header class="header-site">
+    <div class="top-header">
+      <div class="logo-left">
+        <img src="../Resources/logo-utp.png" alt="UTP">
+      </div>
+      <div class="logo-right">
+        <img src="../Resources/logo-welldatalab.png" alt="WellDataLab">
+      </div>
+    </div>
+
+    <nav class="navbar">
+      <div class="nav-container">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- NOTA DE RUTAS: Al estar dentro de /Views/, los enlaces a otras páginas de /Views/ son directos (sin 'Views/') -->
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="quienes_somos.html" class="nav-link">¿Quiénes somos?</a></li>
+          
+          <li class="nav-item dropdown-item">
+            <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down"></i></a>
+            <ul class="dropdown-menu" id="topics-dropdown">
+              <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
+              <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
+              <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
+              <li><a href="temas.html" data-topic="4">El Plato del Buen Comer</a></li>
+              <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
+              <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
+              <li><a href="temas.html" data-topic="7">Videos de recetas</a></li>
+              <li><a href="temas.html" data-topic="8">Marco normativo y Hábitos</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Videos</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Recursos</a></li>
+          <li class="nav-item"><a href="tu_opinion.html" class="nav-link active">Tu opinión</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="opinion-container">
+
+    <section class="opinion-form-section">
+      <h1 class="opinion-main-title">TU OPINIÓN ES MUY IMPORTANTE</h1>
+      <p class="opinion-intro">Ayúdanos a mejorar nuestra plataforma respondiendo estas breves preguntas sobre tu experiencia en WellDataLab.</p>
+
+      <form id="opinion-form">
+        
+        <!-- PREGUNTA 1 -->
+        <div class="question-block">
+          <h3 class="question-title">1. ¿Cómo calificaría la calidad y utilidad del contenido de nuestra página?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q1_1" name="question_1" value="Excelente" required><label for="q1_1">Excelente</label></div>
+            <div class="option-item"><input type="radio" id="q1_2" name="question_1" value="Buena"><label for="q1_2">Buena</label></div>
+            <div class="option-item"><input type="radio" id="q1_3" name="question_1" value="Regular"><label for="q1_3">Regular</label></div>
+            <div class="option-item"><input type="radio" id="q1_4" name="question_1" value="Mala"><label for="q1_4">Mala</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 2 -->
+        <div class="question-block">
+          <h3 class="question-title">2. ¿Considera que la información es clara y fácil de leer?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q2_1" name="question_2" value="Sí, muy clara" required><label for="q2_1">Sí, muy clara</label></div>
+            <div class="option-item"><input type="radio" id="q2_2" name="question_2" value="Es aceptable"><label for="q2_2">Es aceptable</label></div>
+            <div class="option-item"><input type="radio" id="q2_3" name="question_2" value="No, hay demasiada información o es confusa"><label for="q2_3">No, hay demasiada información o es confusa</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 3 -->
+        <div class="question-block">
+          <h3 class="question-title">3. ¿Qué palabra describe mejor el diseño visual de nuestra página web?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="checkbox" id="q3_1" name="question_3[]" value="Moderno"><label for="q3_1">Moderno</label></div>
+            <div class="option-item"><input type="checkbox" id="q3_2" name="question_3[]" value="Limpio y profesional"><label for="q3_2">Limpio y profesional</label></div>
+            <div class="option-item"><input type="checkbox" id="q3_3" name="question_3[]" value="Desordenado"><label for="q3_3">Desordenado</label></div>
+            <div class="option-item"><input type="checkbox" id="q3_4" name="question_3[]" value="Anticuado"><label for="q3_4">Anticuado</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 4 -->
+        <div class="question-block">
+          <h3 class="question-title">4. ¿Qué tan fácil le resultó navegar por las diferentes secciones del sitio?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q4_1" name="question_4" value="Muy fácil" required><label for="q4_1">Muy fácil</label></div>
+            <div class="option-item"><input type="radio" id="q4_2" name="question_4" value="Fácil"><label for="q4_2">Fácil</label></div>
+            <div class="option-item"><input type="radio" id="q4_3" name="question_4" value="Moderadamente difícil"><label for="q4_3">Moderadamente difícil</label></div>
+            <div class="option-item"><input type="radio" id="q4_4" name="question_4" value="Muy difícil"><label for="q4_4">Muy difícil</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 5 -->
+        <div class="question-block">
+          <h3 class="question-title">5. ¿Qué opinas del diseño interactivo del Plato del Buen Comer y la Jarra del Buen Beber?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q5_1" name="question_5" value="Muy interactivo y explicativo" required><label for="q5_1">Muy interactivo y explicativo</label></div>
+            <div class="option-item"><input type="radio" id="q5_2" name="question_5" value="Útil e instructivo"><label for="q5_2">Útil e instructivo</label></div>
+            <div class="option-item"><input type="radio" id="q5_3" name="question_5" value="Poco atractivo"><label for="q5_3">Poco atractivo</label></div>
+            <div class="option-item"><input type="radio" id="q5_4" name="question_5" value="No lo utilicé"><label for="q5_4">No lo utilicé</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 6 -->
+        <div class="question-block">
+          <h3 class="question-title">6. ¿Te resultó útil la herramienta de Calculadora de IMC?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q6_1" name="question_6" value="Sí, muy útil e intuitiva" required><label for="q6_1">Sí, muy útil e intuitiva</label></div>
+            <div class="option-item"><input type="radio" id="q6_2" name="question_6" value="Útil"><label for="q6_2">Útil</label></div>
+            <div class="option-item"><input type="radio" id="q6_3" name="question_6" value="Poco útil"><label for="q6_3">Poco útil</label></div>
+            <div class="option-item"><input type="radio" id="q6_4" name="question_6" value="No la he probado"><label for="q6_4">No la he probado</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 7 -->
+        <div class="question-block">
+          <h3 class="question-title">7. ¿Qué temas te gustaría ver más en futuras actualizaciones?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="checkbox" id="q7_1" name="question_7[]" value="Recetas saludables"><label for="q7_1">Recetas saludables</label></div>
+            <div class="option-item"><input type="checkbox" id="q7_2" name="question_7[]" value="Rutinas de ejercicio"><label for="q7_2">Rutinas de ejercicio</label></div>
+            <div class="option-item"><input type="checkbox" id="q7_3" name="question_7[]" value="Salud mental y descanso"><label for="q7_3">Salud mental y descanso</label></div>
+            <div class="option-item"><input type="checkbox" id="q7_4" name="question_7[]" value="Planes de alimentación"><label for="q7_4">Planes de alimentación</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 8 -->
+        <div class="question-block">
+          <h3 class="question-title">8. ¿Consideras que las imágenes y elementos gráficos aportan al aprendizaje?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q8_1" name="question_8" value="Totalmente de acuerdo" required><label for="q8_1">Totalmente de acuerdo</label></div>
+            <div class="option-item"><input type="radio" id="q8_2" name="question_8" value="De acuerdo"><label for="q8_2">De acuerdo</label></div>
+            <div class="option-item"><input type="radio" id="q8_3" name="question_8" value="En desacuerdo"><label for="q8_3">En desacuerdo</label></div>
+            <div class="option-item"><input type="radio" id="q8_4" name="question_8" value="Totalmente en desacuerdo"><label for="q8_4">Totalmente en desacuerdo</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 9 -->
+        <div class="question-block">
+          <h3 class="question-title">9. ¿Qué tan rápido cargó el contenido del sitio en tu dispositivo?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q9_1" name="question_9" value="Muy rápido" required><label for="q9_1">Muy rápido</label></div>
+            <div class="option-item"><input type="radio" id="q9_2" name="question_9" value="Aceptable"><label for="q9_2">Aceptable</label></div>
+            <div class="option-item"><input type="radio" id="q9_3" name="question_9" value="Lento"><label for="q9_3">Lento</label></div>
+            <div class="option-item"><input type="radio" id="q9_4" name="question_9" value="Muy lento"><label for="q9_4">Muy lento</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 10 -->
+        <div class="question-block">
+          <h3 class="question-title">10. ¿Qué opinión tienes de la presencia de la mascota (El Castor Nutritivo)?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q10_1" name="question_10" value="Aporta amigabilidad y dinamismo" required><label for="q10_1">Aporta amigabilidad y dinamismo</label></div>
+            <div class="option-item"><input type="radio" id="q10_2" name="question_10" value="Es indiferente"><label for="q10_2">Es indiferente</label></div>
+            <div class="option-item"><input type="radio" id="q10_3" name="question_10" value="No me agrada"><label for="q10_3">No me agrada</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 11 -->
+        <div class="question-block">
+          <h3 class="question-title">11. ¿Recomendarías esta plataforma a un amigo o compañero de estudios?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q11_1" name="question_11" value="Definitivamente sí" required><label for="q11_1">Definitivamente sí</label></div>
+            <div class="option-item"><input type="radio" id="q11_2" name="question_11" value="Probablemente sí"><label for="q11_2">Probablemente sí</label></div>
+            <div class="option-item"><input type="radio" id="q11_3" name="question_11" value="Tal vez"><label for="q11_3">Tal vez</label></div>
+            <div class="option-item"><input type="radio" id="q11_4" name="question_11" value="No"><label for="q11_4">No</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 12 -->
+        <div class="question-block">
+          <h3 class="question-title">12. ¿Los colores y tipografías te parecieron adecuados para la lectura?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q12_1" name="question_12" value="Excelente contraste y legibilidad" required><label for="q12_1">Excelente contraste y legibilidad</label></div>
+            <div class="option-item"><input type="radio" id="q12_2" name="question_12" value="Adecuado"><label for="q12_2">Adecuado</label></div>
+            <div class="option-item"><input type="radio" id="q12_3" name="question_12" value="Cansa la vista"><label for="q12_3">Cansa la vista</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 13 -->
+        <div class="question-block">
+          <h3 class="question-title">13. ¿Con qué frecuencia piensas que volverás a consultar este portal?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q13_1" name="question_13" value="Diariamente" required><label for="q13_1">Diariamente</label></div>
+            <div class="option-item"><input type="radio" id="q13_2" name="question_13" value="Semanalmente"><label for="q13_2">Semanalmente</label></div>
+            <div class="option-item"><input type="radio" id="q13_3" name="question_13" value="Ocasionalmente"><label for="q13_3">Ocasionalmente</label></div>
+            <div class="option-item"><input type="radio" id="q13_4" name="question_13" value="Rara vez"><label for="q13_4">Rara vez</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 14 -->
+        <div class="question-block">
+          <h3 class="question-title">14. ¿Cómo evalúas la precisión de las recomendaciones de salud presentadas?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q14_1" name="question_14" value="Muy confiables" required><label for="q14_1">Muy confiables</label></div>
+            <div class="option-item"><input type="radio" id="q14_2" name="question_14" value="Confiables"><label for="q14_2">Confiables</label></div>
+            <div class="option-item"><input type="radio" id="q14_3" name="question_14" value="Tengo dudas"><label for="q14_3">Tengo dudas</label></div>
+            <div class="option-item"><input type="radio" id="q14_4" name="question_14" value="No me parecen confiables"><label for="q14_4">No me parecen confiables</label></div>
+          </div>
+        </div>
+
+        <!-- PREGUNTA 15 -->
+        <div class="question-block">
+          <h3 class="question-title">15. En general, ¿cuál es tu nivel de satisfacción con WellDataLab?</h3>
+          <div class="options-group">
+            <div class="option-item"><input type="radio" id="q15_1" name="question_15" value="Muy satisfecho" required><label for="q15_1">Muy satisfecho</label></div>
+            <div class="option-item"><input type="radio" id="q15_2" name="question_15" value="Satisfecho"><label for="q15_2">Satisfecho</label></div>
+            <div class="option-item"><input type="radio" id="q15_3" name="question_15" value="Neutral"><label for="q15_3">Neutral</label></div>
+            <div class="option-item"><input type="radio" id="q15_4" name="question_15" value="Insatisfecho"><label for="q15_4">Insatisfecho</label></div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-submit-opinion">
+            Enviar respuestas <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </form>
+
+      <!-- MENSAJE DE ENVIADO -->
+      <div id="opinion-thankyou" class="thankyou-message hidden">
+        <i class="fa-solid fa-circle-check thankyou-icon"></i>
+        <h2>¡Gracias por tus comentarios!</h2>
+        <p>Tus respuestas han sido registradas correctamente.</p>
+      </div>
+    </section>
+
+    <!-- BARRA LATERAL -->
+    <aside class="opinion-aside">
+      <div class="castor-sticky-card">
+        <img src="../Resources/home/castor.png" alt="El Castor Nutritivo" class="castor-opinion-img">
+        <div class="castor-dialog-bubble">
+          "¡Hola! Tu opinión nos ayuda a saber qué temas y herramientas te son más útiles para cuidar tu salud."
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <footer class="footer-site">
+    <div class="footer-container">
+      <h3 class="footer-title">WellDataLab</h3>
+      <p>Plataforma interactiva para el cuidado de la salud y nutrición.</p>
+      <p class="copyright">© 2026 WellDataLab - UTP. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="../Js/main.js"></script>
+  <script>
+    // Manejo ultra simple del envío en la misma página
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("opinion-form");
+      const thankYou = document.getElementById("opinion-thankyou");
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          form.style.display = "none";
+          if (thankYou) thankYou.classList.remove("hidden");
+        });
+      }
+    });
+  </script>
+</body>
+</html>

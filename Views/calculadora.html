@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de IMC - WellDataLab</title>
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="../Resources/logo-welldatalab.png">
+
+  <!-- Font Awesome para los íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- HOJA DE ESTILOS PRINCIPAL (Se requiere ../ para salir de la carpeta Views) -->
+  <link rel="stylesheet" href="../Styles/Style_components.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO CON LOGOS Y NAVEGACIÓN -->
+  <header class="header-site">
+    <div class="top-header">
+      <div class="logo-left">
+        <img src="../Resources/logo-utp.png.jpeg" alt="Universidad Tecnológica de Puebla">
+      </div>
+      <div class="logo-right">
+        <img src="../Resources/logo-welldatalab.png" alt="WellDataLab">
+      </div>
+    </div>
+
+    <nav class="navbar">
+      <div class="nav-container">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="quienes_somos.html" class="nav-link">¿Quiénes somos?</a></li>
+          
+          <!-- MENÚ DESPLEGABLE TEMAS DE INTERÉS -->
+          <li class="nav-item dropdown-item">
+            <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down"></i></a>
+            <ul class="dropdown-menu" id="topics-dropdown">
+              <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
+              <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
+              <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
+              <li><a href="temas.html" data-topic="4">Herramientas de salud (IMSS)</a></li>
+              <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
+              <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
+              <li><a href="temas.html" data-topic="7">Videos de recetas</a></li>
+              <li><a href="temas.html" data-topic="8">Marco normativo</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Videos</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Recursos</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Tu opinión</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-content">
+    <!-- BANNER SUPERIOR -->
+    <div class="hero-banner">
+      <img src="../Resources/home/banner-comida.jpg" alt="Alimentos saludables" class="banner-img">
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL DOS COLUMNAS -->
+    <div class="calc-section-container">
+      
+      <!-- COLUMNA IZQUIERDA: EL PLATO DEL BIEN COMER -->
+      <div class="info-plato">
+        <h2>El Plato del Bien Comer</h2>
+        <p class="desc-plato">
+          Establecido en la NOM-043, el IMSS promueve el Plato del Bien Comer como una guía gráfica de alimentación para balancear los 3 grupos principales:
+        </p>
+
+        <ul class="lista-grupos">
+          <li class="grupo-item verde">
+            <strong>Verduras y Frutas</strong>
+            <span>Muchas. Aportan vitaminas, minerales y fibra dietética que facilitan una buena digestión.</span>
+          </li>
+          <li class="grupo-item naranja">
+            <strong>Cereales y Tubérculos</strong>
+            <span>Suficientes. Son la fuente principal de energía que el cuerpo utiliza para las tareas del día a día.</span>
+          </li>
+          <li class="grupo-item rojo">
+            <strong>Leguminosas y Origen Animal</strong>
+            <span>Pocos / Combinados. Aportan proteínas indispensables para la formación de tejidos y el crecimiento.</span>
+          </li>
+        </ul>
+
+        <a href="https://www.gob.mx/imss" target="_blank" rel="noopener noreferrer" class="link-imss">
+          PÁGINA OFICIAL DEL IMSS <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+
+      <!-- COLUMNA DERECHA: CALCULADORA Y BARRA DE IMC -->
+      <div class="calc-card">
+        <div class="calc-header">
+          <h3><i class="fa-solid fa-calculator"></i> Calculadora de IMC y Kilocalorías</h3>
+          <p>Calcula tu Índice de Masa Corporal (IMC) y un aproximado del gasto energético diario según tu actividad física.</p>
+        </div>
+
+        <div class="calc-body-grid">
+          <!-- FORMULARIO -->
+          <form id="imc-form" class="imc-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="peso">PESO (KG)</label>
+                <input type="number" id="peso" value="70" step="0.1" min="1" required>
+              </div>
+              <div class="form-group">
+                <label for="estatura">ESTATURA (CM)</label>
+                <input type="number" id="estatura" value="170" min="1" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="edad">EDAD (AÑOS)</label>
+                <input type="number" id="edad" value="25" min="1" required>
+              </div>
+              <div class="form-group">
+                <label for="genero">GÉNERO</label>
+                <select id="genero">
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="actividad">NIVEL DE ACTIVIDAD FÍSICA</label>
+              <select id="actividad">
+                <option value="1.2">Sedentario (Poco o nada de ejercicio)</option>
+                <option value="1.375">Ligero (1-3 días a la semana)</option>
+                <option value="1.55">Moderado (3-5 días a la semana)</option>
+                <option value="1.725">Intenso (6-7 días a la semana)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-calcula-green">Calcula Datos de Salud</button>
+          </form>
+
+          <!-- BARRA GRÁFICA DE IMC -->
+          <div class="imc-visual-container">
+            <div class="bar-wrapper">
+              <div class="bar-gradient"></div>
+              <!-- Indicador en forma de V invertida/flecha -->
+              <div id="indicador-flecha" class="arrow-indicator"></div>
+            </div>
+            <div class="bar-labels">
+              <span>Bajo Peso</span>
+              <span>Normal</span>
+              <span>Sobrepeso</span>
+              <span>Obesidad</span>
+            </div>
+
+            <!-- RESULTADOS DESPLEGABLES ABAJO DE LA BARRA -->
+            <div id="box-resultados" class="box-resultados hidden">
+              <p><strong>IMC:</strong> <span id="res-imc">--</span> (<span id="res-cat">--</span>)</p>
+              <p><strong>Gasto Energético:</strong> <span id="res-kcal">--</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer-site">
+    <div class="footer-container">
+      <h3 class="footer-title">WellDataLab</h3>
+      <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      <p class="copyright">© 2026 WellDataLab - UTP. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../Js/main.js"></script>
+  <script src="../Js/calculadora.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Quiénes Somos? - WellDataLab</title>
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="../Resources/logo-welldatalab.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- HOJA DE ESTILOS PRINCIPAL -->
+  <link rel="stylesheet" href="../Styles/Style_components.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO CON LOGOS Y NAVEGACIÓN -->
+  <header class="header-site">
+    <div class="top-header">
+      <div class="logo-left">
+        <!-- Nombre de logo corregido -->
+        <img src="../Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla">
+      </div>
+      <div class="logo-right">
+        <img src="../Resources/logo-welldatalab.png" alt="WellDataLab">
+      </div>
+    </div>
+
+    <nav class="navbar" aria-label="Navegación principal">
+      <div class="nav-container">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="quienes_somos.html" class="nav-link active">¿Quiénes somos?</a></li>
+          
+          <!-- MENÚ DESPLEGABLE TEMAS DE INTERÉS -->
+          <li class="nav-item dropdown-item">
+            <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down"></i></a>
+            <ul class="dropdown-menu" id="topics-dropdown">
+              <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
+              <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
+              <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
+              <li><a href="temas.html" data-topic="4">Herramientas de salud (IMSS)</a></li>
+              <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
+              <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
+              <li><a href="temas.html" data-topic="7">Videos de recetas</a></li>
+              <li><a href="temas.html" data-topic="8">Marco normativo</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Videos</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Recursos</a></li>
+          <!-- Ruta corregida hacia la vista de opinión -->
+          <li class="nav-item"><a href="tu_opinion.html" class="nav-link">Tu opinión</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-content">
+
+    <!-- BANNER CAMPUS UTP -->
+    <div class="hero-banner">
+      <img src="../Resources/quienes_somos/banner-utp.jpg" alt="Campus Universidad Tecnológica de Puebla" class="banner-img">
+    </div>
+
+    <!-- SECCIÓN QUIÉNES SOMOS -->
+    <section class="about-section">
+      <h1 class="about-title">PROMOVEMOS UN FUTURO SALUDABLE</h1>
+
+      <div class="cards-grid">
+        
+        <!-- TARJETA 1 -->
+        <article class="about-card blue-card">
+          <h2>Evidencia Científica</h2>
+          <p>"Compilamos información veraz extraída directamente de las Normas Oficiales Mexicanas, el IMSS, la Profeco y prestigiosos institutos de salud."</p>
+        </article>
+
+        <!-- TARJETA 2 -->
+        <article class="about-card green-card">
+          <h2>Enfoque Sostenible</h2>
+          <p>"Entendemos que la salud humana está intrínsecamente ligada al bienestar del planeta. Impulsamos estilos de alimentación con bajo impacto ambiental."</p>
+        </article>
+
+        <!-- TARJETA 3 -->
+        <article class="about-card blue-card">
+          <h2>Hábitos Prácticos</h2>
+          <p>"Traducimos conceptos complejos en herramientas cotidianas, como calculadoras dinámicas, infografías claras y recomendaciones 100% aplicables."</p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer-site">
+    <div class="footer-container">
+      <h3 class="footer-title">WellDataLab</h3>
+      <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      <p class="copyright">© 2026 WellDataLab - UTP. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="../Js/main.js"></script>
+</body>
+</html>
