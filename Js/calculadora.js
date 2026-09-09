@@ -51,6 +51,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const kcal = Math.round(tmb * actividad);
 
+      // 4.1 Requerimiento hídrico diario (35 ml/kg + ajuste por actividad física)
+      let extraAguaMl = 0;
+      if (actividad >= 1.725) extraAguaMl = 750;
+      else if (actividad >= 1.55) extraAguaMl = 550;
+      else if (actividad >= 1.375) extraAguaMl = 350;
+      const aguaLitros = ((peso * 35) + extraAguaMl) / 1000;
+
+      // 4.2 Estimación de masa muscular esquelética (fórmula de Lee et al., 2000)
+      const estMetrosLee = estatura / 100;
+      const sexoFactor = (genero === 'Hombre') ? 1 : 0;
+      const masaMuscular = (0.244 * peso) + (7.80 * estMetrosLee) + (6.6 * sexoFactor) - (0.098 * edad) - 3.3;
+
       // 5. Mover la flecha indicadora
       const indicador = document.getElementById('indicador-flecha');
       if (indicador) {
@@ -61,10 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const resImc = document.getElementById('res-imc');
       const resCat = document.getElementById('res-cat');
       const resKcal = document.getElementById('res-kcal');
+      const resAgua = document.getElementById('res-agua');
+      const resMasa = document.getElementById('res-masa-muscular');
 
       if (resImc) resImc.textContent = imcVal;
       if (resCat) resCat.textContent = categoria;
       if (resKcal) resKcal.textContent = `${kcal} kcal/día`;
+      if (resAgua) resAgua.textContent = `${aguaLitros.toFixed(1)} L/día`;
+      if (resMasa) resMasa.textContent = `${masaMuscular.toFixed(1)} kg (estimado)`;
 
       const boxRes = document.getElementById('box-resultados');
       if (boxRes) boxRes.classList.remove('hidden');

@@ -25,6 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
       container.innerHTML = getTema5HTML(); // Carga Sostenibilidad Alimentaria
     } else if (topicId === '6') {
       container.innerHTML = typeof getTema6HTML === 'function' ? getTema6HTML() : getTema6FallbackHTML();
+    } else if (topicId === '7') {
+      container.innerHTML = getTema7HTML(); // Videoteca / Recetas saludables
+    } else if (topicId === '8') {
+      container.innerHTML = getTema8FallbackHTML(); // Marco normativo y hábitos
+    } else if (topicId === '9') {
+      container.innerHTML = getTema9HTML(); // Comparador dinámico de alimentos
+      if (typeof initComparadorAlimentos === 'function') {
+        initComparadorAlimentos();
+      }
     } else {
       container.innerHTML = `
         <div style="text-align:center; padding: 60px 20px;">
@@ -1475,18 +1484,174 @@ function getTema8FallbackHTML() {
   `;
 }
 
-function renderTopic(topicId) {
-  const container = document.getElementById("topic-content");
-  if (!container) return;
-
-  if (String(topicId) === "8") {
-    container.innerHTML = getTema8FallbackHTML();
-  }
+/* ==========================================
+   PLANTILLA TEMA 7: RECETAS SALUDABLES
+   ========================================== */
+function getTema7HTML() {
+  return `
+    <div class="topic-layout">
+      <div class="topic-left">
+        <h1 class="topic-main-title">Recetas Fáciles y Saludables</h1>
+        <p class="topic-desc">Recetas rápidas, económicas y nutritivas para complementar tu plan de alimentación diario sin complicaciones en la cocina.</p>
+        <p class="topic-quote">Cocinar en casa es el primer paso para controlar lo que comes.</p>
+      </div>
+      <div class="topic-right-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="feature-card">
+          <div class="card-header-flex">
+            <div class="card-num green-badge"><i class="fa-solid fa-mug-hot"></i></div>
+          </div>
+          <h3>Avena con Fruta</h3>
+          <p><strong>Tiempo:</strong> 5 min - <strong>Porciones:</strong> 1</p>
+          <p><strong>Ingredientes:</strong> 1/2 taza de avena, 1 taza de leche descremada o bebida vegetal, 1/2 plátano, canela al gusto.</p>
+          <p><strong>Preparación:</strong> Calienta la leche, agrega la avena y cuece 3-4 min moviendo. Sirve con el plátano en rodajas y canela.</p>
+        </div>
+        <div class="feature-card">
+          <div class="card-header-flex">
+            <div class="card-num blue-badge"><i class="fa-solid fa-bowl-food"></i></div>
+          </div>
+          <h3>Ensalada de Pollo</h3>
+          <p><strong>Tiempo:</strong> 15 min - <strong>Porciones:</strong> 2</p>
+          <p><strong>Ingredientes:</strong> 1 pechuga de pollo asada y desmenuzada, lechuga, jitomate, pepino, 1 cda de aceite de oliva, limón.</p>
+          <p><strong>Preparación:</strong> Mezcla las verduras picadas con el pollo, aliña con aceite y limón al gusto.</p>
+        </div>
+        <div class="feature-card">
+          <div class="card-header-flex">
+            <div class="card-num cyan-badge"><i class="fa-solid fa-glass-water"></i></div>
+          </div>
+          <h3>Agua Fresca Natural</h3>
+          <p><strong>Tiempo:</strong> 5 min - <strong>Porciones:</strong> 4</p>
+          <p><strong>Ingredientes:</strong> 1 taza de fruta de temporada (pepino, jamaica, limón o piña), 1 litro de agua, edulcorante al gusto (opcional).</p>
+          <p><strong>Preparación:</strong> Licua la fruta con el agua, cuela si es necesario y sirve fría, sin azúcares añadidos.</p>
+        </div>
+        <div class="feature-card">
+          <div class="card-header-flex">
+            <div class="card-num purple-badge"><i class="fa-solid fa-carrot"></i></div>
+          </div>
+          <h3>Salteado de Verduras y Huevo</h3>
+          <p><strong>Tiempo:</strong> 12 min - <strong>Porciones:</strong> 2</p>
+          <p><strong>Ingredientes:</strong> Calabaza, zanahoria y ejotes en cubos, 2 huevos, 1 cdita de aceite, sal y pimienta.</p>
+          <p><strong>Preparación:</strong> Saltea las verduras 6-8 min, agrega los huevos batidos y cocina revolviendo hasta cuajar.</p>
+        </div>
+        <div class="feature-card">
+          <div class="card-header-flex">
+            <div class="card-num red-badge"><i class="fa-solid fa-lemon"></i></div>
+          </div>
+          <h3>Pescado al Limón</h3>
+          <p><strong>Tiempo:</strong> 18 min - <strong>Porciones:</strong> 2</p>
+          <p><strong>Ingredientes:</strong> 2 filetes de pescado blanco, jugo de 1 limón, ajo picado, sal, pimienta, 1 cdita de aceite de oliva.</p>
+          <p><strong>Preparación:</strong> Marina el pescado con limón y ajo 10 min, cocina a la plancha 4-5 min por lado.</p>
+        </div>
+      </div>
+      <p style="margin-top:20px; color:#64748b; font-size:0.85rem; text-align:center;">
+        <i class="fa-solid fa-video"></i> La sección de videos de recetas está en preparación; por ahora encuentras aquí las instrucciones completas por escrito.
+      </p>
+    </div>
+  `;
 }
 
-window.renderTopic = renderTopic;
+/* ==========================================
+   TEMA 9: COMPARADOR DINÁMICO DE ALIMENTOS
+   ========================================== */
+const BASE_ALIMENTOS = [
+  { id: "manzana",      nombre: "Manzana (1 pza, 150g)",          kcal: 78,  azucar: 15,  sodio: 2,   fibra: 3.6 },
+  { id: "platano",      nombre: "Plátano (1 pza, 120g)",          kcal: 105, azucar: 14,  sodio: 1,   fibra: 3.1 },
+  { id: "refresco",     nombre: "Refresco de cola (355ml)",       kcal: 140, azucar: 39,  sodio: 45,  fibra: 0 },
+  { id: "jugo_ind",     nombre: "Jugo industrializado (250ml)",   kcal: 120, azucar: 26,  sodio: 30,  fibra: 0.5 },
+  { id: "papas_fritas", nombre: "Papas fritas (bolsa 45g)",       kcal: 250, azucar: 0.3, sodio: 380, fibra: 2 },
+  { id: "yogur_nat",    nombre: "Yogur natural sin azúcar (200g)",kcal: 120, azucar: 9,   sodio: 90,  fibra: 0 },
+  { id: "galletas",     nombre: "Galletas dulces (5 pzas, 40g)",  kcal: 190, azucar: 16,  sodio: 140, fibra: 0.8 },
+  { id: "nueces",       nombre: "Nueces mixtas (30g)",            kcal: 190, azucar: 1,   sodio: 1,   fibra: 2.5 },
+  { id: "pan_blanco",   nombre: "Pan blanco (2 rebanadas, 60g)",  kcal: 150, azucar: 3,   sodio: 280, fibra: 1.5 },
+  { id: "avena_hoj",    nombre: "Avena en hojuelas (40g crudo)",  kcal: 150, azucar: 0.5, sodio: 2,   fibra: 4 }
+];
 
-document.addEventListener("DOMContentLoaded", () => {
-  const savedTopic = localStorage.getItem("selectedTopic") || "8";
-  renderTopic(savedTopic);
-});
+function calificarIndicador(valor, umbralNaranja, umbralRojo) {
+  if (valor >= umbralRojo) return { texto: "Alto", clase: "food-badge-rojo" };
+  if (valor >= umbralNaranja) return { texto: "Moderado", clase: "food-badge-naranja" };
+  return { texto: "Bajo", clase: "food-badge-verde" };
+}
+
+function renderTarjetaAlimento(alimento) {
+  if (!alimento) {
+    return '<p style="color:#94a3b8; text-align:center; padding: 20px;">Selecciona un alimento para comparar.</p>';
+  }
+  const azucarInfo = calificarIndicador(alimento.azucar, 5, 15);
+  const sodioInfo = calificarIndicador(alimento.sodio, 120, 300);
+  return `
+    <div class="alert-box-stat" style="background:#f8fafc; border-color:#e2e8f0; color:#334155;">
+      <h3 style="margin-bottom:8px;">${alimento.nombre}</h3>
+      <p><strong>Energía:</strong> ${alimento.kcal} kcal</p>
+      <p><strong>Azúcares:</strong> ${alimento.azucar} g <span class="${azucarInfo.clase}">${azucarInfo.texto}</span></p>
+      <p><strong>Sodio:</strong> ${alimento.sodio} mg <span class="${sodioInfo.clase}">${sodioInfo.texto}</span></p>
+      <p><strong>Fibra:</strong> ${alimento.fibra} g</p>
+    </div>
+  `;
+}
+
+function getTema9HTML() {
+  const opciones = BASE_ALIMENTOS
+    .map(a => `<option value="${a.id}">${a.nombre}</option>`)
+    .join("");
+  return `
+    <div class="topic-layout">
+      <div class="topic-left">
+        <h1 class="topic-main-title">Comparador de Alimentos</h1>
+        <p class="topic-desc">Elige dos alimentos y compara su aporte de energía, azúcares, sodio y fibra para tomar mejores decisiones nutricionales.</p>
+        <p class="topic-quote">Comparar antes de elegir es el primer paso hacia una alimentación consciente.</p>
+      </div>
+      <div class="topic-right-grid" style="grid-template-columns: 1fr 1fr; align-items:start;">
+        <div>
+          <label for="comparador-a" style="font-weight:600; display:block; margin-bottom:6px;">Alimento A</label>
+          <select id="comparador-a" style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:16px;">
+            <option value="">-- Selecciona --</option>
+            ${opciones}
+          </select>
+          <div id="comparador-resultado-a"></div>
+        </div>
+        <div>
+          <label for="comparador-b" style="font-weight:600; display:block; margin-bottom:6px;">Alimento B</label>
+          <select id="comparador-b" style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:16px;">
+            <option value="">-- Selecciona --</option>
+            ${opciones}
+          </select>
+          <div id="comparador-resultado-b"></div>
+        </div>
+      </div>
+      <div id="comparador-veredicto" style="margin-top:20px; text-align:center; font-weight:600;"></div>
+    </div>
+  `;
+}
+
+function initComparadorAlimentos() {
+  const selectA = document.getElementById("comparador-a");
+  const selectB = document.getElementById("comparador-b");
+  const resA = document.getElementById("comparador-resultado-a");
+  const resB = document.getElementById("comparador-resultado-b");
+  const veredicto = document.getElementById("comparador-veredicto");
+
+  if (!selectA || !selectB) return;
+
+  function actualizar() {
+    const alimentoA = BASE_ALIMENTOS.find(a => a.id === selectA.value);
+    const alimentoB = BASE_ALIMENTOS.find(a => a.id === selectB.value);
+
+    if (resA) resA.innerHTML = renderTarjetaAlimento(alimentoA);
+    if (resB) resB.innerHTML = renderTarjetaAlimento(alimentoB);
+
+    if (veredicto) {
+      if (alimentoA && alimentoB) {
+        const puntajeA = alimentoA.azucar + alimentoA.sodio / 10 - alimentoA.fibra * 2;
+        const puntajeB = alimentoB.azucar + alimentoB.sodio / 10 - alimentoB.fibra * 2;
+        const masSano = puntajeA <= puntajeB ? alimentoA.nombre : alimentoB.nombre;
+        veredicto.textContent = `La opción más saludable entre ambas es: ${masSano}`;
+      } else {
+        veredicto.textContent = "";
+      }
+    }
+  }
+
+  selectA.addEventListener("change", actualizar);
+  selectB.addEventListener("change", actualizar);
+  actualizar();
+}
+

@@ -791,6 +791,21 @@ html, body {
 .red-badge { background-color: #ffe4e6; color: #e11d48; }
 .light-green-badge { background-color: #d1fae5; color: #059669; }
 
+/* BADGES DE SEMÁFORO NUTRICIONAL (Comparador de Alimentos) */
+.food-badge-verde,
+.food-badge-naranja,
+.food-badge-rojo {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-left: 6px;
+}
+.food-badge-verde { background-color: #dcfce7; color: #16a34a; }
+.food-badge-naranja { background-color: #fef3c7; color: #d97706; }
+.food-badge-rojo { background-color: #fee2e2; color: #dc2626; }
+
 /* ==========================================
    10. PIE DE PÁGINA (FOOTER)
    ========================================== */
