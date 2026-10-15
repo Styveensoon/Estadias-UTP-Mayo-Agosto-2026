@@ -1,0 +1,168 @@
+/* ==========================================
+   VIDEOTECA
+   Estilos propios de Views/videos.html. Se carga después de sitio.css.
+   ========================================== */
+
+/* --- Portada con el video destacado --- */
+.portada-videos {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+}
+
+.destacado {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 1.25rem 1.5rem;
+  align-items: end;
+  padding: 1rem;
+  color: var(--tinta);
+  background: var(--plato);
+  border-radius: 20px;
+  box-shadow: var(--sombra-ficha);
+}
+.destacado :focus-visible {
+  outline-color: var(--tinta);
+}
+.destacado-texto {
+  padding: 0 0.5rem 0.5rem 0;
+}
+.destacado h2 {
+  margin-top: 0;
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.destacado-texto > p:not(.video-canal) {
+  margin: 0.6rem 0 1rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--tinta-suave);
+}
+
+/* --- Reproductor con miniatura --- */
+.video-marco {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--tinta);
+}
+.video-marco iframe,
+.video-play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-play {
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+.video-play img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-salida), filter 0.3s ease;
+}
+.video-icono {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  font-size: 1.4rem;
+  color: #fff;
+  background: var(--mantel);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 8px 18px rgba(0, 38, 19, 0.4);
+  transform: translate(-50%, -50%);
+  transition: transform 0.35s var(--ease-salida), background-color 0.2s ease;
+}
+.video-icono i {
+  margin-left: 4px;
+}
+.video-duracion {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(15, 42, 28, 0.85);
+  border-radius: 8px;
+}
+.video-play:hover img {
+  transform: scale(1.04);
+}
+.video-play:hover .video-icono {
+  background: var(--mantel-hondo);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.video-play:focus-visible {
+  outline: 3px solid var(--amarillo);
+  outline-offset: -3px;
+}
+
+.video-canal {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mantel-hondo);
+}
+
+/* --- Lista de videos --- */
+.videos-lista {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: clamp(1.75rem, 3vw, 2.5rem) clamp(1.25rem, 2vw, 2rem);
+}
+
+.video .video-canal {
+  margin-top: 0.3rem;
+}
+.video h3 {
+  margin-top: 0.85rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--tinta);
+}
+.video-yt {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--tinta-suave);
+}
+.video-yt:hover {
+  color: var(--mantel-hondo);
+}
+
+.videos-nota {
+  max-width: 70ch;
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+  padding-top: 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--tinta-suave);
+  border-top: 1px solid #dfe8e1;
+}
+
+@media (max-width: 1100px) {
+  .portada-videos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .destacado {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

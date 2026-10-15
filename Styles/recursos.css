@@ -1,0 +1,134 @@
+/* ==========================================
+   RECURSOS OFICIALES
+   Estilos propios de Views/recursos.html. Se carga después de sitio.css.
+   ========================================== */
+
+/* Índice de secciones en la portada */
+.indice-recursos {
+  display: grid;
+  justify-self: end;
+  width: 100%;
+  max-width: 360px;
+}
+.indice-recursos a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 0;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+.indice-recursos a:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.indice-recursos a::after {
+  content: "\f063";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 0.85em;
+  transition: transform 0.3s var(--ease-salida);
+}
+.indice-recursos a:hover::after {
+  transform: translateY(3px);
+}
+
+/* Cada grupo: título a la izquierda, lista a la derecha */
+.grupo-recursos {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+}
+.grupo-cabeza {
+  align-self: start;
+  position: sticky;
+  top: calc(var(--header-alto) + 2rem);
+}
+
+.recursos {
+  list-style: none;
+}
+.recursos a {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.35rem 0.75rem 1.35rem 0.25rem;
+  color: var(--tinta);
+  text-decoration: none;
+  border-top: 1px solid #dfe8e1;
+  transition: background-color 0.25s ease;
+}
+.recursos li:last-child a {
+  border-bottom: 1px solid #dfe8e1;
+}
+.seccion-pozo .recursos a {
+  border-color: #d4e0d7;
+}
+.recursos a:hover {
+  background: rgba(0, 135, 68, 0.06);
+}
+
+.recurso-tipo {
+  display: inline-grid;
+  place-items: center;
+  height: 1.8rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--rojo);
+  border-radius: 8px;
+}
+.recurso-web {
+  color: var(--tinta);
+  background: #fff;
+  box-shadow: 0 0 0 1px #cfdcd2 inset;
+}
+
+.recurso-texto strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.recurso-fuente {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--mantel-hondo);
+}
+.recurso-texto > span:last-child {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.recursos a > i {
+  margin-top: 0.3rem;
+  color: var(--mantel);
+  transition: transform 0.3s var(--ease-salida);
+}
+.recursos a:hover > i {
+  transform: translate(2px, -2px);
+}
+
+.cierre-recursos .lead-seccion {
+  max-width: 52ch;
+}
+
+@media (max-width: 900px) {
+  .indice-recursos {
+    justify-self: start;
+    max-width: none;
+  }
+  .grupo-recursos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .grupo-cabeza {
+    position: static;
+  }
+}
