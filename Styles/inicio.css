@@ -1,0 +1,674 @@
+/* ==========================================
+   INICIO — El Plato del Bien Comer
+   Estilos exclusivos de index.html (body.page-inicio).
+   Se carga después de Styles/sitio.css.
+   ========================================== */
+
+/* ==========================================
+   EL MANTEL
+   ========================================== */
+.mesa {
+  --focus: var(--amarillo);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  grid-template-areas:
+    "intro  plato"
+    "grupos plato";
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  padding: 0 0 0 clamp(16px, 5vw, 5rem);
+  background-color: var(--mantel);
+  color: #fff;
+  overflow: clip;
+}
+
+.mesa :focus-visible {
+  outline-color: var(--amarillo);
+}
+
+.mesa-intro {
+  grid-area: intro;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100svh - var(--header-alto));
+  padding: clamp(2.5rem, 6vh, 4rem) 0;
+}
+
+.mesa h1 {
+  max-width: 11ch;
+  font-size: clamp(2.6rem, 5.2vw, 5rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.mesa-lead {
+  max-width: 34ch;
+  margin-top: 1.25rem;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.55;
+  color: #fff;
+}
+
+/* --- Ficha rápida de IMC --- */
+.ficha-imc {
+  --focus: var(--tinta);
+  max-width: 560px;
+  margin-top: clamp(1.75rem, 4vh, 2.5rem);
+  padding: clamp(1.25rem, 2.4vw, 1.75rem);
+  background: var(--plato);
+  color: var(--tinta);
+  border-radius: 20px;
+  box-shadow: var(--sombra-ficha);
+}
+.ficha-imc :focus-visible {
+  outline-color: var(--tinta);
+}
+
+.ficha-imc h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.ficha-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.ficha-boton {
+  height: 52px;
+  padding: 0 1.4rem;
+  font: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  background: var(--mantel);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 107, 53, 0.28);
+  transition: background-color 0.2s ease, transform 0.25s var(--ease-salida), box-shadow 0.25s ease;
+}
+.ficha-boton:hover {
+  background: var(--mantel-hondo);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 107, 53, 0.32);
+}
+.ficha-boton:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 8px rgba(0, 107, 53, 0.28);
+}
+
+.ficha-error {
+  min-height: 0;
+  margin-top: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #b3162a;
+}
+.ficha-error:empty {
+  display: none;
+}
+
+.ficha-resultado {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e3ebe5;
+}
+
+.ficha-vacio {
+  font-size: 0.92rem;
+  color: var(--tinta-suave);
+}
+
+.ficha-numero {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.ficha-escala {
+  position: relative;
+  display: grid;
+  grid-template-columns: 25fr 25fr 25fr 25fr;
+  gap: 3px;
+  height: 10px;
+  margin-top: 1.4rem;
+}
+
+.ficha-rangos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--tinta-suave);
+}
+.ficha-rangos span {
+  justify-self: start;
+  transform: translateX(-50%);
+}
+.ficha-rangos span:first-child { grid-column: 2; }
+
+.ficha-nota {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+.ficha-nota a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+  font-weight: 600;
+  color: var(--mantel-hondo);
+}
+.ficha-nota a i {
+  font-size: 0.8em;
+  transition: transform 0.25s var(--ease-salida);
+}
+.ficha-nota a:hover i {
+  transform: translateX(3px);
+}
+
+/* --- El plato --- */
+.mesa-plato {
+  grid-area: plato;
+  position: relative;
+}
+
+.plato-fijo {
+  position: sticky;
+  top: var(--header-alto);
+  height: calc(100svh - var(--header-alto));
+  display: flex;
+  align-items: center;
+}
+
+.plato {
+  width: min(86svh, 54vw);
+  margin-right: -14%;
+  margin-left: auto;
+  filter: drop-shadow(0 28px 34px rgba(0, 38, 19, 0.4));
+}
+
+/* --- El castor guía --- */
+.castor-guia {
+  position: absolute;
+  left: 0;
+  bottom: clamp(1rem, 3vh, 2rem);
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
+  max-width: 420px;
+  pointer-events: none;
+}
+
+.castor-guia-img {
+  width: clamp(130px, 13vw, 190px);
+  height: auto;
+  flex: none;
+}
+
+.castor-globo {
+  position: relative;
+  margin-bottom: 3.2rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--tinta);
+  background: var(--plato);
+  border-radius: 16px 16px 16px 4px;
+  box-shadow: 0 10px 24px rgba(0, 38, 19, 0.28);
+}
+
+
+/* --- Los cinco grupos (leyenda numerada) --- */
+.mesa-grupos {
+  grid-area: grupos;
+  padding-bottom: clamp(3rem, 10vh, 6rem);
+}
+
+.mesa-grupos h2 {
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.mesa-grupos-lead {
+  max-width: 46ch;
+  margin-top: 1rem;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.grupos {
+  list-style: none;
+  margin-top: clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.grupo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 24svh;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.grupo-foto {
+  display: none;
+}
+
+.grupo-boton {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 0;
+  font: inherit;
+  color: #fff;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.grupo-num {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--tinta);
+  background: #fff;
+  border-radius: 50%;
+  transition: background-color 0.35s ease, color 0.35s ease, transform 0.5s var(--ease-salida);
+}
+
+.grupo-nombre {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.grupo-pct {
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.grupo p {
+  max-width: 48ch;
+  padding: 0 0 1.25rem calc(2.75rem + 1rem);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.grupo.activo .grupo-num {
+  background: var(--grupo-color, #fff);
+  color: var(--grupo-tinta, #fff);
+  transform: scale(1.12);
+  box-shadow: 0 0 0 3px #fff;
+}
+
+.grupo-boton:hover .grupo-num {
+  transform: scale(1.08);
+}
+
+.mesa-mas {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.85rem 1.3rem;
+  font-weight: 600;
+  color: var(--tinta);
+  background: #fff;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(0, 38, 19, 0.25);
+  transition: transform 0.25s var(--ease-salida), box-shadow 0.25s ease;
+}
+.mesa-mas:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 38, 19, 0.3);
+}
+
+/* ==========================================
+   ÍNDICE DE TEMAS
+   ========================================== */
+.temas-indice {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(4rem, 10vh, 7rem) clamp(16px, 5vw, 5rem);
+  background: var(--plato);
+}
+
+.temas-cabeza {
+  align-self: start;
+  position: sticky;
+  top: calc(var(--header-alto) + 2rem);
+}
+
+.temas-cabeza h2 {
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--tinta);
+}
+
+.temas-cabeza p {
+  max-width: 40ch;
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--tinta-suave);
+}
+
+.temas-lista {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.temas-lista a {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr auto;
+  gap: 1rem;
+  align-items: start;
+  height: 100%;
+  padding: 1.25rem 0.75rem 1.25rem 0.25rem;
+  color: var(--tinta);
+  text-decoration: none;
+  border-top: 1px solid #dfe8e1;
+  border-radius: 0;
+  transition: background-color 0.25s ease;
+}
+
+.tema-num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--mantel);
+}
+
+.tema-texto strong {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.tema-texto span {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.temas-lista a > i {
+  margin-top: 0.3rem;
+  color: var(--mantel);
+  transition: transform 0.3s var(--ease-salida);
+}
+
+.temas-lista a:hover {
+  background: var(--pozo);
+}
+.temas-lista a:hover > i {
+  transform: translateX(4px);
+}
+
+/* ==========================================
+   ¿SABÍAS QUÉ?
+   ========================================== */
+.dato {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  padding: clamp(3.5rem, 9vh, 6rem) clamp(16px, 5vw, 5rem);
+  background: var(--pozo);
+}
+
+.dato-castor {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  justify-self: center;
+}
+
+.dato-texto h2 {
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--mantel-hondo);
+}
+
+.dato-tarjeta {
+  margin-top: 1.5rem;
+  min-height: 9.5rem;
+}
+
+.dato-titulo {
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--tinta);
+}
+
+.dato-desc {
+  max-width: 52ch;
+  margin-top: 0.75rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--tinta-suave);
+}
+
+.dato-tarjeta.cambia {
+  animation: dato-entra 0.55s var(--ease-salida);
+}
+
+@keyframes dato-entra {
+  from { opacity: 0.2; transform: translateY(8px); filter: blur(3px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+.dato-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 1.75rem;
+}
+
+/* ==========================================
+   CIERRE
+   ========================================== */
+.cierre {
+  padding: clamp(4rem, 12vh, 8rem) clamp(16px, 5vw, 5rem);
+  background: var(--mantel);
+  color: #fff;
+}
+.cierre :focus-visible {
+  outline-color: var(--amarillo);
+}
+
+.cierre h2 {
+  max-width: 20ch;
+  font-size: clamp(2.2rem, 5vw, 4.6rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.cierre-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin-top: 2.5rem;
+}
+
+/* ==========================================
+   RESPONSIVO
+   ========================================== */
+@media (max-width: 1100px) {
+  .ficha-campos {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ficha-boton {
+    grid-column: 1 / -1;
+  }
+  .temas-lista {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .mesa {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "intro"
+      "plato"
+      "grupos";
+    padding: 0 16px;
+  }
+
+  .mesa-intro {
+    min-height: 0;
+    padding: 2.5rem 0 1rem;
+  }
+
+  .mesa h1 {
+    max-width: 12ch;
+  }
+
+  .plato-fijo {
+    position: relative;
+    top: auto;
+    height: auto;
+    flex-direction: column;
+    padding: 1.5rem 0 0;
+  }
+
+  .plato {
+    width: min(100%, 520px);
+    margin: 0 auto;
+  }
+
+  .castor-guia {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    max-width: 100%;
+    margin-top: -1.5rem;
+  }
+  .castor-guia-img {
+    width: 110px;
+  }
+  .castor-globo {
+    margin-bottom: 1.5rem;
+  }
+
+  .grupo {
+    min-height: 0;
+  }
+
+  .grupo.activo .grupo-foto {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: 0 100%;
+    margin: 0 0 1rem;
+    border: 4px solid #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 22px rgba(0, 38, 19, 0.3);
+    animation: dato-entra 0.5s var(--ease-salida);
+  }
+
+  .temas-indice,
+  .dato {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .temas-cabeza {
+    position: static;
+  }
+
+  .dato-castor {
+    max-width: 340px;
+  }
+
+}
+
+@media (max-width: 520px) {
+  .ficha-campos {
+    grid-template-columns: 1fr;
+  }
+  .grupo-boton {
+    gap: 0.75rem;
+  }
+  .grupo p {
+    padding-left: 0;
+  }
+  .ficha-numero {
+    font-size: 2rem;
+  }
+}
+
+
+/* ==========================================
+   MOMENTO PRINCIPAL: el plato se sirve
+   Al cargar, el plato llega y cada grupo entra girando a su lugar,
+   en el orden del plato; después aparece el castor.
+   ========================================== */
+@keyframes plato-llega {
+  from { opacity: 0; scale: 0.9; }
+  to { opacity: 1; scale: 1; }
+}
+@keyframes servir {
+  from { opacity: 0; scale: 0.55; rotate: -28deg; }
+  to { opacity: 1; scale: 1; rotate: 0deg; }
+}
+.plato-svg.sirviendo > circle,
+.plato-svg.sirviendo .sector {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+}
+.plato-svg.sirviendo > circle {
+  animation: plato-llega 0.6s var(--ease-salida) both;
+}
+.plato-svg.sirviendo .sector {
+  animation: servir 0.75s var(--ease-salida) both;
+  animation-delay: calc(0.3s + var(--orden, 0) * 120ms);
+}
+.page-inicio .castor-guia {
+  animation: aparecer 0.6s var(--ease-salida) 1.1s both;
+}
