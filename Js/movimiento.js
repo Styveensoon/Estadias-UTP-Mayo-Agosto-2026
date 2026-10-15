@@ -41,11 +41,18 @@ function escalonar(elementos) {
     el.classList.remove("aparece");
     void el.offsetWidth;
     el.classList.add("aparece");
+    // Al terminar, el elemento ya no depende de la animación para verse
+    el.addEventListener("animationend", () => el.classList.remove("por-aparecer", "aparece"), { once: true });
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.classList.add("con-movimiento");
+
+  // Al imprimir, todo se muestra aunque no se haya visto en pantalla
+  window.addEventListener("beforeprint", () => {
+    document.querySelectorAll(".por-aparecer").forEach((el) => el.classList.remove("por-aparecer"));
+  });
   if (sinMovimiento.matches || !("IntersectionObserver" in window)) return;
 
   // Índices con filetes: aparecen cuando la lista entra en pantalla

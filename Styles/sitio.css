@@ -947,3 +947,30 @@ html:has(.sitio) {
     animation-duration: 0.01ms;
   }
 }
+
+/* ==========================================
+   ANCHO MÁXIMO CENTRADO
+   Los fondos van de orilla a orilla, pero el contenido se limita a 1320px
+   y queda centrado en pantallas anchas.
+   ========================================== */
+.sitio {
+  --contenido-max: 1320px;
+  --margen-lateral: max(clamp(16px, 5vw, 5rem), calc((100% - var(--contenido-max)) / 2));
+}
+.sitio .header-bar,
+.sitio .portada,
+.sitio .seccion,
+.sitio .footer-site,
+.sitio .mesa,
+.sitio .temas-indice,
+.sitio .dato,
+.sitio .cierre,
+.sitio .calc,
+.sitio .temas-pagina {
+  padding-left: var(--margen-lateral);
+  padding-right: var(--margen-lateral);
+}
+.sitio .progreso {
+  margin-inline: calc(-1 * var(--margen-lateral));
+  padding-inline: var(--margen-lateral);
+}
