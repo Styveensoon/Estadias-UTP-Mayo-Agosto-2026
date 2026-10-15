@@ -16,7 +16,7 @@
     "intro  plato"
     "grupos plato";
   column-gap: clamp(1.5rem, 4vw, 4rem);
-  padding: 0 0 0 clamp(16px, 5vw, 5rem);
+  padding: 0 clamp(16px, 5vw, 5rem);
   background-color: var(--mantel);
   color: #fff;
   overflow: clip;
@@ -193,21 +193,23 @@
   top: var(--header-alto);
   height: calc(100svh - var(--header-alto));
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 0.25rem;
 }
 
 .plato {
-  width: min(86svh, 54vw);
-  margin-right: -14%;
-  margin-left: auto;
+  /* Centrado y completo; deja lugar debajo para el castor */
+  width: min(calc(100svh - var(--header-alto) - 210px), 40vw, 640px);
+  margin: 0 auto;
   filter: drop-shadow(0 28px 34px rgba(0, 38, 19, 0.4));
 }
 
 /* --- El castor guía --- */
 .castor-guia {
-  position: absolute;
-  left: 0;
-  bottom: clamp(1rem, 3vh, 2rem);
+  position: relative;
+  margin-top: -1.5rem;
   display: flex;
   align-items: flex-end;
   gap: 0.25rem;
@@ -216,14 +218,14 @@
 }
 
 .castor-guia-img {
-  width: clamp(130px, 13vw, 190px);
+  width: clamp(110px, 9vw, 150px);
   height: auto;
   flex: none;
 }
 
 .castor-globo {
   position: relative;
-  margin-bottom: 3.2rem;
+  margin-bottom: 2.5rem;
   padding: 0.85rem 1rem;
   font-size: 0.9rem;
   line-height: 1.45;
@@ -671,4 +673,21 @@
 }
 .page-inicio .castor-guia {
   animation: aparecer 0.6s var(--ease-salida) 1.1s both;
+}
+
+/* ==========================================
+   ALERTA DE OBESIDAD
+   Cuando el IMC rápido da obesidad, el mantel pasa a rojo unos segundos
+   (una transición suave, sin parpadeo) y vuelve al verde.
+   ========================================== */
+.page-inicio.alerta-obesidad {
+  --mantel: #b3162a;
+  --mantel-hondo: #8c1121;
+}
+.page-inicio .mesa,
+.page-inicio .cierre,
+.page-inicio .ficha-boton,
+.page-inicio .boton-tinta,
+.page-inicio .nav-link::after {
+  transition: background-color 0.9s ease, transform 0.25s var(--ease-salida), box-shadow 0.25s ease;
 }

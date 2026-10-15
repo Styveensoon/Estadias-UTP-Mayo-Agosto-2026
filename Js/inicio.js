@@ -252,6 +252,20 @@ function initImcRapido() {
     categoria.textContent = texto;
     categoria.dataset.nivel = nivel;
     vacio.hidden = true;
+
+    // Obesidad: el sitio pasa a rojo unos segundos y el castor da un mensaje de apoyo
+    clearTimeout(form._alerta);
+    document.body.classList.toggle("alerta-obesidad", nivel === "obes");
+    if (nivel === "obes") {
+      form._alerta = setTimeout(() => document.body.classList.remove("alerta-obesidad"), 4000);
+      const globo = document.getElementById("castor-globo");
+      if (globo) {
+        globo.textContent = "Tu resultado está en obesidad. No te preocupes: cada pequeño cambio cuenta. Platícalo con un profesional de salud y empieza por armar tu plato.";
+        globo.classList.remove("cambia");
+        void globo.offsetWidth;
+        globo.classList.add("cambia");
+      }
+    }
     lectura.hidden = false;
     requestAnimationFrame(() => { marca.style.left = `${posicion}%`; });
 
