@@ -1,0 +1,136 @@
+/* ==========================================
+   ¿QUIÉNES SOMOS?
+   Estilos propios de Views/quienes_somos.html. Se carga después de sitio.css.
+   ========================================== */
+
+/* Foto del campus en la portada */
+.campus {
+  justify-self: end;
+  width: 100%;
+  max-width: 560px;
+}
+.campus img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 8px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0 24px 44px rgba(0, 38, 19, 0.35);
+}
+.campus figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  color: #fff;
+  text-align: right;
+}
+
+/* Por qué existe */
+.porque {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+}
+
+/* Principios: filas editoriales, sin tarjetas */
+.principios {
+  list-style: none;
+}
+.principios li {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 0.5rem clamp(1.5rem, 5vw, 5rem);
+  align-items: baseline;
+  padding: clamp(1.5rem, 4vh, 2.25rem) 0;
+  border-top: 1px solid #d4e0d7;
+}
+.principios li:last-child {
+  border-bottom: 1px solid #d4e0d7;
+}
+.principios h3 {
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--mantel-hondo);
+}
+.principios p {
+  max-width: 56ch;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--tinta-suave);
+}
+
+/* Herramientas: índice con filetes, como el índice de temas del Inicio */
+.herramientas {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.herramientas a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.3rem 1rem;
+  height: 100%;
+  padding: 1.25rem 0.75rem 1.25rem 0.25rem;
+  color: var(--tinta);
+  text-decoration: none;
+  border-top: 1px solid #dfe8e1;
+  transition: background-color 0.25s ease;
+}
+.herramientas strong {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.herramientas span {
+  grid-column: 1;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+.herramientas i {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: var(--mantel);
+  transition: transform 0.3s var(--ease-salida);
+}
+.herramientas a:hover {
+  background: var(--pozo);
+}
+.herramientas a:hover i {
+  transform: translateX(4px);
+}
+
+/* Proyecto académico */
+.proyecto {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: end;
+  gap: clamp(1.5rem, 5vw, 4rem);
+}
+.proyecto .lead-seccion {
+  max-width: 56ch;
+}
+.proyecto .castor-dice {
+  justify-self: end;
+}
+
+@media (max-width: 900px) {
+  .campus {
+    justify-self: start;
+  }
+  .porque,
+  .principios li,
+  .proyecto {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .herramientas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .proyecto .castor-dice {
+    justify-self: start;
+  }
+}

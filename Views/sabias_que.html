@@ -4,112 +4,103 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¿Sabías qué? - WellDataLab</title>
+  <meta name="description" content="Cincuenta datos curiosos sobre tu cuerpo, la nutrición, el ejercicio, la hidratación y los hábitos saludables.">
 
-  <!-- FAVICON -->
-  <link rel="icon" type="image/png" href="../Resources/logo-welldatalab.png">
+  <link rel="icon" type="image/svg+xml" href="../Resources/marca/icono-welldatalab.svg">
+  <link rel="icon" type="image/png" href="../Resources/marca/icono-welldatalab.png">
+  <link rel="preload" href="../Resources/fonts/poppins-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome para los íconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- HOJA DE ESTILOS PRINCIPAL -->
+
+  <!-- Estilos: componentes heredados, sistema compartido y estilos propios de la página -->
   <link rel="stylesheet" href="../Styles/Style_components.css">
+  <link rel="stylesheet" href="../Styles/sitio.css">
+  <link rel="stylesheet" href="../Styles/sabias_que.css">
 </head>
-<body>
+<body class="sitio pagina-sabias">
+
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
 
   <!-- ENCABEZADO CON LOGOS Y NAVEGACIÓN -->
   <header class="header-site">
-    <div class="top-header">
-      <div class="logo-left">
-        <!-- Logo UTP corregido -->
-        <img src="../Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla">
-      </div>
-      <div class="logo-right">
-        <img src="../Resources/logo-welldatalab.png" alt="WellDataLab">
-      </div>
+    <div class="header-bar">
+      <a class="header-logos" href="../index.html" aria-label="WellDataLab, ir al inicio">
+        <img src="../Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla" width="52" height="52">
+        <img src="../Resources/marca/logo-welldatalab.svg" alt="WellDataLab" class="logo-wdl" width="227" height="40">
+      </a>
+
+      <nav class="navbar" aria-label="Navegación principal">
+        <div class="nav-container">
+          <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-controls="nav-menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+
+          <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
+            <li class="nav-item"><a href="quienes_somos.html" class="nav-link">¿Quiénes somos?</a></li>
+
+            <!-- APARTADO DE TEMAS CON MENÚ DESPLEGABLE -->
+            <li class="nav-item dropdown-item">
+              <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a>
+              <ul class="dropdown-menu" id="topics-dropdown">
+                <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
+                <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
+                <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
+                <li><a href="temas.html" data-topic="4">El Plato del Bien Comer</a></li>
+                <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
+                <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
+                <li><a href="temas.html" data-topic="7">Recetas fáciles y saludables</a></li>
+                <li><a href="temas.html" data-topic="8">Marco normativo y hábitos</a></li>
+                <li><a href="temas.html" data-topic="9">Comparador de alimentos</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a href="sabias_que.html" class="nav-link active" aria-current="page">¿Sabías qué?</a></li>
+            <li class="nav-item"><a href="videos.html" class="nav-link">Videos</a></li>
+            <li class="nav-item"><a href="recursos.html" class="nav-link">Recursos</a></li>
+            <li class="nav-item"><a href="tu_opinion.html" class="nav-link">Tu opinión</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
-
-    <nav class="navbar" aria-label="Navegación principal">
-      <div class="nav-container">
-        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-
-        <ul class="nav-menu" id="nav-menu">
-          <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
-          <li class="nav-item"><a href="quienes_somos.html" class="nav-link">¿Quiénes somos?</a></li>
-          
-          <!-- MENÚ DESPLEGABLE TEMAS DE INTERÉS -->
-          <li class="nav-item dropdown-item">
-            <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down"></i></a>
-            <ul class="dropdown-menu" id="topics-dropdown">
-              <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
-              <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
-              <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
-              <li><a href="temas.html" data-topic="4">Herramientas de salud (IMSS)</a></li>
-              <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
-              <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
-              <li><a href="temas.html" data-topic="7">Videos de recetas</a></li>
-              <li><a href="temas.html" data-topic="8">Marco normativo</a></li>
-              <li><a href="temas.html" data-topic="9">Comparador de alimentos</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item"><a href="sabias_que.html" class="nav-link active">¿Sabías qué?</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Videos</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Recursos</a></li>
-          <!-- Enlace a Tu opinión corregido -->
-          <li class="nav-item"><a href="tu_opinion.html" class="nav-link">Tu opinión</a></li>
-        </ul>
-      </div>
-    </nav>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="main-content">
+  <main id="contenido">
 
-    <!-- BANNER VISUAL SUPERIOR -->
-    <div class="hero-banner">
-      <img src="../Resources/home/banner-comida.jpg" alt="Alimentos y Salud" class="banner-img">
-    </div>
-
-    <!-- SECCIÓN INTERACTIVA DE DATOS CURIOSOS -->
-    <section class="facts-section">
-      
-      <h1 class="facts-main-title">¿SABÍAS QUÉ?</h1>
-
-      <!-- FILTRO DE TEMAS (MENÚ DESPLEGABLE) -->
-      <div class="topic-selector-container">
-        <label for="category-select"><i class="fa-solid fa-filter"></i> Selecciona un Tema de Interés:</label>
-        <select id="category-select" class="topic-select">
-          <option value="todos">🌟 Todos los Datos Curiosos </option>
-          <option value="cuerpo">🧠 Cuerpo Humano y Digestión</option>
-          <option value="nutricion">🍎 Nutrición y Alimentos</option>
-          <option value="ejercicio">🏋️ Ejercicio y Deporte</option>
-          <option value="hidratacion">💧 Hidratación y Jarra del Buen Beber</option>
-          <option value="habitos">🌙 Hábitos y Estilo de Vida</option>
-        </select>
-      </div>
-
-      <!-- CONTENEDOR FLEXIBLE -->
-      <div class="facts-layout">
-
-        <!-- LADO IZQUIERDO: POST-IT -->
-        <aside class="facts-aside">
-          <div class="postit-facts">
-            <div class="pin">📌</div>
-            <h2>Datos curiosos</h2>
-            <p>Información relevante sobre salud y nutrición</p>
-            <div class="facts-counter" id="facts-counter">Cargando...</div>
-          </div>
-        </aside>
-
-        <!-- LADO DERECHO: LISTA DE DATOS CURIOSOS -->
-        <div class="facts-container" id="facts-container">
-          <!-- Se cargan dinámicamente desde sabias_que.js -->
+    <!-- PORTADA CON LA NOTA DESTACADA -->
+    <section class="portada portada-datos" aria-labelledby="titulo-datos">
+      <div>
+        <h1 id="titulo-datos">¿Sabías qué?</h1>
+        <p class="portada-lead">Cincuenta datos curiosos sobre tu cuerpo, lo que comes, cómo te mueves, cuánta agua tomas y tus hábitos. Aprender algo nuevo también es cuidarte.</p>
+        <div class="castor-dice castor-datos">
+          <img src="../Resources/marca/castor-sabio.svg" alt="" width="300" height="300">
+          <p>Te tengo un dato. Si ya lo sabías, pídeme otro.</p>
         </div>
-
       </div>
 
+      <article class="nota" id="nota-dato" aria-live="polite">
+        <h2 class="nota-titulo" id="nota-titulo">Construir un hábito toma tiempo</h2>
+        <p class="nota-desc" id="nota-desc">Adoptar una nueva rutina saludable toma en promedio entre 21 y 66 días de práctica constante.</p>
+        <p class="nota-cat" id="nota-cat">Dato del día</p>
+        <button type="button" class="nota-boton" id="nota-otro"><i class="fa-solid fa-shuffle" aria-hidden="true"></i> Otro dato</button>
+      </article>
+    </section>
+
+    <!-- TODOS LOS DATOS -->
+    <section class="seccion" aria-labelledby="titulo-lista">
+      <div class="datos-cabeza">
+        <h2 id="titulo-lista" class="titulo-seccion">Explora por tema</h2>
+        <p class="datos-contador" id="datos-contador" aria-live="polite"></p>
+      </div>
+
+      <div class="filtros" id="datos-filtros" role="group" aria-label="Filtrar datos por tema"></div>
+
+      <ol class="datos-lista" id="datos-lista">
+        <!-- Se llena desde Js/sabias_que.js -->
+      </ol>
+
+      <noscript><p class="lead-seccion">Activa JavaScript para ver los datos curiosos.</p></noscript>
     </section>
 
   </main>
@@ -117,14 +108,25 @@
   <!-- PIE DE PÁGINA -->
   <footer class="footer-site">
     <div class="footer-container">
-      <h3 class="footer-title">WellDataLab</h3>
-      <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      <div class="footer-marca">
+        <p class="footer-title"><img src="../Resources/marca/logo-welldatalab-claro.svg" alt="WellDataLab" width="182" height="32"></p>
+        <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      </div>
+      <ul class="footer-enlaces" aria-label="Secciones">
+        <li><a href="quienes_somos.html">¿Quiénes somos?</a></li>
+        <li><a href="calculadora.html">Calculadora</a></li>
+        <li><a href="sabias_que.html">¿Sabías qué?</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="recursos.html">Recursos</a></li>
+        <li><a href="tu_opinion.html">Tu opinión</a></li>
+      </ul>
       <p class="copyright">© 2026 WellDataLab - UTP. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <!-- SCRIPTS ENLAZADOS DE MANERA CORRECTA -->
-  <script src="../Js/sabias_que.js"></script>
+  <!-- ARCHIVOS JAVASCRIPT -->
   <script src="../Js/main.js"></script>
+  <script src="../Js/movimiento.js"></script>
+  <script src="../Js/sabias_que.js"></script>
 </body>
 </html>

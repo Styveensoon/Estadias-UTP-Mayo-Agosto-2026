@@ -1,0 +1,654 @@
+/* ==========================================
+   TEMAS DE SALUD
+   Estilos propios de Views/temas.html. Se carga después de sitio.css.
+   Ajusta al sistema los componentes que dibuja Js/temas.js
+   (sus estilos base siguen en Style_components.css).
+   ========================================== */
+
+.portada-temas {
+  padding-bottom: clamp(2rem, 5vh, 3rem);
+}
+
+/* --- Índice lateral + área del tema --- */
+.temas-pagina {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+  padding: clamp(2.5rem, 6vh, 4rem) clamp(16px, 5vw, 5rem) clamp(3.5rem, 9vh, 6rem);
+}
+
+.temas-indice-lateral {
+  position: sticky;
+  top: calc(var(--header-alto) + 1.5rem);
+}
+
+#temas-indice {
+  list-style: none;
+  display: grid;
+  gap: 0.15rem;
+}
+#temas-indice a {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  align-items: baseline;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.94rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--tinta);
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+#temas-indice a span {
+  font-weight: 800;
+  color: var(--mantel-hondo);
+}
+#temas-indice a:hover {
+  background: var(--pozo);
+}
+#temas-indice a[aria-current="page"] {
+  color: #fff;
+  background: var(--mantel);
+}
+#temas-indice a[aria-current="page"] span {
+  color: #fff;
+}
+
+.tema-area {
+  min-width: 0;
+  scroll-margin-top: calc(var(--header-alto) + 1.5rem);
+}
+.tema-area:focus {
+  outline: none;
+}
+
+/* --- Tipografía de los temas --- */
+.tema-area h1 {
+  margin-bottom: 0.75rem;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-align: left;
+  color: var(--tinta);
+}
+.tema-area h2,
+.tema-area h3 {
+  color: var(--tinta);
+}
+.tema-area .topic-desc,
+.tema-area .topic-desc-center,
+.tema-area [class$="-subtitle"] {
+  max-width: 68ch;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  text-align: left;
+  color: var(--tinta-suave);
+}
+.tema-area .topic-quote {
+  margin-top: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--mantel-hondo);
+}
+.tema-area .topic-header-full,
+.tema-area [class$="-header"],
+.tema-area [class$="-header-text"] {
+  text-align: left;
+}
+
+/* --- Tarjetas y contenedores --- */
+.tema-area .feature-card,
+.tema-area .sost-card {
+  background: #fff;
+  border: 1px solid #dfe8e1;
+  border-radius: 16px;
+  box-shadow: none;
+  transition: border-color 0.25s ease, transform 0.35s var(--ease-salida), box-shadow 0.25s ease;
+}
+.tema-area .feature-card:hover,
+.tema-area .feature-card.active,
+.tema-area .sost-card:hover {
+  border-color: var(--mantel);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0, 38, 19, 0.08);
+}
+
+.tema-area .card-num {
+  color: var(--mantel-hondo);
+  background: var(--pozo);
+}
+.tema-area .sost-card-icon {
+  font-size: 1.8rem;
+  color: var(--mantel);
+}
+
+.tema-area [class$="-main-card"] {
+  border: 1px solid #dfe8e1;
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.tema-area .info-card-display,
+.tema-area .plato-info-display {
+  border: 1px solid #dfe8e1;
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.tema-area .impacto-item {
+  border-left: none;
+  border-radius: 16px;
+}
+.tema-area .impacto-item-header i,
+.tema-area .sostenibilidad-title i {
+  margin-right: 0.35rem;
+}
+
+/* Botones de nivel y de grupo como chips */
+.tema-area .jarra-btn,
+.tema-area .plato-btn {
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--tinta);
+  background: var(--pozo);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  box-shadow: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.tema-area .jarra-btn:hover,
+.tema-area .plato-btn:hover {
+  border-color: #cfdcd2;
+}
+.tema-area .jarra-btn.active,
+.tema-area .plato-btn.active {
+  color: #fff;
+  background: var(--mantel);
+  border-color: var(--mantel);
+}
+
+/* Globos del castor */
+.tema-area .speech-bubble,
+.tema-area .plato-speech-bubble {
+  color: var(--tinta);
+  background: #fff;
+  border: 1px solid #dfe8e1;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0, 38, 19, 0.12);
+}
+
+/* Enlaces de video */
+.tema-area .yt-button,
+.tema-area .video-btn {
+  color: #fff;
+  background: var(--mantel);
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 107, 53, 0.25);
+}
+.tema-area .yt-button:hover,
+.tema-area .video-btn:hover {
+  background: var(--mantel-hondo);
+}
+
+/* Llamado a la videoteca (tema 7) */
+.tema-mas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--pozo);
+  border-radius: 16px;
+}
+.tema-mas span {
+  font-size: 0.95rem;
+  color: var(--tinta-suave);
+}
+
+/* --- Comparador de alimentos (tema 9) --- */
+.comparador {
+  --comp-a: var(--mantel);
+  --comp-b: #c2410c;
+}
+.tema-cabeza {
+  margin-bottom: 1.75rem;
+}
+
+.comparador-selects {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: end;
+}
+.comparador-vs {
+  padding-bottom: 0.9rem;
+  font-weight: 800;
+  color: var(--tinta-suave);
+}
+.campo-select {
+  width: 100%;
+  height: 52px;
+  padding: 0 0.9rem;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--tinta);
+  background: var(--pozo);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.campo-select:hover {
+  border-color: #cfdcd2;
+}
+.campo-select:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--mantel);
+}
+
+.comp-punto {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+}
+.comp-punto.comp-a { background: var(--comp-a); }
+.comp-punto.comp-b { background: var(--comp-b); }
+
+.comparador-tabla {
+  margin-top: 2rem;
+}
+.comp-fila {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 0.4rem 1.25rem;
+  padding: 1rem 0;
+  border-top: 1px solid #dfe8e1;
+}
+.comp-nombre {
+  grid-row: span 2;
+  font-weight: 600;
+}
+.comp-ayuda {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--tinta-suave);
+}
+.comp-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 30px;
+}
+.comp-relleno {
+  height: 14px;
+  border-radius: 8px;
+  transition: width 0.6s var(--ease-salida);
+}
+.comp-barra.comp-a .comp-relleno { background: var(--comp-a); }
+.comp-barra.comp-b .comp-relleno { background: var(--comp-b); }
+.comp-valor {
+  flex: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.semaforo {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+.semaforo-bajo { color: #fff; background: #15803d; }
+.semaforo-moderado { color: var(--tinta); background: var(--amarillo); }
+.semaforo-alto { color: #fff; background: #b3162a; }
+
+.comparador-veredicto {
+  margin-top: 1.5rem;
+  padding: 1.1rem 1.25rem;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  background: var(--pozo);
+  border-radius: 16px;
+}
+.comparador-veredicto:empty {
+  display: none;
+}
+.comparador-nota {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+/* --- Celular: índice como fila deslizable --- */
+@media (max-width: 900px) {
+  .temas-pagina {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    padding-top: 0;
+  }
+  .temas-indice-lateral {
+    top: var(--header-alto);
+    z-index: 5;
+    margin: 0 -16px;
+    padding: 0.75rem 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e3ebe5;
+  }
+  #temas-indice {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  #temas-indice a {
+    display: flex;
+    gap: 0.4rem;
+    white-space: nowrap;
+    background: var(--pozo);
+    border-radius: 999px;
+  }
+  .comparador-selects {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .comparador-vs {
+    display: none;
+  }
+  .comp-fila {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .comp-nombre {
+    grid-row: auto;
+  }
+}
+
+/* --- La jarra (tema 3) y el plato (tema 4) junto al índice lateral ---
+   Sus estilos base usan tres columnas fijas; aquí el panel de información
+   pasa a una fila completa para que quepan en el área del tema. */
+.tema-area .jarra-main-card,
+.tema-area .plato-main-card {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) !important;
+  gap: clamp(1.25rem, 2.5vw, 2rem) !important;
+  align-items: center;
+}
+.tema-area .jarra-info-panel,
+.tema-area .plato-info-panel {
+  grid-column: 1 / -1;
+}
+.tema-area .jarra-btn-grid,
+.tema-area .plato-btn-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .tema-area .jarra-main-card,
+  .tema-area .plato-main-card {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* ==========================================
+   CORRECCIONES DE LA REVISIÓN
+   ========================================== */
+
+/* --- Tarjetas iguales (temas 1, 6, 7 y 8) como índices con filetes --- */
+.tema-area .topic-right-grid,
+.tema-area .ejercicio-grid {
+  gap: 0 clamp(1.5rem, 3vw, 2.5rem);
+}
+.tema-area .feature-card {
+  padding: 1.25rem 0.25rem;
+  background: transparent;
+  border: none;
+  border-top: 1px solid #dfe8e1;
+  border-radius: 0;
+}
+.tema-area .feature-card:hover {
+  border-color: #dfe8e1;
+  transform: none;
+  box-shadow: none;
+}
+.tema-area .feature-card.active {
+  padding-inline: 0.75rem;
+  background: var(--pozo);
+  border-top-color: var(--mantel);
+  transform: none;
+  box-shadow: none;
+}
+.tema-area .card-header-flex {
+  margin-bottom: 0.4rem;
+}
+.tema-area .card-num {
+  width: auto;
+  height: auto;
+  padding: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--mantel-hondo);
+  background: none;
+}
+.tema-area .card-icon {
+  display: none;
+}
+
+/* --- Jarra (tema 3): un solo plano, rótulos legibles y aviso sin rosa --- */
+.tema-area .jarra-main-card {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+.tema-area .jarra-visual-col {
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+.tema-area .jarra-text-lbl {
+  paint-order: stroke;
+  stroke: rgba(15, 42, 28, 0.6);
+  stroke-width: 2.5px;
+}
+.tema-area .info-card-display {
+  padding: 1.5rem 0 0;
+  border: none;
+  border-top: 1px solid #dfe8e1;
+  border-radius: 0;
+  background: transparent;
+}
+.tema-area #jarra-tag {
+  display: none;
+}
+.tema-area .alert-box-stat {
+  color: #b3162a;
+  background: var(--pozo);
+  border: none;
+  border-radius: 16px;
+}
+
+/* --- Plato del Bien Comer (tema 4): el mismo plato del Inicio sobre fondo blanco --- */
+.plato-tema-cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+.plato-tema-visual {
+  position: sticky;
+  top: calc(var(--header-alto) + 1.5rem);
+}
+.plato-tema .plato {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  filter: drop-shadow(0 20px 26px rgba(0, 38, 19, 0.22));
+}
+.plato-tema .castor-dice {
+  margin-top: -1rem;
+}
+.plato-tema .castor-dice img {
+  width: clamp(110px, 10vw, 150px);
+}
+
+.plato-tema .grupos {
+  list-style: none;
+}
+.plato-tema .grupo {
+  border-top: 1px solid #dfe8e1;
+}
+.plato-tema .grupo:last-child {
+  border-bottom: 1px solid #dfe8e1;
+}
+.plato-tema .grupo-boton {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 0 0.5rem;
+  font: inherit;
+  color: var(--tinta);
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.plato-tema .grupo-num {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-weight: 800;
+  color: var(--tinta);
+  background: var(--pozo);
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.4s var(--ease-salida);
+}
+.plato-tema .grupo-nombre {
+  font-size: 1.12rem;
+  font-weight: 600;
+}
+.plato-tema .grupo-pct {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.plato-tema .grupo p {
+  max-width: 52ch;
+  padding: 0 0 1rem calc(2.5rem + 1rem);
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: var(--tinta-suave);
+}
+.plato-tema .grupo-boton:hover .grupo-num {
+  transform: scale(1.08);
+}
+.plato-tema .grupo.activo .grupo-num {
+  color: var(--grupo-tinta, #fff);
+  background: var(--grupo-color, var(--mantel));
+  transform: scale(1.1);
+}
+.plato-tema .grupo-foto {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .plato-tema-cuerpo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .plato-tema-visual {
+    position: static;
+  }
+  .plato-tema .grupo.activo .grupo-foto {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: 0 100%;
+    margin: 0 0 1rem;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .plato-tema .grupo p {
+    padding-left: 0;
+  }
+}
+
+/* Temas 6, 7 y 8: los íconos en mosaico se cambian por numerales, como en el tema 1 */
+.tema-area .topic-right-grid,
+.tema-area .ejercicio-grid {
+  counter-reset: entrada;
+}
+.tema-area .feature-card {
+  counter-increment: entrada;
+}
+.tema-area .card-num > i {
+  display: none;
+}
+.tema-area .card-num:has(> i)::before {
+  content: counter(entrada);
+}
+
+/* Tema 7: el llamado a la videoteca ocupa todo el ancho bajo las recetas */
+.tema-area .topic-layout > .tema-mas {
+  grid-column: 1 / -1;
+}
+
+/* Tema 6: la cita se alinea con el título */
+.tema-area .ejercicio-subtitle {
+  max-width: 68ch;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  text-align: left;
+}
+
+/* Tema 5: las acciones sostenibles también como índice numerado */
+.tema-area .sost-actions-grid {
+  counter-reset: entrada;
+  gap: 0 clamp(1.5rem, 3vw, 2.5rem);
+}
+.tema-area .sost-card {
+  counter-increment: entrada;
+  padding: 1.25rem 0.25rem;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-top: 1px solid #dfe8e1;
+  border-radius: 0;
+}
+.tema-area .sost-card:hover {
+  border-color: #dfe8e1;
+  transform: none;
+  box-shadow: none;
+}
+.tema-area .sost-card-icon > i {
+  display: none;
+}
+.tema-area .sost-card-icon::before {
+  content: counter(entrada);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--mantel-hondo);
+}
+.tema-area .sost-card-desc,
+.tema-area .sost-card-title {
+  text-align: left;
+}

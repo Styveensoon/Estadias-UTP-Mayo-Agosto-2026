@@ -1,89 +1,118 @@
+/* ==========================================
+   CALCULADORA DE SALUD
+   IMC, gasto energético (Harris-Benedict), agua y masa muscular (Lee et al., 2000)
+   ========================================== */
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('imc-form');
+  if (!form) return;
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+  const peso = document.getElementById('peso');
+  const estatura = document.getElementById('estatura');
+  const edad = document.getElementById('edad');
+  const error = document.getElementById('calc-error');
+  const vacio = document.getElementById('calc-vacio');
+  const lecturas = document.getElementById('calc-lecturas');
 
-      // 1. Obtención de valores
-      const peso = parseFloat(document.getElementById('peso').value);
-      const estatura = parseFloat(document.getElementById('estatura').value);
-      const edad = parseInt(document.getElementById('edad').value);
-      const genero = document.getElementById('genero').value;
-      const actividad = parseFloat(document.getElementById('actividad').value);
+  // Si viene del Inicio con peso y estatura, se prellenan
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('peso')) peso.value = params.get('peso');
+  if (params.get('estatura')) estatura.value = params.get('estatura');
 
-      if (!peso || !estatura || !edad || peso <= 0 || estatura <= 0) {
-        alert('Por favor, ingresa datos válidos.');
+  const reglas = [
+    { input: peso, min: 20, max: 300, mensaje: 'Escribe tu peso en kilogramos, entre 20 y 300.' },
+    { input: estatura, min: 100, max: 230, mensaje: 'Escribe tu estatura en centímetros, entre 100 y 230.' },
+    { input: edad, min: 15, max: 100, mensaje: 'Escribe tu edad en años, entre 15 y 100.' }
+  ];
+
+  reglas.forEach(({ input }) => {
+    input.addEventListener('input', () => {
+      input.removeAttribute('aria-invalid');
+      error.textContent = '';
+    });
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // 1. Validación en línea
+    for (const { input, min, max, mensaje } of reglas) {
+      const valor = parseFloat(input.value);
+      if (!valor || valor < min || valor > max) {
+        input.setAttribute('aria-invalid', 'true');
+        error.textContent = mensaje;
+        input.focus();
         return;
       }
+    }
 
-      // 2. Cálculo de IMC
-      const estMetros = estatura / 100;
-      const imcNum = peso / (estMetros * estMetros);
-      const imcVal = imcNum.toFixed(1);
+    const kg = parseFloat(peso.value);
+    const cm = parseFloat(estatura.value);
+    const anios = parseInt(edad.value, 10);
+    const genero = form.querySelector('input[name="genero"]:checked').value;
+    const actividad = parseFloat(form.querySelector('input[name="actividad"]:checked').value);
 
-      // 3. Determinación de categoría y posición dinámica de la flecha en la barra
-      let categoria = '';
-      let porcentajeFlecha = 37.5;
+    // 2. IMC (se clasifica con el valor redondeado que se muestra)
+    const m = cm / 100;
+    const imc = Math.round((kg / (m * m)) * 10) / 10;
 
-      if (imcNum < 18.5) {
-        categoria = 'Bajo Peso';
-        // Mapea valores de IMC < 18.5 en el rango 0% a 25% de la barra
-        porcentajeFlecha = Math.max(5, Math.min(22, (imcNum / 18.5) * 25));
-      } else if (imcNum >= 18.5 && imcNum <= 24.9) {
-        categoria = 'Normal';
-        // Mapea valores en el rango 25% a 50% de la barra
-        porcentajeFlecha = 25 + ((imcNum - 18.5) / (24.9 - 18.5)) * 25;
-      } else if (imcNum >= 25.0 && imcNum <= 29.9) {
-        categoria = 'Sobrepeso';
-        // Mapea valores en el rango 50% a 75% de la barra
-        porcentajeFlecha = 50 + ((imcNum - 25.0) / (29.9 - 25.0)) * 25;
-      } else {
-        categoria = 'Obesidad';
-        // Mapea valores en el rango 75% a 95% de la barra
-        porcentajeFlecha = 75 + Math.min(20, ((imcNum - 30.0) / 10.0) * 20);
-      }
+    let nivel, categoria, posicion;
+    if (imc < 18.5) {
+      nivel = 'bajo'; categoria = 'Bajo peso';
+      posicion = Math.max(3, (imc / 18.5) * 25);
+    } else if (imc < 25) {
+      nivel = 'normal'; categoria = 'Peso normal';
+      posicion = 25 + ((imc - 18.5) / 6.5) * 25;
+    } else if (imc < 30) {
+      nivel = 'sobre'; categoria = 'Sobrepeso';
+      posicion = 50 + ((imc - 25) / 5) * 25;
+    } else {
+      nivel = 'obes'; categoria = 'Obesidad';
+      posicion = Math.min(97, 75 + ((imc - 30) / 10) * 25);
+    }
 
-      // 4. Cálculo de Tasa Metabólica Basal (TMB) / Kcal
-      let tmb = (genero === 'Hombre')
-        ? 66.5 + (13.75 * peso) + (5.003 * estatura) - (6.775 * edad)
-        : 655.1 + (9.563 * peso) + (1.85 * estatura) - (4.676 * edad);
+    // 3. Tasa metabólica basal (Harris-Benedict) y gasto diario
+    const tmb = genero === 'Hombre'
+      ? 66.5 + (13.75 * kg) + (5.003 * cm) - (6.775 * anios)
+      : 655.1 + (9.563 * kg) + (1.85 * cm) - (4.676 * anios);
+    const kcal = Math.round(tmb * actividad);
 
-      const kcal = Math.round(tmb * actividad);
+    // 4. Agua: 35 ml/kg + ajuste por actividad física
+    let extraAguaMl = 0;
+    if (actividad >= 1.725) extraAguaMl = 750;
+    else if (actividad >= 1.55) extraAguaMl = 550;
+    else if (actividad >= 1.375) extraAguaMl = 350;
+    const aguaLitros = ((kg * 35) + extraAguaMl) / 1000;
+    const vasos = Math.round((aguaLitros * 1000) / 250);
 
-      // 4.1 Requerimiento hídrico diario (35 ml/kg + ajuste por actividad física)
-      let extraAguaMl = 0;
-      if (actividad >= 1.725) extraAguaMl = 750;
-      else if (actividad >= 1.55) extraAguaMl = 550;
-      else if (actividad >= 1.375) extraAguaMl = 350;
-      const aguaLitros = ((peso * 35) + extraAguaMl) / 1000;
+    // 5. Masa muscular esquelética (Lee et al., 2000)
+    const sexoFactor = genero === 'Hombre' ? 1 : 0;
+    const masaMuscular = (0.244 * kg) + (7.80 * m) + (6.6 * sexoFactor) - (0.098 * anios) - 3.3;
 
-      // 4.2 Estimación de masa muscular esquelética (fórmula de Lee et al., 2000)
-      const estMetrosLee = estatura / 100;
-      const sexoFactor = (genero === 'Hombre') ? 1 : 0;
-      const masaMuscular = (0.244 * peso) + (7.80 * estMetrosLee) + (6.6 * sexoFactor) - (0.098 * edad) - 3.3;
+    // 6. Mostrar resultados
+    const contar = (id, valor, decimales) => {
+      const el = document.getElementById(id);
+      if (typeof contarHasta === 'function') contarHasta(el, valor, { decimales });
+      else el.textContent = valor.toLocaleString('es-MX', { minimumFractionDigits: decimales, maximumFractionDigits: decimales });
+    };
+    contar('res-imc', imc, 1);
+    const cat = document.getElementById('res-cat');
+    cat.textContent = categoria;
+    cat.dataset.nivel = nivel;
+    contar('res-kcal', kcal, 0);
+    contar('res-agua', aguaLitros, 1);
+    document.getElementById('res-vasos').textContent = `Unos ${vasos} vasos de 250 ml al día.`;
+    contar('res-masa-muscular', masaMuscular, 1);
 
-      // 5. Mover la flecha indicadora
-      const indicador = document.getElementById('indicador-flecha');
-      if (indicador) {
-        indicador.style.left = `${porcentajeFlecha}%`;
-      }
+    vacio.hidden = true;
+    const primeraVez = lecturas.hidden;
+    lecturas.hidden = false;
+    if (primeraVez && typeof escalonar === 'function') escalonar(lecturas.children);
+    const marca = document.getElementById('indicador-flecha');
+    requestAnimationFrame(() => { marca.style.left = `${posicion}%`; });
 
-      // 6. Actualizar y mostrar el cuadro de resultados si existen las etiquetas
-      const resImc = document.getElementById('res-imc');
-      const resCat = document.getElementById('res-cat');
-      const resKcal = document.getElementById('res-kcal');
-      const resAgua = document.getElementById('res-agua');
-      const resMasa = document.getElementById('res-masa-muscular');
-
-      if (resImc) resImc.textContent = imcVal;
-      if (resCat) resCat.textContent = categoria;
-      if (resKcal) resKcal.textContent = `${kcal} kcal/día`;
-      if (resAgua) resAgua.textContent = `${aguaLitros.toFixed(1)} L/día`;
-      if (resMasa) resMasa.textContent = `${masaMuscular.toFixed(1)} kg (estimado)`;
-
-      const boxRes = document.getElementById('box-resultados');
-      if (boxRes) boxRes.classList.remove('hidden');
-    });
-  }
+    // En celular, llevar la vista a los resultados
+    if (window.matchMedia('(max-width: 900px)').matches) {
+      document.getElementById('calc-resultados').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
 });

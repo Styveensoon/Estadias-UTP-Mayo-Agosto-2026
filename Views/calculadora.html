@@ -4,188 +4,233 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de IMC - WellDataLab</title>
+  <meta name="description" content="Calcula tu índice de masa corporal, tus calorías diarias, el agua que necesitas y una estimación de tu masa muscular.">
 
-  <!-- FAVICON -->
-  <link rel="icon" type="image/png" href="../Resources/logo-welldatalab.png">
+  <link rel="icon" type="image/svg+xml" href="../Resources/marca/icono-welldatalab.svg">
+  <link rel="icon" type="image/png" href="../Resources/marca/icono-welldatalab.png">
+  <link rel="preload" href="../Resources/fonts/poppins-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Font Awesome para los íconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- HOJA DE ESTILOS PRINCIPAL (Se requiere ../ para salir de la carpeta Views) -->
+
+  <!-- Estilos: componentes heredados, sistema compartido y estilos propios de la página -->
   <link rel="stylesheet" href="../Styles/Style_components.css">
+  <link rel="stylesheet" href="../Styles/sitio.css">
+  <link rel="stylesheet" href="../Styles/calculadora.css">
 </head>
-<body>
+<body class="sitio pagina-calculadora">
+
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
 
   <!-- ENCABEZADO CON LOGOS Y NAVEGACIÓN -->
   <header class="header-site">
-    <div class="top-header">
-      <div class="logo-left">
-        <img src="../Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla">
-      </div>
-      <div class="logo-right">
-        <img src="../Resources/logo-welldatalab.png" alt="WellDataLab">
-      </div>
+    <div class="header-bar">
+      <a class="header-logos" href="../index.html" aria-label="WellDataLab, ir al inicio">
+        <img src="../Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla" width="52" height="52">
+        <img src="../Resources/marca/logo-welldatalab.svg" alt="WellDataLab" class="logo-wdl" width="227" height="40">
+      </a>
+
+      <nav class="navbar" aria-label="Navegación principal">
+        <div class="nav-container">
+          <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-controls="nav-menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+
+          <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
+            <li class="nav-item"><a href="quienes_somos.html" class="nav-link">¿Quiénes somos?</a></li>
+
+            <!-- APARTADO DE TEMAS CON MENÚ DESPLEGABLE -->
+            <li class="nav-item dropdown-item">
+              <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a>
+              <ul class="dropdown-menu" id="topics-dropdown">
+                <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
+                <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
+                <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
+                <li><a href="temas.html" data-topic="4">El Plato del Bien Comer</a></li>
+                <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
+                <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
+                <li><a href="temas.html" data-topic="7">Recetas fáciles y saludables</a></li>
+                <li><a href="temas.html" data-topic="8">Marco normativo y hábitos</a></li>
+                <li><a href="temas.html" data-topic="9">Comparador de alimentos</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a href="sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
+            <li class="nav-item"><a href="videos.html" class="nav-link">Videos</a></li>
+            <li class="nav-item"><a href="recursos.html" class="nav-link">Recursos</a></li>
+            <li class="nav-item"><a href="tu_opinion.html" class="nav-link">Tu opinión</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
-
-    <nav class="navbar">
-      <div class="nav-container">
-        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-
-        <ul class="nav-menu" id="nav-menu">
-          <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
-          <li class="nav-item"><a href="quienes_somos.html" class="nav-link">¿Quiénes somos?</a></li>
-          
-          <!-- MENÚ DESPLEGABLE TEMAS DE INTERÉS -->
-          <li class="nav-item dropdown-item">
-            <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down"></i></a>
-            <ul class="dropdown-menu" id="topics-dropdown">
-              <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
-              <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
-              <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
-              <li><a href="temas.html" data-topic="4">Herramientas de salud (IMSS)</a></li>
-              <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
-              <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
-              <li><a href="temas.html" data-topic="7">Videos de recetas</a></li>
-              <li><a href="temas.html" data-topic="8">Marco normativo</a></li>
-              <li><a href="temas.html" data-topic="9">Comparador de alimentos</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item"><a href="sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Videos</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Recursos</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Tu opinión</a></li>
-        </ul>
-      </div>
-    </nav>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="main-content">
-    <!-- BANNER SUPERIOR -->
-    <div class="hero-banner">
-      <img src="../Resources/home/banner-comida.jpg" alt="Alimentos saludables" class="banner-img">
-    </div>
+  <main id="contenido">
 
-    <!-- CONTENEDOR PRINCIPAL DOS COLUMNAS -->
-    <div class="calc-section-container">
-      
-      <!-- COLUMNA IZQUIERDA: EL PLATO DEL BIEN COMER -->
-      <div class="info-plato">
-        <h2>El Plato del Bien Comer</h2>
-        <p class="desc-plato">
-          Establecido en la NOM-043, el IMSS promueve el Plato del Bien Comer como una guía gráfica de alimentación para balancear los 3 grupos principales:
-        </p>
-
-        <ul class="lista-grupos">
-          <li class="grupo-item verde">
-            <strong>Verduras y Frutas</strong>
-            <span>Muchas. Aportan vitaminas, minerales y fibra dietética que facilitan una buena digestión.</span>
-          </li>
-          <li class="grupo-item naranja">
-            <strong>Cereales y Tubérculos</strong>
-            <span>Suficientes. Son la fuente principal de energía que el cuerpo utiliza para las tareas del día a día.</span>
-          </li>
-          <li class="grupo-item rojo">
-            <strong>Leguminosas y Origen Animal</strong>
-            <span>Pocos / Combinados. Aportan proteínas indispensables para la formación de tejidos y el crecimiento.</span>
-          </li>
-        </ul>
-
-        <a href="https://www.gob.mx/imss" target="_blank" rel="noopener noreferrer" class="link-imss">
-          PÁGINA OFICIAL DEL IMSS <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
+    <!-- CALCULADORA SOBRE EL MANTEL -->
+    <section class="calc" aria-labelledby="titulo-calc">
+      <div class="calc-intro">
+        <h1 id="titulo-calc">Calculadora de salud</h1>
+        <p class="portada-lead">Con tu peso, estatura, edad y actividad física estimamos tu índice de masa corporal, las calorías que gastas al día, el agua que necesitas y tu masa muscular.</p>
       </div>
 
-      <!-- COLUMNA DERECHA: CALCULADORA Y BARRA DE IMC -->
-      <div class="calc-card">
-        <div class="calc-header">
-          <h3><i class="fa-solid fa-calculator"></i> Calculadora de IMC y Kilocalorías</h3>
-          <p>Calcula tu Índice de Masa Corporal (IMC) y un aproximado del gasto energético diario según tu actividad física.</p>
-        </div>
+      <form class="calc-form" id="imc-form" novalidate aria-labelledby="calc-form-titulo">
+        <h2 id="calc-form-titulo">Tus datos</h2>
 
-        <div class="calc-body-grid">
-          <!-- FORMULARIO -->
-          <form id="imc-form" class="imc-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="peso">PESO (KG)</label>
-                <input type="number" id="peso" value="70" step="0.1" min="1" required>
-              </div>
-              <div class="form-group">
-                <label for="estatura">ESTATURA (CM)</label>
-                <input type="number" id="estatura" value="170" min="1" required>
-              </div>
+        <div class="calc-campos">
+          <div class="campo">
+            <label for="peso">Peso</label>
+            <div class="campo-control">
+              <input type="number" id="peso" inputmode="decimal" min="20" max="300" step="0.1" placeholder="70" required>
+              <span class="campo-unidad" aria-hidden="true">kg</span>
             </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="edad">EDAD (AÑOS)</label>
-                <input type="number" id="edad" value="25" min="1" required>
-              </div>
-              <div class="form-group">
-                <label for="genero">GÉNERO</label>
-                <select id="genero">
-                  <option value="Hombre">Hombre</option>
-                  <option value="Mujer">Mujer</option>
-                </select>
-              </div>
+          </div>
+          <div class="campo">
+            <label for="estatura">Estatura</label>
+            <div class="campo-control">
+              <input type="number" id="estatura" inputmode="numeric" min="100" max="230" step="1" placeholder="170" required>
+              <span class="campo-unidad" aria-hidden="true">cm</span>
             </div>
-
-            <div class="form-group full-width">
-              <label for="actividad">NIVEL DE ACTIVIDAD FÍSICA</label>
-              <select id="actividad">
-                <option value="1.2">Sedentario (Poco o nada de ejercicio)</option>
-                <option value="1.375">Ligero (1-3 días a la semana)</option>
-                <option value="1.55">Moderado (3-5 días a la semana)</option>
-                <option value="1.725">Intenso (6-7 días a la semana)</option>
-              </select>
-            </div>
-
-            <button type="submit" class="btn-calcula-green">Calcula Datos de Salud</button>
-          </form>
-
-          <!-- BARRA GRÁFICA DE IMC -->
-          <div class="imc-visual-container">
-            <div class="bar-wrapper">
-              <div class="bar-gradient"></div>
-              <!-- Indicador en forma de V invertida/flecha -->
-              <div id="indicador-flecha" class="arrow-indicator"></div>
-            </div>
-            <div class="bar-labels">
-              <span>Bajo Peso</span>
-              <span>Normal</span>
-              <span>Sobrepeso</span>
-              <span>Obesidad</span>
-            </div>
-
-            <!-- RESULTADOS DESPLEGABLES ABAJO DE LA BARRA -->
-            <div id="box-resultados" class="box-resultados hidden">
-              <p><strong>IMC:</strong> <span id="res-imc">--</span> (<span id="res-cat">--</span>)</p>
-              <p><strong>Gasto Energético:</strong> <span id="res-kcal">--</span></p>
-              <p><strong>Agua Recomendada:</strong> <span id="res-agua">--</span></p>
-              <p><strong>Masa Muscular Estimada:</strong> <span id="res-masa-muscular">--</span></p>
+          </div>
+          <div class="campo">
+            <label for="edad">Edad</label>
+            <div class="campo-control">
+              <input type="number" id="edad" inputmode="numeric" min="15" max="100" step="1" placeholder="21" required>
+              <span class="campo-unidad" aria-hidden="true">años</span>
             </div>
           </div>
         </div>
+
+        <fieldset class="segmentos">
+          <legend>Sexo</legend>
+          <div class="segmentos-opciones">
+            <label><input type="radio" name="genero" value="Mujer" checked><span>Mujer</span></label>
+            <label><input type="radio" name="genero" value="Hombre"><span>Hombre</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="segmentos">
+          <legend>Actividad física</legend>
+          <div class="segmentos-opciones segmentos-actividad">
+            <label><input type="radio" name="actividad" value="1.2" checked><span><strong>Sedentaria</strong>Poco o nada de ejercicio</span></label>
+            <label><input type="radio" name="actividad" value="1.375"><span><strong>Ligera</strong>1 a 3 días por semana</span></label>
+            <label><input type="radio" name="actividad" value="1.55"><span><strong>Moderada</strong>3 a 5 días por semana</span></label>
+            <label><input type="radio" name="actividad" value="1.725"><span><strong>Intensa</strong>6 a 7 días por semana</span></label>
+          </div>
+        </fieldset>
+
+        <p class="calc-error" id="calc-error" role="alert"></p>
+
+        <button type="submit" class="boton-mantel calc-boton">Calcular mis datos de salud</button>
+      </form>
+
+      <!-- RESULTADOS -->
+      <section class="calc-resultados" id="calc-resultados" aria-labelledby="titulo-resultados" aria-live="polite">
+        <h2 id="titulo-resultados">Tus resultados</h2>
+
+        <p class="calc-vacio" id="calc-vacio">Llena tus datos y presiona «Calcular». Aquí verás tu IMC, tus calorías, tu agua y tu masa muscular.</p>
+
+        <div class="lecturas" id="calc-lecturas" hidden>
+          <div class="lectura lectura-imc">
+            <p class="lectura-etiqueta">Índice de masa corporal</p>
+            <p class="lectura-valor"><span id="res-imc">--</span> <span class="ficha-categoria" id="res-cat"></span></p>
+            <div class="escala" aria-hidden="true">
+              <span class="escala-tramo tramo-bajo"></span>
+              <span class="escala-tramo tramo-normal"></span>
+              <span class="escala-tramo tramo-sobre"></span>
+              <span class="escala-tramo tramo-obes"></span>
+              <i class="fa-solid fa-caret-down escala-marca" id="indicador-flecha"></i>
+            </div>
+            <div class="escala-rangos" aria-hidden="true"><span>18.5</span><span>25</span><span>30</span></div>
+          </div>
+
+          <div class="lectura">
+            <p class="lectura-etiqueta">Gasto energético diario</p>
+            <p class="lectura-valor"><span id="res-kcal">--</span> <small>kcal</small></p>
+            <p class="lectura-nota">Calorías aproximadas que usas al día con tu nivel de actividad.</p>
+          </div>
+
+          <div class="lectura">
+            <p class="lectura-etiqueta">Agua recomendada</p>
+            <p class="lectura-valor"><span id="res-agua">--</span> <small>litros</small></p>
+            <p class="lectura-nota" id="res-vasos">Equivale a vasos de 250 ml.</p>
+          </div>
+
+          <div class="lectura">
+            <p class="lectura-etiqueta">Masa muscular estimada</p>
+            <p class="lectura-valor"><span id="res-masa-muscular">--</span> <small>kg</small></p>
+            <p class="lectura-nota">Masa muscular esquelética aproximada.</p>
+          </div>
+        </div>
+
+        <p class="calc-aviso">Resultados orientativos: no sustituyen una valoración médica o nutricional.</p>
+      </section>
+    </section>
+
+    <!-- CÓMO LEER LOS RESULTADOS -->
+    <section class="seccion leer" aria-labelledby="titulo-leer">
+      <div>
+        <h2 id="titulo-leer" class="titulo-seccion">Cómo leer tu IMC</h2>
+        <p class="lead-seccion">El índice de masa corporal relaciona tu peso con tu estatura. Esta es la clasificación de la Organización Mundial de la Salud para personas adultas.</p>
+
+        <table class="tabla-imc">
+          <caption class="sr-only">Clasificación del IMC según la OMS</caption>
+          <thead>
+            <tr><th scope="col">IMC</th><th scope="col">Clasificación</th></tr>
+          </thead>
+          <tbody>
+            <tr data-nivel="bajo"><td>Menos de 18.5</td><td>Bajo peso</td></tr>
+            <tr data-nivel="normal"><td>18.5 a 24.9</td><td>Peso normal</td></tr>
+            <tr data-nivel="sobre"><td>25 a 29.9</td><td>Sobrepeso</td></tr>
+            <tr data-nivel="obes"><td>30 o más</td><td>Obesidad</td></tr>
+          </tbody>
+        </table>
       </div>
 
-    </div>
+      <div class="formulas">
+        <h3>De dónde salen los cálculos</h3>
+        <dl>
+          <dt>IMC</dt>
+          <dd>Peso en kilogramos dividido entre la estatura en metros al cuadrado.</dd>
+          <dt>Gasto energético</dt>
+          <dd>Tasa metabólica basal con la ecuación de Harris-Benedict, multiplicada por tu nivel de actividad.</dd>
+          <dt>Agua</dt>
+          <dd>35 ml por cada kilogramo de peso, más un ajuste según tu actividad física.</dd>
+          <dt>Masa muscular</dt>
+          <dd>Fórmula de Lee y colaboradores (2000): una estimación, no una medición.</dd>
+        </dl>
+        <div class="formulas-enlaces">
+          <a href="temas.html" data-topic="4" class="enlace-flecha">Arma tu plato con el Plato del Bien Comer <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a href="https://www.imss.gob.mx/salud-en-linea/nutricion" class="enlace-flecha" target="_blank" rel="noopener noreferrer">Nutrición en el sitio del IMSS <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span class="sr-only"> (abre en otra pestaña)</span></a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- PIE DE PÁGINA -->
   <footer class="footer-site">
     <div class="footer-container">
-      <h3 class="footer-title">WellDataLab</h3>
-      <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      <div class="footer-marca">
+        <p class="footer-title"><img src="../Resources/marca/logo-welldatalab-claro.svg" alt="WellDataLab" width="182" height="32"></p>
+        <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      </div>
+      <ul class="footer-enlaces" aria-label="Secciones">
+        <li><a href="quienes_somos.html">¿Quiénes somos?</a></li>
+        <li><a href="calculadora.html">Calculadora</a></li>
+        <li><a href="sabias_que.html">¿Sabías qué?</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="recursos.html">Recursos</a></li>
+        <li><a href="tu_opinion.html">Tu opinión</a></li>
+      </ul>
       <p class="copyright">© 2026 WellDataLab - UTP. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- ARCHIVOS JAVASCRIPT -->
   <script src="../Js/main.js"></script>
+  <script src="../Js/movimiento.js"></script>
   <script src="../Js/calculadora.js"></script>
 </body>
 </html>

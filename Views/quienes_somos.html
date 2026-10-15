@@ -3,99 +3,146 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¿Quiénes Somos? - WellDataLab</title>
+  <title>¿Quiénes somos? - WellDataLab</title>
+  <meta name="description" content="Conoce WellDataLab, la plataforma de salud y nutrición desarrollada con la Universidad Tecnológica de Puebla.">
 
-  <!-- FAVICON -->
-  <link rel="icon" type="image/png" href="../Resources/logo-welldatalab.png">
+  <link rel="icon" type="image/svg+xml" href="../Resources/marca/icono-welldatalab.svg">
+  <link rel="icon" type="image/png" href="../Resources/marca/icono-welldatalab.png">
+  <link rel="preload" href="../Resources/fonts/poppins-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome para los íconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- HOJA DE ESTILOS PRINCIPAL -->
+
+  <!-- Estilos: componentes heredados, sistema compartido y estilos propios de la página -->
   <link rel="stylesheet" href="../Styles/Style_components.css">
+  <link rel="stylesheet" href="../Styles/sitio.css">
+  <link rel="stylesheet" href="../Styles/quienes_somos.css">
 </head>
-<body>
+<body class="sitio pagina-quienes">
+
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
 
   <!-- ENCABEZADO CON LOGOS Y NAVEGACIÓN -->
   <header class="header-site">
-    <div class="top-header">
-      <div class="logo-left">
-        <!-- Nombre de logo corregido -->
-        <img src="../Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla">
-      </div>
-      <div class="logo-right">
-        <img src="../Resources/logo-welldatalab.png" alt="WellDataLab">
-      </div>
+    <div class="header-bar">
+      <a class="header-logos" href="../index.html" aria-label="WellDataLab, ir al inicio">
+        <img src="../Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla" width="52" height="52">
+        <img src="../Resources/marca/logo-welldatalab.svg" alt="WellDataLab" class="logo-wdl" width="227" height="40">
+      </a>
+
+      <nav class="navbar" aria-label="Navegación principal">
+        <div class="nav-container">
+          <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-controls="nav-menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+
+          <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
+            <li class="nav-item"><a href="quienes_somos.html" class="nav-link active" aria-current="page">¿Quiénes somos?</a></li>
+
+            <!-- APARTADO DE TEMAS CON MENÚ DESPLEGABLE -->
+            <li class="nav-item dropdown-item">
+              <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a>
+              <ul class="dropdown-menu" id="topics-dropdown">
+                <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
+                <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
+                <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
+                <li><a href="temas.html" data-topic="4">El Plato del Bien Comer</a></li>
+                <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
+                <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
+                <li><a href="temas.html" data-topic="7">Recetas fáciles y saludables</a></li>
+                <li><a href="temas.html" data-topic="8">Marco normativo y hábitos</a></li>
+                <li><a href="temas.html" data-topic="9">Comparador de alimentos</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a href="sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
+            <li class="nav-item"><a href="videos.html" class="nav-link">Videos</a></li>
+            <li class="nav-item"><a href="recursos.html" class="nav-link">Recursos</a></li>
+            <li class="nav-item"><a href="tu_opinion.html" class="nav-link">Tu opinión</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
-
-    <nav class="navbar" aria-label="Navegación principal">
-      <div class="nav-container">
-        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-
-        <ul class="nav-menu" id="nav-menu">
-          <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
-          <li class="nav-item"><a href="quienes_somos.html" class="nav-link active">¿Quiénes somos?</a></li>
-          
-          <!-- MENÚ DESPLEGABLE TEMAS DE INTERÉS -->
-          <li class="nav-item dropdown-item">
-            <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down"></i></a>
-            <ul class="dropdown-menu" id="topics-dropdown">
-              <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
-              <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
-              <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
-              <li><a href="temas.html" data-topic="4">Herramientas de salud (IMSS)</a></li>
-              <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
-              <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
-              <li><a href="temas.html" data-topic="7">Videos de recetas</a></li>
-              <li><a href="temas.html" data-topic="8">Marco normativo</a></li>
-              <li><a href="temas.html" data-topic="9">Comparador de alimentos</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item"><a href="sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Videos</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Recursos</a></li>
-          <!-- Ruta corregida hacia la vista de opinión -->
-          <li class="nav-item"><a href="tu_opinion.html" class="nav-link">Tu opinión</a></li>
-        </ul>
-      </div>
-    </nav>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="main-content">
+  <main id="contenido">
 
-    <!-- BANNER CAMPUS UTP -->
-    <div class="hero-banner">
-      <img src="../Resources/quienes_somos/banner-utp.jpg" alt="Campus Universidad Tecnológica de Puebla" class="banner-img">
-    </div>
+    <!-- PORTADA -->
+    <section class="portada" aria-labelledby="titulo-quienes">
+      <div>
+        <h1 id="titulo-quienes">Promovemos un futuro saludable.</h1>
+        <p class="portada-lead">WellDataLab es una plataforma gratuita que convierte las guías oficiales de salud de México en herramientas que cualquiera puede usar: calcular su IMC, armar su plato y entender qué bebe y qué come.</p>
+        <div class="portada-acciones">
+          <a href="calculadora.html" class="boton-blanco">Calcular mi IMC</a>
+          <a href="temas.html" class="enlace-claro">Explorar los temas <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <figure class="campus">
+        <img src="../Resources/quienes_somos/banner-utp.jpg" alt="Vista aérea del campus de la Universidad Tecnológica de Puebla" width="1000" height="750">
+        <figcaption>Campus de la Universidad Tecnológica de Puebla</figcaption>
+      </figure>
+    </section>
 
-    <!-- SECCIÓN QUIÉNES SOMOS -->
-    <section class="about-section">
-      <h1 class="about-title">PROMOVEMOS UN FUTURO SALUDABLE</h1>
+    <!-- POR QUÉ EXISTE -->
+    <section class="seccion porque" aria-labelledby="titulo-porque">
+      <h2 id="titulo-porque" class="titulo-seccion">Por qué existe WellDataLab</h2>
+      <div class="prosa">
+        <p>El sobrepeso, la obesidad y el sedentarismo son de los principales retos de salud en México. La comunidad universitaria vive con alta exigencia académica, poco tiempo para moverse y la comida rápida siempre a la mano.</p>
+        <p>Información hay mucha, pero en redes sociales abundan los consejos contradictorios y sin respaldo. Por eso reunimos en un solo lugar recomendaciones de instituciones reconocidas y las presentamos de forma clara, interactiva y gratuita, para que cuidarte sea un paso a la vez y no una solución mágica.</p>
+      </div>
+    </section>
 
-      <div class="cards-grid">
-        
-        <!-- TARJETA 1 -->
-        <article class="about-card blue-card">
-          <h2>Evidencia Científica</h2>
-          <p>"Compilamos información veraz extraída directamente de las Normas Oficiales Mexicanas, el IMSS, la Profeco y prestigiosos institutos de salud."</p>
-        </article>
+    <!-- LO QUE NOS GUÍA -->
+    <section class="seccion seccion-pozo" aria-labelledby="titulo-guia">
+      <div class="seccion-cabeza">
+        <h2 id="titulo-guia" class="titulo-seccion">Lo que nos guía</h2>
+      </div>
+      <ul class="principios">
+        <li>
+          <h3>Evidencia científica</h3>
+          <p>Compilamos información veraz de las Normas Oficiales Mexicanas, el IMSS, la Profeco y prestigiosos institutos de salud.</p>
+        </li>
+        <li>
+          <h3>Enfoque sostenible</h3>
+          <p>La salud humana está ligada al bienestar del planeta. Impulsamos estilos de alimentación con bajo impacto ambiental.</p>
+        </li>
+        <li>
+          <h3>Hábitos prácticos</h3>
+          <p>Traducimos conceptos complejos en herramientas cotidianas: calculadoras, guías interactivas y recomendaciones que puedes aplicar hoy.</p>
+        </li>
+      </ul>
+    </section>
 
-        <!-- TARJETA 2 -->
-        <article class="about-card green-card">
-          <h2>Enfoque Sostenible</h2>
-          <p>"Entendemos que la salud humana está intrínsecamente ligada al bienestar del planeta. Impulsamos estilos de alimentación con bajo impacto ambiental."</p>
-        </article>
+    <!-- QUÉ ENCUENTRAS -->
+    <section class="seccion" aria-labelledby="titulo-herramientas">
+      <div class="seccion-cabeza">
+        <h2 id="titulo-herramientas" class="titulo-seccion">Qué encuentras aquí</h2>
+        <p class="lead-seccion">Todo es gratuito y funciona en tu celular o computadora.</p>
+      </div>
+      <ul class="herramientas">
+        <li><a href="calculadora.html"><strong>Calculadora de salud</strong><span>IMC, calorías diarias, agua recomendada y masa muscular estimada.</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+        <li><a href="temas.html" data-topic="4"><strong>El Plato del Bien Comer</strong><span>Los cinco grupos de alimentos y su proporción en cada comida.</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+        <li><a href="temas.html" data-topic="3"><strong>La Jarra del Buen Beber</strong><span>Qué bebidas te convienen y cuánta agua tomar al día.</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+        <li><a href="temas.html" data-topic="9"><strong>Comparador de alimentos</strong><span>Compara azúcares, sodio y fibra entre dos alimentos.</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+        <li><a href="videos.html"><strong>Videoteca</strong><span>Recetas y consejos en video de canales oficiales de salud.</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+        <li><a href="recursos.html"><strong>Recursos oficiales</strong><span>Guías y documentos para consultar o descargar.</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+      </ul>
+    </section>
 
-        <!-- TARJETA 3 -->
-        <article class="about-card blue-card">
-          <h2>Hábitos Prácticos</h2>
-          <p>"Traducimos conceptos complejos en herramientas cotidianas, como calculadoras dinámicas, infografías claras y recomendaciones 100% aplicables."</p>
-        </article>
-
+    <!-- PROYECTO ACADÉMICO -->
+    <section class="seccion seccion-mantel proyecto" aria-labelledby="titulo-proyecto">
+      <div class="proyecto-texto">
+        <h2 id="titulo-proyecto" class="titulo-seccion">Un proyecto de la UTP</h2>
+        <p class="lead-seccion">WellDataLab se desarrolló como proyecto de estadía en la Universidad Tecnológica de Puebla, durante el periodo mayo–agosto de 2026, alineado con la responsabilidad social de la universidad.</p>
+        <p class="lead-seccion">Las herramientas son orientativas y no sustituyen la consulta con un profesional de la salud.</p>
+        <div class="portada-acciones">
+          <a href="tu_opinion.html" class="boton-blanco">Danos tu opinión</a>
+        </div>
+      </div>
+      <div class="castor-dice">
+        <img src="../Resources/marca/castor-sabio.svg" alt="" width="300" height="300" loading="lazy">
+        <p>Mi trabajo es acompañarte por el sitio. Tus comentarios nos ayudan a mejorarlo.</p>
       </div>
     </section>
 
@@ -104,12 +151,24 @@
   <!-- PIE DE PÁGINA -->
   <footer class="footer-site">
     <div class="footer-container">
-      <h3 class="footer-title">WellDataLab</h3>
-      <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      <div class="footer-marca">
+        <p class="footer-title"><img src="../Resources/marca/logo-welldatalab-claro.svg" alt="WellDataLab" width="182" height="32"></p>
+        <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      </div>
+      <ul class="footer-enlaces" aria-label="Secciones">
+        <li><a href="quienes_somos.html">¿Quiénes somos?</a></li>
+        <li><a href="calculadora.html">Calculadora</a></li>
+        <li><a href="sabias_que.html">¿Sabías qué?</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="recursos.html">Recursos</a></li>
+        <li><a href="tu_opinion.html">Tu opinión</a></li>
+      </ul>
       <p class="copyright">© 2026 WellDataLab - UTP. Todos los derechos reservados.</p>
     </div>
   </footer>
 
+  <!-- ARCHIVOS JAVASCRIPT -->
   <script src="../Js/main.js"></script>
+  <script src="../Js/movimiento.js"></script>
 </body>
 </html>

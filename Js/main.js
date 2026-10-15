@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 2. DELEGACIÓN GLOBAL PARA SELECCIÓN DE TEMAS EN EL MENÚ
   document.addEventListener("click", (e) => {
-    // Intercepta si el clic ocurrió dentro de una opción del dropdown
-    const link = e.target.closest("#topics-dropdown a, .dropdown-menu a, .dropdown-content a");
+    // Intercepta cualquier enlace a un tema (menú desplegable, índices y botones)
+    const link = e.target.closest("a[data-topic]");
     if (!link) return;
 
     const topicId = link.getAttribute("data-topic");
@@ -36,15 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (topicContainer) {
       e.preventDefault(); // Detiene la navegación nativa para evitar recargas
 
-      // Dispara la función de renderizado de temas.js
+      // temas.js dibuja el tema e inicializa su interactividad una sola vez
       if (typeof window.renderTopic === "function") {
         window.renderTopic(topicId);
-      } else if (typeof renderTopic === "function") {
-        renderTopic(topicId);
       }
-
-      // Reinicia componentes interactivos
-      initDynamicComponents();
     } 
     // CASO B: Estamos en index.html o cualquier otra subvista
     else {
@@ -69,28 +64,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-
-  // 3. INICIALIZAR COMPONENTES DINÁMICOS Y DETECTAR CAMBIOS EN EL DOM
-  initDynamicComponents();
-
-  const topicContainer = document.getElementById("topic-content");
-  if (topicContainer) {
-    const observer = new MutationObserver(() => {
-      initDynamicComponents();
-    });
-    observer.observe(topicContainer, { childList: true, subtree: true });
-  }
 });
 
 /**
- * Detecta qué tema está en pantalla e inicializa su interactividad correspondiente
+ * Detecta qué tema está en pantalla e inicializa su interactividad.
+ * La llama temas.js una vez por cada tema que dibuja.
  */
 function initDynamicComponents() {
   if (document.getElementById("jarra-info-card") || document.querySelector(".jarra-layer")) {
     initJarraInteractivity();
-  }
-  if (document.getElementById("plato-info-card") || document.querySelector(".plate-slice")) {
-    initTema4();
   }
   if (document.querySelector(".ejercicio-wrapper") || document.getElementById("tema8-container")) {
     initTema8();
@@ -112,46 +94,46 @@ function initJarraInteractivity() {
 
   const jarraData = {
     "1": {
-      title: "Agua Potable Simple",
-      qty: "6 a 8 Vasos al día",
+      title: "Agua potable simple",
+      qty: "6 a 8 vasos al día",
       color: "#2563eb",
       desc: "Es la bebida más saludable y la única indispensable para la hidratación del cuerpo. No aporta calorías ni azúcares.",
-      castorMsg: "💧 ¡El Nivel 1 es el número uno! Tienes que tomar de 6 a 8 vasos diarios para mantener tus dientes y cuerpo al 100%."
+      castorMsg: "¡El Nivel 1 es el número uno! Tienes que tomar de 6 a 8 vasos diarios para mantener tus dientes y cuerpo al 100%."
     },
     "2": {
-      title: "Leche Semidescremada y Bebidas de Soya",
-      qty: "Máximo 2 Vasos al día",
+      title: "Leche semidescremada y bebidas de soya",
+      qty: "Máximo 2 vasos al día",
       color: "#9333ea",
       desc: "Aportan calcio, vitamina D y proteína de buena calidad. Se aconseja elegir opciones sin azúcar añadida.",
-      castorMsg: "🥛 ¡Para huesos fuertes! La leche semidescremada o soya nos da mucha energía, ¡pero máximo 2 vasos al día!"
+      castorMsg: "¡Para huesos fuertes! La leche semidescremada o soya nos da mucha energía, ¡pero máximo 2 vasos al día!"
     },
     "3": {
-      title: "Café y Té sin Azúcar",
-      qty: "Máximo 4 Tazas al día",
+      title: "Café y té sin azúcar",
+      qty: "Máximo 4 tazas al día",
       color: "#eab308",
       desc: "Aportan antioxidantes naturales. Se deben tomar sin azúcares ni endulzantes añadidos para conservar sus beneficios.",
-      castorMsg: "☕ ¡Cuidado con el azúcar! El café o té sin endulzar son fantásticos, pero no te pases de 4 tazas diarias."
+      castorMsg: "¡Cuidado con el azúcar! El café o té sin endulzar son fantásticos, pero no te pases de 4 tazas diarias."
     },
     "4": {
-      title: "Bebidas No Calóricas con Edulcorantes",
-      qty: "Máximo 2 Vasos al día",
+      title: "Bebidas no calóricas con edulcorantes",
+      qty: "Máximo 2 vasos al día",
       color: "#f97316",
       desc: "Refrescos de dieta o bebidas con sustitutos de azúcar. Aunque no aportan calorías, pueden malacostumbrar al paladar al sabor dulce.",
-      castorMsg: "⚠️ ¡Atento con los edulcorantes! No tienen calorías, pero pueden engañar a tu cerebro. ¡Consúmelos con moderación!"
+      castorMsg: "¡Atento con los edulcorantes! No tienen calorías, pero pueden engañar a tu cerebro. ¡Consúmelos con moderación!"
     },
     "5": {
-      title: "Jugos de Fruta, Leche Entera y Alcohol",
-      qty: "Máximo ½ Vaso al día",
+      title: "Jugos de fruta, leche entera y alcohol",
+      qty: "Máximo ½ vaso al día",
       color: "#ef4444",
       desc: "Contienen una concentración alta de grasas o azúcares naturales. Su consumo debe ser muy restringido.",
-      castorMsg: "🍊 ¡Ojo aquí! Un jugo natural tiene muchísima azúcar de la fruta junta. Con medio vaso al día es suficiente."
+      castorMsg: "¡Ojo aquí! Un jugo natural tiene muchísima azúcar de la fruta junta. Con medio vaso al día es suficiente."
     },
     "6": {
-      title: "Refrescos y Aguas de Sabor",
-      qty: "0 Vasos (Evitar)",
+      title: "Refrescos y aguas de sabor",
+      qty: "0 vasos (evitar)",
       color: "#16a34a",
       desc: "No proporcionan nutrimentos y contienen elevadas cantidades de azúcar procesada. Su consumo se relaciona con la diabetes y la obesidad.",
-      castorMsg: "🛑 ¡Zona peligrosa! Los refrescos y embotellados no nos ayudan. Es mejor evitarlos para cuidar tu corazón y salud."
+      castorMsg: "¡Zona peligrosa! Los refrescos y embotellados no nos ayudan. Es mejor evitarlos para cuidar tu corazón y salud."
     }
   };
 
@@ -209,101 +191,6 @@ function initJarraInteractivity() {
 }
 
 /* ==========================================
-   INTERACTIVIDAD DEL PLATO DEL BUEN COMER (TEMA 4)
-   ========================================== */
-function initTema4() {
-  const groupCards = document.querySelectorAll('.group-card');
-  const plateSlices = document.querySelectorAll('.plate-slice');
-  const plateBtns = document.querySelectorAll('.plato-btn');
-  const infoCard = document.getElementById('plato-info-card');
-  const tagEl = document.getElementById('plato-tag');
-  const titleEl = document.getElementById('plato-group-title');
-  const propEl = document.getElementById('plato-proportion');
-  const descEl = document.getElementById('plato-info-desc');
-  const castorBubble = document.getElementById('plato-castor-bubble');
-
-  const platoData = {
-    "1": {
-      title: "Verduras y Frutas",
-      proportion: "50% de tu plato",
-      color: "#16a34a",
-      desc: "Aportan fibra, agua, vitaminas (A, C, complejo B) y minerales. Deben formar la mitad exacta de cada comida principal.",
-      castorMsg: "🥦 ¡Llena la mitad de tu plato (50%) con verduras y frutas! Aportan la vitamina y agua que tu cuerpo necesita al día."
-    },
-    "2": {
-      title: "Cereales, Granos y Tubérculos",
-      proportion: "22% de tu plato",
-      color: "#eab308",
-      desc: "Principal fuente de energía. Elige opciones integrales como tortilla de maíz, avena, arroz integral o papa con cáscara.",
-      castorMsg: "🌾 Los cereales y tubérculos ocupan cerca de una cuarta parte del plato (22%) para darte energía constante."
-    },
-    "3": {
-      title: "Leguminosas",
-      proportion: "15% de tu plato",
-      color: "#f97316",
-      desc: "Aportan proteína vegetal y fibra de excelente calidad. Ejemplos: frijoles, lentejas, garbanzos y habas.",
-      castorMsg: "🫘 Las leguminosas (15%) combinadas con cereales son una gran fuente proteica de origen vegetal."
-    },
-    "4": {
-      title: "Alimentos de Origen Animal",
-      proportion: "8% de tu plato",
-      color: "#ef4444",
-      desc: "Aportan proteínas de alto valor biológico, hierro y vitamina B12. Prefiere carnes magras, pescado, huevo o lácteos descremados.",
-      castorMsg: "🍗 ¡Solo una porción modesta (8%)! Es suficiente para cubrir tus necesidades de proteína animal e hierro."
-    },
-    "5": {
-      title: "Aceites y Grasas Saludables",
-      proportion: "5% de tu plato",
-      color: "#d97706",
-      desc: "Proporcionan ácidos grasos esenciales. Prefiere aguacate, aceite de oliva, nueces, almendras y semillas en pequeñas cantidades.",
-      castorMsg: "🥑 Usa grasas saludables con moderación (5%) para cuidar tu corazón y salud metabólica."
-    }
-  };
-
-  function updatePlatoGroup(groupId) {
-    const data = platoData[groupId];
-    if (!data) return;
-
-    groupCards.forEach(card => {
-      card.classList.toggle('active', card.getAttribute('data-group') === groupId);
-    });
-
-    plateSlices.forEach(slice => {
-      slice.classList.toggle('active', slice.getAttribute('data-group') === groupId);
-    });
-
-    plateBtns.forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-group') === groupId);
-    });
-
-    if (infoCard) infoCard.style.borderLeftColor = data.color;
-    if (tagEl) {
-      tagEl.textContent = `Grupo ${groupId}`;
-      tagEl.style.backgroundColor = data.color;
-    }
-    if (titleEl) titleEl.textContent = data.title;
-    if (propEl) {
-      propEl.textContent = data.proportion;
-      propEl.style.color = data.color;
-    }
-    if (descEl) descEl.textContent = data.desc;
-    if (castorBubble) castorBubble.textContent = data.castorMsg;
-  }
-
-  groupCards.forEach(card => {
-    card.addEventListener('click', () => updatePlatoGroup(card.getAttribute('data-group')));
-  });
-
-  plateSlices.forEach(slice => {
-    slice.addEventListener('click', () => updatePlatoGroup(slice.getAttribute('data-group')));
-  });
-
-  plateBtns.forEach(btn => {
-    btn.addEventListener('click', () => updatePlatoGroup(btn.getAttribute('data-group')));
-  });
-}
-
-/* ==========================================
    INTERACTIVIDAD DE PLANIFICACIÓN Y HÁBITOS (TEMA 8)
    ========================================== */
 function initTema8() {
@@ -322,39 +209,3 @@ function initTema8() {
     });
   });
 }
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. Menú hamburguesa (móviles)
-  const navToggle = document.getElementById("nav-toggle");
-  const navMenu = document.getElementById("nav-menu");
-
-  if (navToggle && navMenu) {
-    navToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-      const icon = navToggle.querySelector("i");
-      if (icon) {
-        icon.className = navMenu.classList.contains("active")
-          ? "fa-solid fa-xmark"
-          : "fa-solid fa-bars";
-      }
-    });
-  }
-
-  // 2. Selección de temas del submenú
-  const topicLinks = document.querySelectorAll("#topics-dropdown a[data-topic]");
-  topicLinks.forEach(link => {
-    link.addEventListener("click", (e) => {
-      const topicId = link.getAttribute("data-topic");
-      if (topicId) {
-        localStorage.setItem("selectedTopic", topicId);
-      }
-      // Solo frena la navegación si YA estamos dentro de temas.html
-      const topicContainer = document.getElementById("topic-content");
-      if (topicContainer) {
-        e.preventDefault();
-        if (typeof window.renderTopic === "function") {
-          window.renderTopic(topicId);
-        }
-      }
-    });
-  });
-});

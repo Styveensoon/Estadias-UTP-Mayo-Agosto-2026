@@ -1,0 +1,162 @@
+/* ==========================================
+   ¿SABÍAS QUÉ?
+   Estilos propios de Views/sabias_que.html. Se carga después de sitio.css.
+   ========================================== */
+
+.pagina-sabias {
+  /* Color de cada categoría (texto sobre blanco con contraste AA) */
+  --cat-cuerpo: #b3162a;
+  --cat-nutricion: #15803d;
+  --cat-ejercicio: #c2410c;
+  --cat-hidratacion: #0369a1;
+  --cat-habitos: #8a5a00;
+}
+
+/* --- Portada con la nota adhesiva --- */
+.portada-datos {
+  align-items: center;
+}
+
+.castor-datos {
+  margin-top: 2rem;
+}
+.castor-datos img {
+  width: clamp(120px, 12vw, 170px);
+}
+
+.nota {
+  position: relative;
+  justify-self: end;
+  width: 100%;
+  max-width: 460px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--tinta);
+  background: var(--plato);
+  border-radius: 20px;
+  box-shadow: var(--sombra-ficha);
+}
+.nota :focus-visible {
+  outline-color: var(--tinta);
+}
+
+.nota-cat {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--tinta-suave);
+}
+
+.nota-titulo {
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
+}
+
+.nota-desc {
+  margin-top: 0.75rem;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--tinta-suave);
+}
+
+.nota-boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 46px;
+  margin-top: 1.5rem;
+  padding: 0 1.2rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--tinta);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-salida), background-color 0.2s ease;
+}
+.nota-boton:hover {
+  background: var(--mantel-hondo);
+  transform: translateY(-1px);
+}
+
+.nota.cambia {
+  animation: nota-entra 0.55s var(--ease-salida);
+}
+@keyframes nota-entra {
+  from { transform: translateY(8px); filter: blur(2px); }
+  to { transform: none; filter: none; }
+}
+
+/* --- Filtros y lista --- */
+.datos-cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+}
+
+.datos-contador {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--tinta-suave);
+}
+
+.datos-lista {
+  list-style: none;
+  columns: 3 300px;
+  column-gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.dato-item {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 0.9rem;
+  break-inside: avoid;
+  padding: 1.25rem 0;
+  border-top: 1px solid #dfe8e1;
+}
+
+.dato-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--cat, var(--mantel));
+}
+
+.dato-cat {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cat, var(--mantel-hondo));
+}
+
+.dato-item h3 {
+  margin-top: 0.2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--tinta);
+}
+
+.dato-item p:not(.dato-cat) {
+  margin-top: 0.4rem;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--tinta-suave);
+}
+
+.dato-item[data-categoria="cuerpo"] { --cat: var(--cat-cuerpo); }
+.dato-item[data-categoria="nutricion"] { --cat: var(--cat-nutricion); }
+.dato-item[data-categoria="ejercicio"] { --cat: var(--cat-ejercicio); }
+.dato-item[data-categoria="hidratacion"] { --cat: var(--cat-hidratacion); }
+.dato-item[data-categoria="habitos"] { --cat: var(--cat-habitos); }
+
+@media (max-width: 900px) {
+  .nota {
+    justify-self: start;
+  }
+}

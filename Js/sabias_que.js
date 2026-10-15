@@ -41,7 +41,7 @@ const datosCuriosos = [
   { categoria: "hidratacion", titulo: "La Jarra del Buen Beber", descripcion: "Promueve consumir de 6 a 8 vasos de agua simple potable al día y evitar bebidas azucaradas o procesadas." },
   { categoria: "hidratacion", titulo: "Agua fría vs. al tiempo", descripcion: "El agua al tiempo se absorbe ligeramente más rápido en el estómago, ideal durante jornadas de entrenamiento." },
   { categoria: "hidratacion", titulo: "El agua mejora la piel", descripcion: "Estar bien hidratado mantiene la elasticidad cutánea y ayuda a transportar nutrientes a las células epiteliales." },
-  { categoria: "hidratacion", titulo: "Saborizar naturally", descripcion: "Agregar rodajas de limón, pepino o menta al agua simple motiva un mayor consumo sin agregar azúcares." },
+  { categoria: "hidratacion", titulo: "Saboriza de forma natural", descripcion: "Agregar rodajas de limón, pepino o menta al agua simple motiva un mayor consumo sin agregar azúcares." },
   { categoria: "hidratacion", titulo: "Atención a la hidratación en frío", descripcion: "En clima frío la sensación de sed disminuye hasta un 40%, pero el cuerpo sigue perdiendo agua al respirar." },
   { categoria: "hidratacion", titulo: "Los riñones filtran tu sangre", descripcion: "Tus riñones procesan unos 190 litros de sangre al día para eliminar toxinas gracias al aporte de agua." },
   { categoria: "hidratacion", titulo: "Cuidado con los refrescos", descripcion: "Una sola lata de refresco contiene hasta 10 cucharaditas de azúcar, superando el límite diario recomendado." },
@@ -60,40 +60,94 @@ const datosCuriosos = [
   { categoria: "habitos", titulo: "Pequeños cambios, grandes resultados", descripcion: "Reducir solo una cucharadita de azúcar al día acumula un beneficio gigante en la prevención metabólica a largo plazo." }
 ];
 
+/* ==========================================
+   PÁGINA ¿SABÍAS QUÉ?: filtro por categoría, dato destacado y lista
+   (el Inicio solo usa el arreglo datosCuriosos)
+   ========================================== */
+const categoriasDatos = {
+  todos: "Todos",
+  cuerpo: "Cuerpo humano y digestión",
+  nutricion: "Nutrición y alimentos",
+  ejercicio: "Ejercicio y deporte",
+  hidratacion: "Hidratación",
+  habitos: "Hábitos y estilo de vida"
+};
+
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("facts-container");
-  const select = document.getElementById("category-select");
-  const counter = document.getElementById("facts-counter");
+  const lista = document.getElementById("datos-lista");
+  const filtros = document.getElementById("datos-filtros");
+  const contador = document.getElementById("datos-contador");
+  if (!lista || !filtros) return;
 
-  function renderFacts(cat) {
-    if (!container) return;
-    container.innerHTML = "";
+  // Botones de filtro con su cantidad de datos
+  Object.entries(categoriasDatos).forEach(([clave, nombre]) => {
+    const total = clave === "todos" ? datosCuriosos.length : datosCuriosos.filter((d) => d.categoria === clave).length;
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.className = "filtro";
+    boton.dataset.categoria = clave;
+    boton.setAttribute("aria-pressed", String(clave === "todos"));
+    boton.innerHTML = `${nombre} <span class="filtro-total">${total}</span>`;
+    filtros.appendChild(boton);
+  });
 
-    const lista = cat === "todos" 
-      ? datosCuriosos 
-      : datosCuriosos.filter(d => d.categoria === cat);
+  function mostrar(categoria) {
+    const visibles = datosCuriosos
+      .map((dato, i) => ({ ...dato, numero: i + 1 }))
+      .filter((d) => categoria === "todos" || d.categoria === categoria);
 
-    if (counter) {
-      counter.textContent = `Mostrando ${lista.length} datos`;
-    }
-
-    lista.forEach((dato, i) => {
-      const card = document.createElement("article");
-      card.className = "fact-card";
-      card.innerHTML = `
-        <div class="fact-number">#${i + 1}</div>
-        <div class="fact-content">
-          <h3>${dato.titulo}</h3>
-          <p>${dato.descripcion}</p>
+    lista.innerHTML = visibles.map((d) => `
+      <li class="dato-item" data-categoria="${d.categoria}">
+        <span class="dato-num">${d.numero}</span>
+        <div>
+          <h3>${d.titulo}</h3>
+          <p>${d.descripcion}</p>
+          <p class="dato-cat">${categoriasDatos[d.categoria]}</p>
         </div>
-      `;
-      container.appendChild(card);
-    });
+      </li>`).join("");
+
+    if (typeof escalonar === "function") escalonar(lista.children);
+
+    if (contador) {
+      contador.textContent = categoria === "todos"
+        ? `${visibles.length} datos curiosos`
+        : `${visibles.length} datos de ${categoriasDatos[categoria].toLowerCase()}`;
+    }
+    filtros.querySelectorAll(".filtro").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.categoria === categoria)));
   }
 
-  if (select) {
-    select.addEventListener("change", (e) => renderFacts(e.target.value));
+  filtros.addEventListener("click", (e) => {
+    const boton = e.target.closest(".filtro");
+    if (boton) mostrar(boton.dataset.categoria);
+  });
+
+  mostrar("todos");
+
+  // Dato destacado en la nota adhesiva
+  const notaTitulo = document.getElementById("nota-titulo");
+  const notaDesc = document.getElementById("nota-desc");
+  const notaCat = document.getElementById("nota-cat");
+  const notaOtro = document.getElementById("nota-otro");
+  const nota = document.getElementById("nota-dato");
+  let actual = -1;
+
+  function destacar() {
+    let siguiente = actual;
+    while (siguiente === actual) siguiente = Math.floor(Math.random() * datosCuriosos.length);
+    actual = siguiente;
+    const d = datosCuriosos[actual];
+    if (notaCat) notaCat.textContent = `Dato ${actual + 1} · ${categoriasDatos[d.categoria]}`;
+    if (notaTitulo) notaTitulo.textContent = d.titulo;
+    if (notaDesc) notaDesc.textContent = d.descripcion;
+    if (nota) {
+      nota.classList.remove("cambia");
+      void nota.offsetWidth;
+      nota.classList.add("cambia");
+    }
   }
 
-  renderFacts("todos");
+  if (notaTitulo && notaOtro) {
+    destacar();
+    notaOtro.addEventListener("click", destacar);
+  }
 });

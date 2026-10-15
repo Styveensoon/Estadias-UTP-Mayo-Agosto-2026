@@ -1,191 +1,110 @@
+/* ==========================================
+   PÁGINA DE TEMAS: enrutador
+   Cada tema tiene su dirección (temas.html#tema-4), se recuerda el último visto
+   y el índice lateral marca el tema actual.
+   ========================================== */
+const TITULOS_TEMAS = {
+  "1": "Alimentación saludable",
+  "2": "Guías alimentarias",
+  "3": "La Jarra del Buen Beber",
+  "4": "El Plato del Bien Comer",
+  "5": "Sostenibilidad alimentaria",
+  "6": "Recomendaciones de ejercicio",
+  "7": "Recetas fáciles y saludables",
+  "8": "Marco normativo y hábitos",
+  "9": "Comparador de alimentos"
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('topic-content');
-
-  // Si no encuentra el contenedor en el HTML actual, detiene el script
   if (!container) return;
 
-  // Obtener el tema guardado al dar clic en el menú o usar el Tema 1 por defecto
-  const selectedTopic = localStorage.getItem('selectedTopic') || '1';
+  const indice = document.getElementById('temas-indice');
+  const area = document.getElementById('tema-area');
 
-  // Función para cargar el tema correspondiente dinámicamente
-  function renderTopic(topicId) {
-    if (topicId === '1') {
-      container.innerHTML = getTema1HTML();
-    } else if (topicId === '2') {
-      container.innerHTML = getTema2HTML();
-    } else if (topicId === '3') {
-      container.innerHTML = getTema3HTML();
-      if (typeof initJarraInteractivity === 'function') {
-        initJarraInteractivity(); // Activa la animación y los clicks de la jarra
-      }
-    } else if (topicId === '4') {
-      container.innerHTML = getTema4HTML();
-      initTema4(); // Activa la interactividad del plato y el castor
-    } else if (topicId === '5') {
-      container.innerHTML = getTema5HTML(); // Carga Sostenibilidad Alimentaria
-    } else if (topicId === '6') {
-      container.innerHTML = typeof getTema6HTML === 'function' ? getTema6HTML() : getTema6FallbackHTML();
-    } else if (topicId === '7') {
-      container.innerHTML = getTema7HTML(); // Videoteca / Recetas saludables
-    } else if (topicId === '8') {
-      container.innerHTML = getTema8FallbackHTML(); // Marco normativo y hábitos
-    } else if (topicId === '9') {
-      container.innerHTML = getTema9HTML(); // Comparador dinámico de alimentos
-      if (typeof initComparadorAlimentos === 'function') {
-        initComparadorAlimentos();
-      }
+  function temaDeLaDireccion() {
+    const coincidencia = window.location.hash.match(/^#tema-(\d)$/);
+    return coincidencia && TITULOS_TEMAS[coincidencia[1]] ? coincidencia[1] : null;
+  }
+
+  function temaGuardado() {
+    try {
+      const guardado = localStorage.getItem('selectedTopic');
+      return TITULOS_TEMAS[guardado] ? guardado : null;
+    } catch (err) {
+      return null;
+    }
+  }
+
+  function dibujar(topicId) {
+    switch (topicId) {
+      case '1': container.innerHTML = getTema1HTML(); break;
+      case '2': container.innerHTML = getTema2HTML(); break;
+      case '3': container.innerHTML = getTema3HTML(); break;
+      case '4': container.innerHTML = getTema4HTML(); break;
+      case '5': container.innerHTML = getTema5HTML(); break;
+      case '6': container.innerHTML = getTema6FallbackHTML(); break;
+      case '7': container.innerHTML = getTema7HTML(); break;
+      case '8': container.innerHTML = getTema8FallbackHTML(); break;
+      case '9': container.innerHTML = getTema9HTML(); break;
+    }
+
+    // Interactividad del tema recién dibujado (una sola vez por tema)
+    if (typeof initDynamicComponents === 'function') initDynamicComponents();
+    if (topicId === '4' && typeof initPlato === 'function') initPlato({ porScroll: false });
+    if (topicId === '9' && typeof initComparadorAlimentos === 'function') initComparadorAlimentos();
+  }
+
+  function mostrar(topicId, { historial = false, enfocar = false } = {}) {
+    if (!TITULOS_TEMAS[topicId]) topicId = '1';
+
+    // Cambio de tema animado (View Transitions); la primera carga entra sin transición
+    const animar = historial && !(typeof sinMovimiento !== 'undefined' && sinMovimiento.matches);
+    if (animar && document.startViewTransition) {
+      document.startViewTransition(() => dibujar(topicId));
     } else {
-      container.innerHTML = `
-        <div style="text-align:center; padding: 60px 20px;">
-          <h2>Tema en construcción 🏗️</h2>
-          <p style="color: #666; margin-top: 10px;">Estamos trabajando para traerte esta información muy pronto.</p>
-        </div>`;
+      dibujar(topicId);
+      if (animar) {
+        container.classList.remove('tema-entra');
+        void container.offsetWidth;
+        container.classList.add('tema-entra');
+      }
+    }
+
+    try { localStorage.setItem('selectedTopic', topicId); } catch (err) { /* sin almacenamiento */ }
+    document.title = `${TITULOS_TEMAS[topicId]} - Temas - WellDataLab`;
+
+    const direccion = `#tema-${topicId}`;
+    if (historial && window.location.hash !== direccion) {
+      history.pushState({ tema: topicId }, '', direccion);
+    } else if (!historial) {
+      history.replaceState({ tema: topicId }, '', direccion);
+    }
+
+    if (indice) {
+      indice.querySelectorAll('a[data-topic]').forEach((a) => {
+        if (a.dataset.topic === topicId) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+      });
+    }
+
+    if (enfocar && area) {
+      area.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      area.focus({ preventScroll: true });
     }
   }
 
-  // Renderizar el tema guardado al cargar la página
-  renderTopic(selectedTopic);
+  // main.js llama a esta función al hacer clic en cualquier enlace con data-topic
+  window.renderTopic = (topicId) => mostrar(topicId, { historial: true, enfocar: true });
 
-  // Escuchar eventos de clic en las opciones del menú desplegable
-  const dropdownLinks = document.querySelectorAll('#topics-dropdown a');
-  dropdownLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault(); // Evita re-navegar o recargar la página actual
-      
-      const topicId = link.getAttribute('data-topic');
-      if (topicId) {
-        localStorage.setItem('selectedTopic', topicId);
-        renderTopic(topicId);
-
-        // Opcional: Oculta el menú responsivo si está abierto en móvil
-        const navMenu = document.getElementById('nav-menu');
-        if (navMenu && navMenu.classList.contains('active')) {
-          navMenu.classList.remove('active');
-        }
-      }
-    });
+  // Atrás / adelante del navegador
+  window.addEventListener('popstate', () => {
+    const tema = temaDeLaDireccion();
+    if (tema) mostrar(tema);
   });
+
+  mostrar(temaDeLaDireccion() || temaGuardado() || '1');
 });
-
-/* ==========================================
-   INTERACTIVIDAD DEL TEMA 4 (EL PLATO Y EL CASTOR)
-   ========================================== */
-function initTema4() {
-  const plateSlices = document.querySelectorAll('.plate-slice');
-  const plateBtns = document.querySelectorAll('.plato-btn');
-  const groupCards = document.querySelectorAll('.group-card');
-  const infoCard = document.getElementById('plato-info-card');
-  const tagEl = document.getElementById('plato-tag');
-  const titleEl = document.getElementById('plato-group-title');
-  const propEl = document.getElementById('plato-proportion');
-  const descEl = document.getElementById('plato-info-desc');
-  const castorBubble = document.getElementById('plato-castor-bubble');
-
-  // Información detallada de los 5 grupos ajustada a proporciones reales
-  const platoData = {
-    "1": {
-      title: "Verduras y Frutas",
-      proportion: "Muchas (50% de tu plato)",
-      color: "#16a34a",
-      desc: "Aportan fibra, agua, vitaminas (A, C, complejo B) y minerales. Deben formar la mitad de tu plato en cada comida principal.",
-      castorMsg: "🥦 ¡Llena la mitad de tu plato con verduras y frutas! Aportan la vitamina y energía natural que tu cuerpo necesita al día."
-    },
-    "2": {
-      title: "Cereales Integrales y Tubérculos",
-      proportion: "Suficientes (22% de tu plato)",
-      color: "#d97706",
-      desc: "Principal fuente de energía. Prefiere granos enteros como tortilla de maíz, avena, arroz integral o papa con cáscara.",
-      castorMsg: "🌾 Elige cereales integrales para tener energía constante durante todo el día sin picos de azúcar."
-    },
-    "3": {
-      title: "Leguminosas",
-      proportion: "Combina (15% de tu plato)",
-      color: "#ea580c",
-      desc: "Aportan proteína vegetal y fibra de gran calidad. Ejemplos: frijoles, lentejas, garbanzos y habas.",
-      castorMsg: "🫘 ¡Las leguminosas son oro puro! Combínalas con cereales para obtener una proteína completa de gran calidad."
-    },
-    "4": {
-      title: "Alimentos de Origen Animal",
-      proportion: "Pocos / Moderado (8% de tu plato)",
-      color: "#dc2626",
-      desc: "Aportan proteínas de alto valor biológico, hierro y vitamina B12. Opta por pollo, pescado, huevo y lácteos bajos en grasa.",
-      castorMsg: "🍗 Consume carnes magras y pescado en porciones pequeñas. ¡Cuidan tus músculos sin saturar tu organismo!"
-    },
-    "5": {
-      title: "Aceites y Grasas Saludables",
-      proportion: "Porciones muy reducidas (5% de tu plato)",
-      color: "#78350f",
-      desc: "Proporcionan ácidos grasos esenciales. Prefiere aguacate, aceite de oliva, nueces, cacahuates y semillas.",
-      castorMsg: "🥑 Las grasas buenas como el aguacate o las semillas son esenciales para el cerebro, ¡pero consúmelas con moderación!"
-    }
-  };
-
-  function updatePlatoGroup(groupId) {
-    const data = platoData[groupId];
-    if (!data) return;
-
-    // 1. Destacar sector del SVG
-    plateSlices.forEach(slice => {
-      const g = slice.getAttribute('data-group');
-      if (g === groupId) {
-        slice.classList.add('active');
-      } else {
-        slice.classList.remove('active');
-      }
-    });
-
-    // 2. Destacar botones superiores
-    plateBtns.forEach(btn => {
-      if (btn.getAttribute('data-group') === groupId) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-
-    // 3. Destacar la tarjeta inferior seleccionada
-    groupCards.forEach(card => {
-      if (card.getAttribute('data-group') === groupId) {
-        card.style.outline = `3px solid ${data.color}`;
-        card.style.transform = "translateY(-6px)";
-      } else {
-        card.style.outline = "none";
-        card.style.transform = "none";
-      }
-    });
-
-    // 4. Actualizar recuadro informativo
-    if (infoCard) infoCard.style.borderLeftColor = data.color;
-    if (tagEl) {
-      tagEl.textContent = `Grupo ${groupId}`;
-      tagEl.style.backgroundColor = data.color;
-    }
-    if (titleEl) titleEl.textContent = data.title;
-    if (propEl) {
-      propEl.textContent = data.proportion;
-      propEl.style.color = data.color;
-    }
-    if (descEl) descEl.textContent = data.desc;
-
-    // 5. Actualizar el diálogo del Castor
-    if (castorBubble) {
-      castorBubble.textContent = data.castorMsg;
-    }
-  }
-
-  // Escuchadores de eventos
-  plateSlices.forEach(slice => {
-    slice.addEventListener('click', () => updatePlatoGroup(slice.getAttribute('data-group')));
-  });
-
-  plateBtns.forEach(btn => {
-    btn.addEventListener('click', () => updatePlatoGroup(btn.getAttribute('data-group')));
-  });
-
-  groupCards.forEach(card => {
-    card.addEventListener('click', () => updatePlatoGroup(card.getAttribute('data-group')));
-  });
-}
 
 /* ==========================================
    PLANTILLA TEMA 1: ALIMENTACIÓN SALUDABLE (INCMNSZ)
@@ -242,7 +161,7 @@ function getTema1HTML() {
 function getTema2HTML() {
   return `
     <div class="topic-header-full">
-      <h1 class="topic-main-title-center">Guías Alimentarias para la Población Mexicana</h1>
+      <h1 class="topic-main-title-center">Guías alimentarias para la población mexicana</h1>
       <p class="topic-desc-center">10 recomendaciones clave para adoptar un estilo de vida más saludable y promover la sostenibilidad alimentaria en tu día a día.</p>
     </div>
 
@@ -353,7 +272,7 @@ function getTema3HTML() {
   return `
     <div class="jarra-wrapper">
       <div class="jarra-header-text">
-        <h1 class="jarra-title">La Jarra del Buen Beber y la Realidad Nacional</h1>
+        <h1 class="jarra-title">La Jarra del Buen Beber y la realidad nacional</h1>
         <p class="jarra-subtitle">Interactúa con la jarra o selecciona un nivel para descubrir las recomendaciones de hidratación.</p>
       </div>
 
@@ -362,10 +281,10 @@ function getTema3HTML() {
         <!-- COLUMNA 1: CASTOR Y GLOBO DE DIÁLOGO -->
         <div class="mascot-col">
           <div class="speech-bubble" id="castor-bubble">
-            ¡Hola! 👋 Soy el Castor Nutritivo. Haz clic en los niveles de la jarra para enseñarte a hidratarte como un experto.
+            ¡Hola! Soy el Castor Nutritivo. Haz clic en los niveles de la jarra para enseñarte a hidratarte como un experto.
           </div>
           <div class="castor-img-wrapper">
-            <img src="../Resources/home/castor.png" alt="El Castor Nutritivo" class="castor-jarra-img">
+            <img src="../Resources/marca/castor.svg" alt="El Castor Nutritivo" class="castor-jarra-img">
           </div>
         </div>
 
@@ -400,8 +319,8 @@ function getTema3HTML() {
           
           <div class="info-card-display fade-in-card" id="jarra-info-card">
             <span class="level-badge-tag" id="jarra-tag" style="background-color: #2563eb;">Nivel 1</span>
-            <h3 id="jarra-level-title">Agua Potable Simple</h3>
-            <div class="recommended-quantity" id="jarra-qty">6 a 8 Vasos al día</div>
+            <h3 id="jarra-level-title">Agua potable simple</h3>
+            <div class="recommended-quantity" id="jarra-qty">6 a 8 vasos al día</div>
             <p id="jarra-info-desc">
               Es la única bebida indispensable para nuestro cuerpo. Satisface las necesidades de hidratación diaria sin aportar calorías, azúcares ni químicos.
             </p>
@@ -409,11 +328,11 @@ function getTema3HTML() {
 
           <!-- BOTONES SELECTORES -->
           <div class="jarra-btn-grid">
-            <button class="jarra-btn active" data-level="1" style="--btn-color: #2563eb;">Nivel 1: Agua Simple</button>
-            <button class="jarra-btn" data-level="2" style="--btn-color: #9333ea;">Nivel 2: Leche / Soya</button>
-            <button class="jarra-btn" data-level="3" style="--btn-color: #eab308;">Nivel 3: Café / Té</button>
+            <button class="jarra-btn active" data-level="1" style="--btn-color: #2563eb;">Nivel 1: Agua simple</button>
+            <button class="jarra-btn" data-level="2" style="--btn-color: #9333ea;">Nivel 2: Leche o soya</button>
+            <button class="jarra-btn" data-level="3" style="--btn-color: #eab308;">Nivel 3: Café o té</button>
             <button class="jarra-btn" data-level="4" style="--btn-color: #f97316;">Nivel 4: Edulcorantes</button>
-            <button class="jarra-btn" data-level="5" style="--btn-color: #ef4444;">Nivel 5: Jugos / Alcohol</button>
+            <button class="jarra-btn" data-level="5" style="--btn-color: #ef4444;">Nivel 5: Jugos o alcohol</button>
             <button class="jarra-btn" data-level="6" style="--btn-color: #16a34a;">Nivel 6: Refrescos</button>
           </div>
 
@@ -421,9 +340,9 @@ function getTema3HTML() {
           <div class="alert-box-stat">
             <i class="fa-solid fa-triangle-exclamation"></i>
             <div>
-              <strong>Dato Crítico Nacional:</strong> Cerca del 70% de los adultos en México padece sobrepeso u obesidad por consumo de bebidas azucaradas.<br>
+              <strong>Dato nacional:</strong> Más de 7 de cada 10 adultos en México viven con sobrepeso u obesidad, y las bebidas azucaradas son uno de los factores que más contribuyen.
               <a href="https://www.gob.mx/profeco/documentos/la-jarra-del-buen-beber-la-importancia-de-mantenerte-bien-hidratado?state=published" target="_blank" class="profeco-link">
-                Consultar artículo completo de PROFECO <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                Consulta el artículo completo de Profeco <i class="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
             </div>
           </div>
@@ -439,379 +358,74 @@ function getTema3HTML() {
    PLANTILLA TEMA 4: EL PLATO DEL BUEN COMER (PROPORCIONES REALES)
    ========================================== */
 function getTema4HTML() {
+  // El mismo plato del Inicio: Js/inicio.js lo dibuja a partir de esta lista
+  const foto = (n) => `../Resources/home/plato/${n}.jpg`;
   return `
-    <style>
-      .plato-wrapper {
-        width: 100% !important;
-        max-width: 1400px !important;
-        margin: 0 auto !important;
-        padding: 20px 30px 50px 30px !important;
-        box-sizing: border-box !important;
-      }
+    <div class="plato-tema">
+      <header class="tema-cabeza">
+        <h1 class="topic-main-title">El Plato del Bien Comer</h1>
+        <p class="topic-desc">La guía oficial de la NOM-043 para armar cada comida: cinco grupos de alimentos en la proporción que tu cuerpo necesita. Elige un grupo en el plato o en la lista.</p>
+      </header>
 
-      .plato-header-text {
-        text-align: left;
-        margin-bottom: 25px;
-      }
+      <div class="plato-tema-cuerpo">
+        <div class="plato-tema-visual">
+          <figure class="plato" aria-hidden="true">
+            <svg class="plato-svg" id="plato-svg" viewBox="-24 -24 648 648" role="presentation"></svg>
+          </figure>
+          <div class="castor-dice">
+            <img src="../Resources/marca/castor.svg" alt="" width="260" height="300">
+            <p id="castor-globo" aria-live="polite">Elige un grupo del plato y te digo cuánto espacio debe ocupar.</p>
+          </div>
+        </div>
 
-      .plato-title {
-        font-size: 2.2rem;
-        color: #1e293b;
-        font-weight: 800;
-        margin-bottom: 6px;
-      }
-
-      .plato-subtitle {
-        color: #64748b;
-        font-size: 1.05rem;
-      }
-
-      /* SECCIÓN PRINCIPAL: INTERACTIVA (3 COLUMNAS) */
-      .plato-main-card {
-        background: #ffffff;
-        border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        border: 1px solid #e2e8f0;
-        display: grid;
-        grid-template-columns: 260px 380px 1fr;
-        gap: 30px;
-        align-items: center;
-        margin-bottom: 40px;
-        width: 100%;
-        box-sizing: border-box;
-      }
-
-      /* Mascot Col */
-      .plato-mascot-col {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .plato-speech-bubble {
-        background: #f1f5f9;
-        border-radius: 16px;
-        padding: 14px;
-        font-size: 0.88rem;
-        color: #334155;
-        line-height: 1.4;
-        position: relative;
-        margin-bottom: 15px;
-        text-align: center;
-        border: 1px solid #e2e8f0;
-      }
-
-      .plato-speech-bubble::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-width: 10px 10px 0;
-        border-style: solid;
-        border-color: #f1f5f9 transparent;
-      }
-
-      .plato-castor-img {
-        width: 140px;
-        height: auto;
-      }
-
-      /* SVG Interactivo */
-      .plato-visual-col {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-      }
-
-      .plato-svg {
-        width: 100%;
-        max-width: 360px;
-        height: auto;
-        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
-      }
-
-      .plate-slice {
-        cursor: pointer;
-        stroke: #ffffff;
-        stroke-width: 2px;
-        transition: transform 0.25s ease, opacity 0.25s ease, stroke-width 0.25s ease;
-        transform-origin: center;
-        opacity: 0.88;
-      }
-
-      .plate-slice:hover, .plate-slice.active {
-        opacity: 1;
-        stroke: #ffffff;
-        stroke-width: 4px;
-        transform: scale(1.03);
-      }
-
-      .svg-label {
-        font-family: system-ui, -apple-system, sans-serif;
-        font-weight: 700;
-        font-size: 11px;
-        fill: #334155;
-        text-anchor: middle;
-        pointer-events: none;
-      }
-
-      .svg-pct {
-        font-weight: 800;
-        font-size: 13px;
-      }
-
-      /* Info Col */
-      .plato-info-panel {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .plato-btn-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 8px;
-      }
-
-      .plato-btn {
-        padding: 10px 4px;
-        border-radius: 8px;
-        border: 2px solid transparent;
-        background: #f8fafc;
-        font-weight: 700;
-        font-size: 0.78rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        color: #475569;
-        text-align: center;
-      }
-
-      .plato-btn.active {
-        background: #ffffff;
-        border-color: var(--btn-color);
-        color: var(--btn-color);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      }
-
-      .plato-info-display {
-        background: #f8fafc;
-        padding: 20px;
-        border-radius: 12px;
-        border-left: 5px solid #16a34a;
-        transition: border-color 0.3s ease;
-      }
-
-      .plato-tag {
-        display: inline-block;
-        padding: 4px 10px;
-        border-radius: 20px;
-        color: white;
-        font-size: 0.75rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-
-      /* SECCIÓN PLUS: 5 TARJETAS INFERIORES */
-      .plato-plus-section {
-        margin-top: 40px;
-        border-top: 2px dashed #e2e8f0;
-        padding-top: 30px;
-        width: 100%;
-      }
-
-      .plus-title {
-        font-size: 1.4rem;
-        color: #334155;
-        font-weight: 700;
-        margin-bottom: 25px;
-      }
-
-      .groups-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-        width: 100%;
-      }
-
-      .group-card {
-        background: #ffffff;
-        border-radius: 18px;
-        padding: 50px 16px 20px 16px;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-        border: 1px solid #f1f5f9;
-        margin-top: 35px;
-        cursor: pointer;
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
-      }
-
-      .group-card:hover, .group-card.active {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-      }
-
-      .group-thumb-wrapper {
-        position: absolute;
-        top: -40px;
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 4px solid #ffffff;
-        box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-      }
-
-      .group-thumb-wrapper img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .group-number { font-size: 1rem; font-weight: 800; margin-bottom: 4px; }
-      .portion-badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
-      .group-name { font-size: 0.88rem; font-weight: 600; color: #334155; line-height: 1.3; margin: 0; }
-
-      .card-g1 { background: #f0fdf4; } .card-g1 .group-number { color: #16a34a; } .card-g1 .portion-badge { background: #dcfce7; color: #16a34a; }
-      .card-g2 { background: #fefce8; } .card-g2 .group-number { color: #eab308; } .card-g2 .portion-badge { background: #fef08a; color: #a16207; }
-      .card-g3 { background: #fff7ed; } .card-g3 .group-number { color: #f97316; } .card-g3 .portion-badge { background: #ffedd5; color: #c2410c; }
-      .card-g4 { background: #fef2f2; } .card-g4 .group-number { color: #ef4444; } .card-g4 .portion-badge { background: #fee2e2; color: #b91c1c; }
-      .card-g5 { background: #fef3c7; } .card-g5 .group-number { color: #d97706; } .card-g5 .portion-badge { background: #fde68a; color: #92400e; }
-
-      @media (max-width: 1100px) {
-        .plato-main-card { grid-template-columns: 1fr; text-align: center; }
-        .plato-btn-grid { grid-template-columns: repeat(3, 1fr); }
-        .groups-grid { grid-template-columns: repeat(2, 1fr); }
-      }
-    </style>
-
-    <div class="plato-wrapper">
-      
-      <!-- ENCABEZADO -->
-      <div class="plato-header-text">
-        <h1 class="plato-title">El Plato del Buen Comer</h1>
-        <p class="plato-subtitle">Guía visual e interactiva de las proporciones óptimas para una alimentación balanceada.</p>
+        <ol class="grupos" id="grupos">
+          <li class="grupo" data-grupo="1" data-pct="50" data-color="#16a34a" data-foto="${foto("verduras")}"
+              data-castor="Llena la mitad de tu plato con verduras y frutas: te dan las vitaminas y el agua que tu cuerpo necesita cada día.">
+            <button type="button" class="grupo-boton" aria-pressed="false">
+              <span class="grupo-num">1</span>
+              <span class="grupo-nombre">Verduras y frutas</span>
+              <span class="grupo-pct">50 %</span>
+            </button>
+            <p>Aportan fibra, agua, vitaminas (A, C y complejo B) y minerales. Deben formar la mitad de cada comida principal.</p>
+          </li>
+          <li class="grupo" data-grupo="2" data-pct="22" data-color="#f2b705" data-tinta="#0f2a1c" data-foto="${foto("cereales")}"
+              data-castor="Elige cereales integrales para tener energía constante durante todo el día, sin picos de azúcar.">
+            <button type="button" class="grupo-boton" aria-pressed="false">
+              <span class="grupo-num">2</span>
+              <span class="grupo-nombre">Cereales y tubérculos</span>
+              <span class="grupo-pct">22 %</span>
+            </button>
+            <p>Son la principal fuente de energía. Elige opciones integrales como tortilla de maíz, avena, arroz integral o papa con cáscara.</p>
+          </li>
+          <li class="grupo" data-grupo="3" data-pct="15" data-color="#e8590c" data-foto="${foto("leguminosas")}"
+              data-castor="Combina leguminosas con cereales y obtienes una proteína completa de gran calidad.">
+            <button type="button" class="grupo-boton" aria-pressed="false">
+              <span class="grupo-num">3</span>
+              <span class="grupo-nombre">Leguminosas</span>
+              <span class="grupo-pct">15 %</span>
+            </button>
+            <p>Aportan proteína vegetal y fibra de excelente calidad: frijoles, lentejas, garbanzos y habas.</p>
+          </li>
+          <li class="grupo" data-grupo="4" data-pct="8" data-color="#d62839" data-foto="${foto("origen-animal")}"
+              data-castor="Consume carnes magras y pescado en porciones pequeñas: cuidan tus músculos sin saturar tu organismo.">
+            <button type="button" class="grupo-boton" aria-pressed="false">
+              <span class="grupo-num">4</span>
+              <span class="grupo-nombre">Alimentos de origen animal</span>
+              <span class="grupo-pct">8 %</span>
+            </button>
+            <p>Aportan proteínas de alto valor biológico, hierro y vitamina B12. Prefiere carnes magras, pescado, huevo o lácteos descremados.</p>
+          </li>
+          <li class="grupo" data-grupo="5" data-pct="5" data-color="#9a6a00" data-foto="${foto("grasas")}"
+              data-castor="Las grasas buenas, como el aguacate o las semillas, son esenciales para tu cerebro; consúmelas con moderación.">
+            <button type="button" class="grupo-boton" aria-pressed="false">
+              <span class="grupo-num">5</span>
+              <span class="grupo-nombre">Aceites y grasas saludables</span>
+              <span class="grupo-pct">5 %</span>
+            </button>
+            <p>Proporcionan ácidos grasos esenciales. Prefiere aguacate, aceite de oliva, nueces, almendras y semillas en pequeñas cantidades.</p>
+          </li>
+        </ol>
       </div>
-
-      <!-- BLOQUE PRINCIPAL: INTERACTIVO Y CASTOR -->
-      <div class="plato-main-card">
-        
-        <!-- Columna 1: Castor -->
-        <div class="plato-mascot-col">
-          <div class="plato-speech-bubble" id="plato-castor-bubble">
-            🥦 ¡La mitad exacta de tu plato debe ser Verduras y Frutas (50%)! Son fundamentales para una buena salud.
-          </div>
-          <img src="../Resources/home/castor.png" alt="El Castor Nutritivo" class="plato-castor-img">
-        </div>
-
-        <!-- Columna 2: Plato SVG Interactivo con Proporciones Reales -->
-        <div class="plato-visual-col">
-          <svg viewBox="-150 -130 300 260" class="plato-svg">
-            <!-- Sector 1: Verduras y frutas (50%) -->
-            <path class="plate-slice active" data-group="1" fill="#16a34a" d="M 0 0 L 0 -100 A 100 100 0 1 1 0 100 Z" />
-            
-            <!-- Sector 2: Cereales y tubérculos (22%) -->
-            <path class="plate-slice" data-group="2" fill="#facc15" d="M 0 0 L 0 100 A 100 100 0 0 1 -97.81 20.79 Z" />
-            
-            <!-- Sector 3: Leguminosas (15%) -->
-            <path class="plate-slice" data-group="3" fill="#f59e0b" d="M 0 0 L -97.81 20.79 A 100 100 0 0 1 -72.90 -68.45 Z" />
-            
-            <!-- Sector 4: Origen Animal (8%) -->
-            <path class="plate-slice" data-group="4" fill="#ef4444" d="M 0 0 L -72.90 -68.45 A 100 100 0 0 1 -30.90 -95.11 Z" />
-            
-            <!-- Sector 5: Grasas/Aceites (5%) -->
-            <path class="plate-slice" data-group="5" fill="#d97706" d="M 0 0 L -30.90 -95.11 A 100 100 0 0 1 0 -100 Z" />
-            
-            <!-- Centro del Plato -->
-            <circle cx="0" cy="0" r="22" fill="#ffffff" />
-
-            <!-- Etiquetas de porcentajes y nombres -->
-            <text x="65" y="0" class="svg-label"><tspan x="65" dy="-4">Verduras y frutas</tspan><tspan x="65" dy="16" class="svg-pct">50%</tspan></text>
-            <text x="-60" y="85" class="svg-label"><tspan x="-60" dy="-4">Cereales y tubérculos</tspan><tspan x="-60" dy="16" class="svg-pct">22%</tspan></text>
-            <text x="-105" y="-20" class="svg-label"><tspan x="-105" dy="-4">Leguminosas</tspan><tspan x="-105" dy="16" class="svg-pct">15%</tspan></text>
-            <text x="-65" y="-88" class="svg-label"><tspan x="-65" dy="-4">Origen animal</tspan><tspan x="-65" dy="16" class="svg-pct">8%</tspan></text>
-            <text x="-12" y="-108" class="svg-label"><tspan x="-12" class="svg-pct">5%</tspan></text>
-          </svg>
-        </div>
-
-        <!-- Columna 3: Información + Botones -->
-        <div class="plato-info-panel">
-          <div class="plato-btn-grid">
-            <button class="plato-btn active" data-group="1" style="--btn-color: #16a34a;">Verduras</button>
-            <button class="plato-btn" data-group="2" style="--btn-color: #eab308;">Cereales</button>
-            <button class="plato-btn" data-group="3" style="--btn-color: #f97316;">Legumbres</button>
-            <button class="plato-btn" data-group="4" style="--btn-color: #ef4444;">Animal</button>
-            <button class="plato-btn" data-group="5" style="--btn-color: #d97706;">Grasas</button>
-          </div>
-
-          <div class="plato-info-display" id="plato-info-card">
-            <span class="plato-tag" id="plato-tag" style="background-color: #16a34a;">Grupo 1</span>
-            <h3 id="plato-group-title" style="margin: 5px 0; font-size: 1.1rem; color: #1e293b;">Verduras y Frutas</h3>
-            <div id="plato-proportion" style="font-weight: 700; color: #16a34a; font-size: 0.9rem; margin-bottom: 8px;">50% del plato</div>
-            <p id="plato-info-desc" style="font-size: 0.85rem; color: #64748b; margin: 0;">Aportan fibra, agua, vitaminas (A, C, complejo B) y minerales. Deben formar la mitad de tu plato en cada comida principal.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- SECCIÓN PLUS: DESGLOSE DE LOS 5 GRUPOS -->
-      <div class="plato-plus-section">
-        <h2 class="plus-title">Desglose por Grupos de Alimentación</h2>
-        
-        <div class="groups-grid">
-          <div class="group-card card-g1 active" data-group="1">
-            <div class="group-thumb-wrapper">
-              <img src="../Resources/home/verduras.jpg" alt="Verduras y Frutas">
-            </div>
-            <span class="group-number">Grupo 1</span>
-            <span class="portion-badge">50% del plato</span>
-            <p class="group-name">Verduras y frutas</p>
-          </div>
-
-          <div class="group-card card-g2" data-group="2">
-            <div class="group-thumb-wrapper">
-              <img src="../Resources/home/cereales.jpg" alt="Cereales">
-            </div>
-            <span class="group-number">Grupo 2</span>
-            <span class="portion-badge">22% del plato</span>
-            <p class="group-name">Cereales, granos y tubérculos</p>
-          </div>
-
-          <div class="group-card card-g3" data-group="3">
-            <div class="group-thumb-wrapper">
-              <img src="../Resources/home/leguminosas.jpg" alt="Leguminosas">
-            </div>
-            <span class="group-number">Grupo 3</span>
-            <span class="portion-badge">15% del plato</span>
-            <p class="group-name">Leguminosas (frijoles, lentejas)</p>
-          </div>
-
-          <div class="group-card card-g4" data-group="4">
-            <div class="group-thumb-wrapper">
-              <img src="../Resources/home/origen-animal.jpg" alt="Origen Animal">
-            </div>
-            <span class="group-number">Grupo 4</span>
-            <span class="portion-badge">8% del plato</span>
-            <p class="group-name">Alimentos de origen animal</p>
-          </div>
-
-          <div class="group-card card-g5" data-group="5">
-            <div class="group-thumb-wrapper">
-              <img src="../Resources/home/grasas.jpg" alt="Grasas Saludables">
-            </div>
-            <span class="group-number">Grupo 5</span>
-            <span class="portion-badge">5% del plato</span>
-            <p class="group-name">Aceites y grasas saludables</p>
-          </div>
-        </div>
-      </div>
-
     </div>
   `;
 }
@@ -944,7 +558,7 @@ function getTema5HTML() {
 
         background: #f0fdf4;
 
-        border-left: 5px solid #16a34a;
+        border: 1px solid #bfe3cb;
 
         border-radius: 12px;
 
@@ -1200,7 +814,7 @@ function getTema5HTML() {
 
       <div class="sostenibilidad-header">
 
-        <h1 class="sostenibilidad-title">Sostenibilidad Alimentaria</h1>
+        <h1 class="sostenibilidad-title">Sostenibilidad alimentaria</h1>
 
         <p class="sostenibilidad-subtitle">El impacto ambiental de nuestras elecciones diarias y la importancia de una transición hacia el consumo vegetal.</p>
 
@@ -1220,7 +834,7 @@ function getTema5HTML() {
 
           <div class="impacto-section-title">
 
-            <span>🌱</span> ¿Por qué importa nuestro impacto?
+            <span><i class="fa-solid fa-seedling" aria-hidden="true"></i></span> ¿Por qué importa nuestro impacto?
 
           </div>
 
@@ -1232,7 +846,7 @@ function getTema5HTML() {
 
               <div class="impacto-item-header">
 
-                <span>💧</span> Ahorro de Agua
+                <span><i class="fa-solid fa-droplet" aria-hidden="true"></i></span> Ahorro de agua
 
               </div>
 
@@ -1250,13 +864,13 @@ function getTema5HTML() {
 
               <div class="impacto-item-header" style="color: #a16207;">
 
-                <span>🌳</span> Deforestación
+                <span><i class="fa-solid fa-tree" aria-hidden="true"></i></span> Deforestación
 
               </div>
 
               <p class="impacto-item-desc">
 
-                La expansión de la industria ganadera y los cultivos para forraje son responsables de hasta el <strong>91% de la destrucción de la selva del Amazonas</strong>.
+                La ganadería es el <strong>principal motor de la deforestación en la Amazonía</strong>: la mayor parte de la selva talada termina convertida en pastizales para ganado.
 
               </p>
 
@@ -1268,13 +882,13 @@ function getTema5HTML() {
 
               <div class="impacto-item-header" style="color: #b91c1c;">
 
-                <span>🏭</span> Gases de Efecto Invernadero
+                <span><i class="fa-solid fa-industry" aria-hidden="true"></i></span> Gases de efecto invernadero
 
               </div>
 
               <p class="impacto-item-desc">
 
-                La ganadería emite más gases de efecto invernadero (metano y óxido nitroso) que <strong>todo el sector de transporte combinado</strong> (autos, aviones, barcos y trenes).
+                La ganadería genera cerca del <strong>14.5% de las emisiones de gases de efecto invernadero</strong> causadas por los seres humanos, sobre todo metano y óxido nitroso (FAO).
 
               </p>
 
@@ -1290,7 +904,7 @@ function getTema5HTML() {
 
         <div class="media-section">
 
-          <h2 class="doc-title">El Secreto de la Sostenibilidad: Cowspiracy</h2>
+          <h2 class="doc-title">El secreto de la sostenibilidad: Cowspiracy</h2>
 
          
 
@@ -1302,7 +916,7 @@ function getTema5HTML() {
 
 
 
-          <a href="https://www.youtube.com/watch?v=nV04zyfLyN4" target="_blank" class="yt-button">
+          <a href="https://www.youtube.com/watch?v=nV04zyfLyN4" target="_blank" rel="noopener noreferrer" class="yt-button">
 
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
 
@@ -1318,7 +932,7 @@ function getTema5HTML() {
 
           <!-- Imagen Ilustrativa del Castor Sabio -->
 
-          <img src="../Resources/home/castor-sabio.png" alt="Castor Sabías Que" class="castor-saber-img">
+          <img src="../Resources/marca/castor-sabio.svg" alt="Castor Sabías Que" class="castor-saber-img">
 
         </div>
 
@@ -1334,9 +948,9 @@ function getTema5HTML() {
 
         <div class="sost-card">
 
-          <div class="sost-card-icon">🥗</div>
+          <div class="sost-card-icon"><i class="fa-solid fa-bowl-food" aria-hidden="true"></i></div>
 
-          <div class="sost-card-title">Lunes Sin Carne</div>
+          <div class="sost-card-title">Lunes sin carne</div>
 
           <p class="sost-card-desc">Reducir el consumo de carne solo un día a la semana disminuye tu huella hídrica y de carbono de forma significativa.</p>
 
@@ -1346,9 +960,9 @@ function getTema5HTML() {
 
         <div class="sost-card">
 
-          <div class="sost-card-icon">🍎</div>
+          <div class="sost-card-icon"><i class="fa-solid fa-apple-whole" aria-hidden="true"></i></div>
 
-          <div class="sost-card-title">Consumo Local y de Temporada</div>
+          <div class="sost-card-title">Consumo local y de temporada</div>
 
           <p class="sost-card-desc">Elegir alimentos producidos en tu región reduce las emisiones del transporte de larga distancia.</p>
 
@@ -1358,9 +972,9 @@ function getTema5HTML() {
 
         <div class="sost-card">
 
-          <div class="sost-card-icon">♻️</div>
+          <div class="sost-card-icon"><i class="fa-solid fa-recycle" aria-hidden="true"></i></div>
 
-          <div class="sost-card-title">Evita el Desperdicio</div>
+          <div class="sost-card-title">Evita el desperdicio</div>
 
           <p class="sost-card-desc">Planifica tus compras para aprovechar al máximo los alimentos y reducir los residuos orgánicos en casa.</p>
 
@@ -1388,7 +1002,7 @@ function getTema6FallbackHTML() {
   return `
     <div class="ejercicio-wrapper">
       <div class="ejercicio-header">
-        <h1 class="ejercicio-title">Recomendaciones de Ejercicio y Movimiento</h1>
+        <h1 class="ejercicio-title">Recomendaciones de ejercicio y movimiento</h1>
         <p class="ejercicio-subtitle">"La actividad física debe ser constante, variada y divertida. Olvídate de los desafíos extremos; la constancia y el movimiento diario son la clave."</p>
       </div>
 
@@ -1397,7 +1011,7 @@ function getTema6FallbackHTML() {
           <div class="card-header-flex">
             <div class="card-num blue-badge"><i class="fa-solid fa-bolt"></i></div>
           </div>
-          <h3>Cardio Diario</h3>
+          <h3>Cardio diario</h3>
           <p>Caminar a paso rápido, trotar, correr o bailar. Fortalecen tu corazón, mejoran tu capacidad pulmonar y ayudan a la quema de calorías diarias.</p>
           <ul style="margin-top: 10px; padding-left: 20px; color: #64748b; font-size: 0.88rem;">
             <li>Al menos 30 minutos al día.</li>
@@ -1409,7 +1023,7 @@ function getTema6FallbackHTML() {
           <div class="card-header-flex">
             <div class="card-num purple-badge"><i class="fa-solid fa-dumbbell"></i></div>
           </div>
-          <h3>Fuerza Muscular</h3>
+          <h3>Fuerza muscular</h3>
           <p>Sentadillas, flexiones de pecho, desplantes o cargar pequeños pesos. Conservar la masa muscular previene la osteoporosis y activa tu metabolismo.</p>
           <ul style="margin-top: 10px; padding-left: 20px; color: #64748b; font-size: 0.88rem;">
             <li>2 a 3 veces por semana.</li>
@@ -1421,7 +1035,7 @@ function getTema6FallbackHTML() {
           <div class="card-header-flex">
             <div class="card-num green-badge"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
           </div>
-          <h3>Flexibilidad & Estiramientos</h3>
+          <h3>Flexibilidad y estiramientos</h3>
           <p>Estiramientos suaves de cuello, hombros, espalda y piernas. Especialmente recomendado tras pasar muchas horas sentado.</p>
           <ul style="margin-top: 10px; padding-left: 20px; color: #64748b; font-size: 0.88rem;">
             <li>Ideal antes y después de tu día.</li>
@@ -1439,7 +1053,7 @@ function getTema8FallbackHTML() {
   return `
     <div class="ejercicio-wrapper" id="tema8-container">
       <div class="ejercicio-header">
-        <h1 class="ejercicio-title">Marco Normativo y Hábitos Saludables</h1>
+        <h1 class="ejercicio-title">Marco normativo y hábitos saludables</h1>
         <p class="ejercicio-subtitle">"Los resultados sostenibles no provienen de cambios drásticos de un día para otro, sino de pequeños hábitos repetidos con constancia a lo largo del tiempo."</p>
       </div>
 
@@ -1448,7 +1062,7 @@ function getTema8FallbackHTML() {
           <div class="card-header-flex">
             <div class="card-num blue-badge"><i class="fa-solid fa-calendar-check"></i></div>
           </div>
-          <h3>Planificación de Menús</h3>
+          <h3>Planificación de menús</h3>
           <p>Organizar tus comidas de la semana te ayuda a hacer mejores compras, reducir desperdicios y evitar tomar decisiones apresuradas.</p>
           <ul style="margin-top: 10px; padding-left: 20px; color: #64748b; font-size: 0.88rem;">
             <li>Prepara una lista de compras.</li>
@@ -1460,7 +1074,7 @@ function getTema8FallbackHTML() {
           <div class="card-header-flex">
             <div class="card-num purple-badge"><i class="fa-solid fa-bottle-water"></i></div>
           </div>
-          <h3>Hidratación y Descanso</h3>
+          <h3>Hidratación y descanso</h3>
           <p>El agua y un sueño reparador son los pilares invisibles de la salud digestiva y la regulación de la energía diaria.</p>
           <ul style="margin-top: 10px; padding-left: 20px; color: #64748b; font-size: 0.88rem;">
             <li>Procura tomar 2 litros de agua diarios.</li>
@@ -1472,7 +1086,7 @@ function getTema8FallbackHTML() {
           <div class="card-header-flex">
             <div class="card-num green-badge"><i class="fa-solid fa-heart-pulse"></i></div>
           </div>
-          <h3>Constancia y Mentalidad</h3>
+          <h3>Constancia y mentalidad</h3>
           <p>Busca el progreso y no la perfección. Un tropiezo en una comida no arruina tu camino; retoma el hábito en la siguiente oportunidad.</p>
           <ul style="margin-top: 10px; padding-left: 20px; color: #64748b; font-size: 0.88rem;">
             <li>Establece metas realistas y medibles.</li>
@@ -1491,7 +1105,7 @@ function getTema7HTML() {
   return `
     <div class="topic-layout">
       <div class="topic-left">
-        <h1 class="topic-main-title">Recetas Fáciles y Saludables</h1>
+        <h1 class="topic-main-title">Recetas fáciles y saludables</h1>
         <p class="topic-desc">Recetas rápidas, económicas y nutritivas para complementar tu plan de alimentación diario sin complicaciones en la cocina.</p>
         <p class="topic-quote">Cocinar en casa es el primer paso para controlar lo que comes.</p>
       </div>
@@ -1500,7 +1114,7 @@ function getTema7HTML() {
           <div class="card-header-flex">
             <div class="card-num green-badge"><i class="fa-solid fa-mug-hot"></i></div>
           </div>
-          <h3>Avena con Fruta</h3>
+          <h3>Avena con fruta</h3>
           <p><strong>Tiempo:</strong> 5 min - <strong>Porciones:</strong> 1</p>
           <p><strong>Ingredientes:</strong> 1/2 taza de avena, 1 taza de leche descremada o bebida vegetal, 1/2 plátano, canela al gusto.</p>
           <p><strong>Preparación:</strong> Calienta la leche, agrega la avena y cuece 3-4 min moviendo. Sirve con el plátano en rodajas y canela.</p>
@@ -1509,7 +1123,7 @@ function getTema7HTML() {
           <div class="card-header-flex">
             <div class="card-num blue-badge"><i class="fa-solid fa-bowl-food"></i></div>
           </div>
-          <h3>Ensalada de Pollo</h3>
+          <h3>Ensalada de pollo</h3>
           <p><strong>Tiempo:</strong> 15 min - <strong>Porciones:</strong> 2</p>
           <p><strong>Ingredientes:</strong> 1 pechuga de pollo asada y desmenuzada, lechuga, jitomate, pepino, 1 cda de aceite de oliva, limón.</p>
           <p><strong>Preparación:</strong> Mezcla las verduras picadas con el pollo, aliña con aceite y limón al gusto.</p>
@@ -1518,7 +1132,7 @@ function getTema7HTML() {
           <div class="card-header-flex">
             <div class="card-num cyan-badge"><i class="fa-solid fa-glass-water"></i></div>
           </div>
-          <h3>Agua Fresca Natural</h3>
+          <h3>Agua fresca natural</h3>
           <p><strong>Tiempo:</strong> 5 min - <strong>Porciones:</strong> 4</p>
           <p><strong>Ingredientes:</strong> 1 taza de fruta de temporada (pepino, jamaica, limón o piña), 1 litro de agua, edulcorante al gusto (opcional).</p>
           <p><strong>Preparación:</strong> Licua la fruta con el agua, cuela si es necesario y sirve fría, sin azúcares añadidos.</p>
@@ -1527,7 +1141,7 @@ function getTema7HTML() {
           <div class="card-header-flex">
             <div class="card-num purple-badge"><i class="fa-solid fa-carrot"></i></div>
           </div>
-          <h3>Salteado de Verduras y Huevo</h3>
+          <h3>Salteado de verduras y huevo</h3>
           <p><strong>Tiempo:</strong> 12 min - <strong>Porciones:</strong> 2</p>
           <p><strong>Ingredientes:</strong> Calabaza, zanahoria y ejotes en cubos, 2 huevos, 1 cdita de aceite, sal y pimienta.</p>
           <p><strong>Preparación:</strong> Saltea las verduras 6-8 min, agrega los huevos batidos y cocina revolviendo hasta cuajar.</p>
@@ -1536,14 +1150,15 @@ function getTema7HTML() {
           <div class="card-header-flex">
             <div class="card-num red-badge"><i class="fa-solid fa-lemon"></i></div>
           </div>
-          <h3>Pescado al Limón</h3>
+          <h3>Pescado al limón</h3>
           <p><strong>Tiempo:</strong> 18 min - <strong>Porciones:</strong> 2</p>
           <p><strong>Ingredientes:</strong> 2 filetes de pescado blanco, jugo de 1 limón, ajo picado, sal, pimienta, 1 cdita de aceite de oliva.</p>
           <p><strong>Preparación:</strong> Marina el pescado con limón y ajo 10 min, cocina a la plancha 4-5 min por lado.</p>
         </div>
       </div>
-      <p style="margin-top:20px; color:#64748b; font-size:0.85rem; text-align:center;">
-        <i class="fa-solid fa-video"></i> La sección de videos de recetas está en preparación; por ahora encuentras aquí las instrucciones completas por escrito.
+      <p class="tema-mas">
+        <a href="videos.html?tema=recetas" class="boton-mantel"><i class="fa-solid fa-circle-play" aria-hidden="true"></i> Ver recetas en video</a>
+        <span>Recetas de Platillo Sabio de Profeco y consejos del IMSS en la videoteca.</span>
       </p>
     </div>
   `;
@@ -1565,59 +1180,46 @@ const BASE_ALIMENTOS = [
   { id: "avena_hoj",    nombre: "Avena en hojuelas (40g crudo)",  kcal: 150, azucar: 0.5, sodio: 2,   fibra: 4 }
 ];
 
+// Semáforo para azúcares (g) y sodio (mg) por porción
 function calificarIndicador(valor, umbralNaranja, umbralRojo) {
-  if (valor >= umbralRojo) return { texto: "Alto", clase: "food-badge-rojo" };
-  if (valor >= umbralNaranja) return { texto: "Moderado", clase: "food-badge-naranja" };
-  return { texto: "Bajo", clase: "food-badge-verde" };
+  if (valor >= umbralRojo) return { texto: "Alto", nivel: "alto" };
+  if (valor >= umbralNaranja) return { texto: "Moderado", nivel: "moderado" };
+  return { texto: "Bajo", nivel: "bajo" };
 }
 
-function renderTarjetaAlimento(alimento) {
-  if (!alimento) {
-    return '<p style="color:#94a3b8; text-align:center; padding: 20px;">Selecciona un alimento para comparar.</p>';
-  }
-  const azucarInfo = calificarIndicador(alimento.azucar, 5, 15);
-  const sodioInfo = calificarIndicador(alimento.sodio, 120, 300);
-  return `
-    <div class="alert-box-stat" style="background:#f8fafc; border-color:#e2e8f0; color:#334155;">
-      <h3 style="margin-bottom:8px;">${alimento.nombre}</h3>
-      <p><strong>Energía:</strong> ${alimento.kcal} kcal</p>
-      <p><strong>Azúcares:</strong> ${alimento.azucar} g <span class="${azucarInfo.clase}">${azucarInfo.texto}</span></p>
-      <p><strong>Sodio:</strong> ${alimento.sodio} mg <span class="${sodioInfo.clase}">${sodioInfo.texto}</span></p>
-      <p><strong>Fibra:</strong> ${alimento.fibra} g</p>
-    </div>
-  `;
-}
+const INDICADORES_COMPARADOR = [
+  { clave: "kcal", nombre: "Energía", unidad: "kcal" },
+  { clave: "azucar", nombre: "Azúcares", unidad: "g", semaforo: [5, 15] },
+  { clave: "sodio", nombre: "Sodio", unidad: "mg", semaforo: [120, 300] },
+  { clave: "fibra", nombre: "Fibra", unidad: "g", masEsMejor: true }
+];
 
 function getTema9HTML() {
-  const opciones = BASE_ALIMENTOS
-    .map(a => `<option value="${a.id}">${a.nombre}</option>`)
+  const opciones = (seleccionado) => BASE_ALIMENTOS
+    .map(a => `<option value="${a.id}"${a.id === seleccionado ? " selected" : ""}>${a.nombre}</option>`)
     .join("");
   return `
-    <div class="topic-layout">
-      <div class="topic-left">
-        <h1 class="topic-main-title">Comparador de Alimentos</h1>
-        <p class="topic-desc">Elige dos alimentos y compara su aporte de energía, azúcares, sodio y fibra para tomar mejores decisiones nutricionales.</p>
-        <p class="topic-quote">Comparar antes de elegir es el primer paso hacia una alimentación consciente.</p>
-      </div>
-      <div class="topic-right-grid" style="grid-template-columns: 1fr 1fr; align-items:start;">
-        <div>
-          <label for="comparador-a" style="font-weight:600; display:block; margin-bottom:6px;">Alimento A</label>
-          <select id="comparador-a" style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:16px;">
-            <option value="">-- Selecciona --</option>
-            ${opciones}
-          </select>
-          <div id="comparador-resultado-a"></div>
+    <div class="comparador">
+      <header class="tema-cabeza">
+        <h1 class="topic-main-title">Comparador de alimentos</h1>
+        <p class="topic-desc">Elige dos alimentos y compara su energía, azúcares, sodio y fibra por porción. Comparar antes de elegir es el primer paso hacia una alimentación consciente.</p>
+      </header>
+
+      <div class="comparador-selects">
+        <div class="campo">
+          <label for="comparador-a"><span class="comp-punto comp-a"></span> Alimento A</label>
+          <select id="comparador-a" class="campo-select">${opciones("manzana")}</select>
         </div>
-        <div>
-          <label for="comparador-b" style="font-weight:600; display:block; margin-bottom:6px;">Alimento B</label>
-          <select id="comparador-b" style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:16px;">
-            <option value="">-- Selecciona --</option>
-            ${opciones}
-          </select>
-          <div id="comparador-resultado-b"></div>
+        <span class="comparador-vs" aria-hidden="true">vs</span>
+        <div class="campo">
+          <label for="comparador-b"><span class="comp-punto comp-b"></span> Alimento B</label>
+          <select id="comparador-b" class="campo-select">${opciones("refresco")}</select>
         </div>
       </div>
-      <div id="comparador-veredicto" style="margin-top:20px; text-align:center; font-weight:600;"></div>
+
+      <div class="comparador-tabla" id="comparador-tabla" aria-live="polite"></div>
+      <p class="comparador-veredicto" id="comparador-veredicto" aria-live="polite"></p>
+      <p class="comparador-nota">Valores aproximados por la porción indicada. El semáforo de azúcares y sodio sigue el mismo criterio que el resto del sitio: verde bajo, naranja moderado, rojo alto.</p>
     </div>
   `;
 }
@@ -1625,33 +1227,52 @@ function getTema9HTML() {
 function initComparadorAlimentos() {
   const selectA = document.getElementById("comparador-a");
   const selectB = document.getElementById("comparador-b");
-  const resA = document.getElementById("comparador-resultado-a");
-  const resB = document.getElementById("comparador-resultado-b");
+  const tabla = document.getElementById("comparador-tabla");
   const veredicto = document.getElementById("comparador-veredicto");
+  if (!selectA || !selectB || !tabla) return;
 
-  if (!selectA || !selectB) return;
+  function fila(indicador, a, b) {
+    const va = a[indicador.clave];
+    const vb = b[indicador.clave];
+    const maximo = Math.max(va, vb) || 1;
+    const barra = (lado, valor) => {
+      const sem = indicador.semaforo ? calificarIndicador(valor, ...indicador.semaforo) : null;
+      return `
+        <div class="comp-barra comp-${lado}">
+          <span class="comp-relleno" style="width:${Math.max(2, (valor / maximo) * 100)}%"></span>
+          <span class="comp-valor">${valor.toLocaleString("es-MX")} ${indicador.unidad}${sem ? ` <span class="semaforo semaforo-${sem.nivel}">${sem.texto}</span>` : ""}</span>
+        </div>`;
+    };
+    return `
+      <div class="comp-fila">
+        <p class="comp-nombre">${indicador.nombre}${indicador.masEsMejor ? ' <span class="comp-ayuda">más es mejor</span>' : ""}</p>
+        ${barra("a", va)}
+        ${barra("b", vb)}
+      </div>`;
+  }
 
   function actualizar() {
-    const alimentoA = BASE_ALIMENTOS.find(a => a.id === selectA.value);
-    const alimentoB = BASE_ALIMENTOS.find(a => a.id === selectB.value);
+    const a = BASE_ALIMENTOS.find(x => x.id === selectA.value);
+    const b = BASE_ALIMENTOS.find(x => x.id === selectB.value);
+    if (!a || !b) return;
 
-    if (resA) resA.innerHTML = renderTarjetaAlimento(alimentoA);
-    if (resB) resB.innerHTML = renderTarjetaAlimento(alimentoB);
+    tabla.innerHTML = INDICADORES_COMPARADOR.map(ind => fila(ind, a, b)).join("");
 
-    if (veredicto) {
-      if (alimentoA && alimentoB) {
-        const puntajeA = alimentoA.azucar + alimentoA.sodio / 10 - alimentoA.fibra * 2;
-        const puntajeB = alimentoB.azucar + alimentoB.sodio / 10 - alimentoB.fibra * 2;
-        const masSano = puntajeA <= puntajeB ? alimentoA.nombre : alimentoB.nombre;
-        veredicto.textContent = `La opción más saludable entre ambas es: ${masSano}`;
-      } else {
-        veredicto.textContent = "";
-      }
+    if (a.id === b.id) {
+      veredicto.textContent = "Elige dos alimentos distintos para compararlos.";
+      return;
     }
+    // Menos azúcar y sodio, más fibra
+    const puntaje = (x) => x.azucar + x.sodio / 10 - x.fibra * 2;
+    const [mejor, otro] = puntaje(a) <= puntaje(b) ? [a, b] : [b, a];
+    const razones = [];
+    if (mejor.azucar < otro.azucar) razones.push("menos azúcar");
+    if (mejor.sodio < otro.sodio) razones.push("menos sodio");
+    if (mejor.fibra > otro.fibra) razones.push("más fibra");
+    veredicto.innerHTML = `<strong>Mejor opción: ${mejor.nombre}.</strong> ${razones.length ? "Tiene " + razones.join(", ").replace(/, ([^,]*)$/, " y $1") + "." : "Su balance de azúcar, sodio y fibra es mejor."}`;
   }
 
   selectA.addEventListener("change", actualizar);
   selectB.addEventListener("change", actualizar);
   actualizar();
 }
-
