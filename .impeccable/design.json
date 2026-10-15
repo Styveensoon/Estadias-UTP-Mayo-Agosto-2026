@@ -1,0 +1,755 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-15T19:28:25.227Z",
+  "title": "Design System: WellDataLab",
+  "extensions": {
+    "colorMeta": {
+      "mantel": {
+        "role": "primary",
+        "displayName": "Verde Mantel",
+        "canonical": "#008744",
+        "oklch": "oklch(54.6% 0.143 152)",
+        "tonalRamp": [
+          "#001102",
+          "#002f0d",
+          "#00501d",
+          "#007331",
+          "#209551",
+          "#4cb771",
+          "#75df96",
+          "#b9ffcc"
+        ]
+      },
+      "mantel-hondo": {
+        "role": "primary",
+        "displayName": "Verde Hondo",
+        "canonical": "#006b35",
+        "oklch": "oklch(46.2% 0.121 152)",
+        "tonalRamp": [
+          "#001101",
+          "#002f0c",
+          "#004f20",
+          "#0c703a",
+          "#3a9159",
+          "#5eb479",
+          "#84db9e",
+          "#b6ffcb"
+        ]
+      },
+      "amarillo": {
+        "role": "secondary",
+        "displayName": "Amarillo Cereal",
+        "canonical": "#f2b705",
+        "oklch": "oklch(81.1% 0.166 84)",
+        "tonalRamp": [
+          "#120900",
+          "#322100",
+          "#533b00",
+          "#795700",
+          "#9e7601",
+          "#c99500",
+          "#f5ba11",
+          "#ffe557"
+        ]
+      },
+      "rojo": {
+        "role": "secondary",
+        "displayName": "Rojo Origen Animal",
+        "canonical": "#d62839",
+        "oklch": "oklch(57.0% 0.207 22)",
+        "tonalRamp": [
+          "#220001",
+          "#4c0007",
+          "#7c0015",
+          "#b6001e",
+          "#dd313f",
+          "#ff5a5f",
+          "#ffa7a3",
+          "#ffe5e3"
+        ]
+      },
+      "ribete-verduras": {
+        "role": "tertiary",
+        "displayName": "Verde Verduras",
+        "canonical": "#16a34a",
+        "oklch": "oklch(62.7% 0.170 149)",
+        "tonalRamp": [
+          "#001100",
+          "#002f07",
+          "#005014",
+          "#007326",
+          "#00973f",
+          "#3bba60",
+          "#68e285",
+          "#b9ffc6"
+        ]
+      },
+      "ribete-leguminosas": {
+        "role": "tertiary",
+        "displayName": "Naranja Leguminosa",
+        "canonical": "#e8590c",
+        "oklch": "oklch(64.4% 0.192 41)",
+        "tonalRamp": [
+          "#220000",
+          "#4c0000",
+          "#7c0800",
+          "#ae1c00",
+          "#d54700",
+          "#fc6b2b",
+          "#ffab8a",
+          "#ffe7da"
+        ]
+      },
+      "ribete-grasas": {
+        "role": "tertiary",
+        "displayName": "Ocre Grasas",
+        "canonical": "#9a6a00",
+        "oklch": "oklch(56.0% 0.117 77)",
+        "tonalRamp": [
+          "#140800",
+          "#341f00",
+          "#583800",
+          "#7e5400",
+          "#a37315",
+          "#c79440",
+          "#eeba68",
+          "#ffe69d"
+        ]
+      },
+      "tinta-verde": {
+        "role": "tertiary",
+        "displayName": "Verde Semáforo",
+        "canonical": "#15803d",
+        "oklch": "oklch(52.7% 0.137 150)",
+        "tonalRamp": [
+          "#001003",
+          "#002d10",
+          "#0a4d22",
+          "#0c7134",
+          "#31934f",
+          "#57b66f",
+          "#7edd94",
+          "#c8ffd2"
+        ]
+      },
+      "tinta-naranja": {
+        "role": "tertiary",
+        "displayName": "Naranja Semáforo",
+        "canonical": "#c2410c",
+        "oklch": "oklch(55.3% 0.174 38)",
+        "tonalRamp": [
+          "#1c0300",
+          "#441000",
+          "#6e2307",
+          "#a03409",
+          "#cf4d1e",
+          "#f67145",
+          "#fbae96",
+          "#fee9e3"
+        ]
+      },
+      "tinta-azul": {
+        "role": "tertiary",
+        "displayName": "Azul Hidratación",
+        "canonical": "#0369a1",
+        "oklch": "oklch(50.0% 0.119 243)",
+        "tonalRamp": [
+          "#000c19",
+          "#00273f",
+          "#00446b",
+          "#0c6397",
+          "#2f84be",
+          "#54a6e2",
+          "#8cccfe",
+          "#e0f1ff"
+        ]
+      },
+      "tinta-ocre": {
+        "role": "tertiary",
+        "displayName": "Ocre Hábitos",
+        "canonical": "#8a5a00",
+        "oklch": "oklch(50.8% 0.108 73)",
+        "tonalRamp": [
+          "#130900",
+          "#331f02",
+          "#573805",
+          "#7f5304",
+          "#a47228",
+          "#c7934c",
+          "#efb972",
+          "#feebd4"
+        ]
+      },
+      "error-texto": {
+        "role": "tertiary",
+        "displayName": "Rojo Error",
+        "canonical": "#b3162a",
+        "oklch": "oklch(49.2% 0.187 22)",
+        "tonalRamp": [
+          "#220000",
+          "#4c0007",
+          "#7d0015",
+          "#af0e26",
+          "#d63f46",
+          "#fd6466",
+          "#ffa7a3",
+          "#ffe5e3"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#0f2a1c",
+        "oklch": "oklch(25.9% 0.043 158)",
+        "tonalRamp": [
+          "#001005",
+          "#0f2a1c",
+          "#2b4737",
+          "#496555",
+          "#688574",
+          "#89a795",
+          "#aecdba",
+          "#d7f8e4"
+        ]
+      },
+      "tinta-suave": {
+        "role": "neutral",
+        "displayName": "Tinta Suave",
+        "canonical": "#3f5648",
+        "oklch": "oklch(43.0% 0.036 157)",
+        "tonalRamp": [
+          "#001006",
+          "#14291d",
+          "#2f4638",
+          "#4d6456",
+          "#6c8475",
+          "#8ca696",
+          "#b1ccbb",
+          "#dbf6e5"
+        ]
+      },
+      "tinta-placeholder": {
+        "role": "neutral",
+        "displayName": "Tinta Placeholder",
+        "canonical": "#52665a",
+        "oklch": "oklch(49.0% 0.031 159)",
+        "tonalRamp": [
+          "#010f07",
+          "#17291e",
+          "#32453a",
+          "#4f6357",
+          "#6e8377",
+          "#8fa597",
+          "#b4cbbd",
+          "#def5e7"
+        ]
+      },
+      "tinta-clara": {
+        "role": "neutral",
+        "displayName": "Tinta Clara",
+        "canonical": "#dfe9e2",
+        "oklch": "oklch(92.5% 0.014 155)",
+        "tonalRamp": [
+          "#070d09",
+          "#1f2621",
+          "#3a423d",
+          "#58605a",
+          "#77807a",
+          "#98a19b",
+          "#bdc7c0",
+          "#e7f1ea"
+        ]
+      },
+      "tinta-pie": {
+        "role": "neutral",
+        "displayName": "Tinta Pie",
+        "canonical": "#b9c9be",
+        "oklch": "oklch(82.1% 0.023 156)",
+        "tonalRamp": [
+          "#040e07",
+          "#1b271f",
+          "#36443b",
+          "#546258",
+          "#738277",
+          "#94a398",
+          "#b9c9be",
+          "#e3f3e8"
+        ]
+      },
+      "plato": {
+        "role": "neutral",
+        "displayName": "Plato",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "pozo": {
+        "role": "neutral",
+        "displayName": "Pozo",
+        "canonical": "#eef3ee",
+        "oklch": "oklch(95.9% 0.008 145)",
+        "tonalRamp": [
+          "#090c09",
+          "#222522",
+          "#3d413d",
+          "#5b5f5b",
+          "#7a7f7a",
+          "#9ba09b",
+          "#c1c6c1",
+          "#ebf0eb"
+        ]
+      },
+      "filete": {
+        "role": "neutral",
+        "displayName": "Filete",
+        "canonical": "#dfe8e1",
+        "oklch": "oklch(92.2% 0.013 153)",
+        "tonalRamp": [
+          "#070d08",
+          "#1f2621",
+          "#3b423c",
+          "#58605a",
+          "#788079",
+          "#99a19a",
+          "#bec7c0",
+          "#e8f1ea"
+        ]
+      },
+      "filete-ficha": {
+        "role": "neutral",
+        "displayName": "Filete Ficha",
+        "canonical": "#e3ebe5",
+        "oklch": "oklch(93.2% 0.012 154)",
+        "tonalRamp": [
+          "#080d09",
+          "#202621",
+          "#3b423d",
+          "#59605b",
+          "#787f7a",
+          "#99a19b",
+          "#bfc6c1",
+          "#e9f1eb"
+        ]
+      },
+      "filete-pozo": {
+        "role": "neutral",
+        "displayName": "Filete Pozo",
+        "canonical": "#d4e0d7",
+        "oklch": "oklch(89.5% 0.018 154)",
+        "tonalRamp": [
+          "#060d08",
+          "#1e2720",
+          "#39433b",
+          "#566159",
+          "#768078",
+          "#96a299",
+          "#bcc8bf",
+          "#e6f2e9"
+        ]
+      },
+      "borde-hover": {
+        "role": "neutral",
+        "displayName": "Borde Hover",
+        "canonical": "#cfdcd2",
+        "oklch": "oklch(88.2% 0.019 153)",
+        "tonalRamp": [
+          "#050e07",
+          "#1d2720",
+          "#38433b",
+          "#566158",
+          "#758178",
+          "#96a299",
+          "#bbc8be",
+          "#e5f3e8"
+        ]
+      },
+      "castor-pelo": {
+        "role": "illustration",
+        "displayName": "Pelo del Castor",
+        "canonical": "#9a5b2e",
+        "oklch": "oklch(53.4% 0.102 54)",
+        "tonalRamp": [
+          "#170600",
+          "#3a1a02",
+          "#623006",
+          "#894b1d",
+          "#ac6b3f",
+          "#d08d60",
+          "#f8b284",
+          "#feeade"
+        ]
+      },
+      "castor-sombra": {
+        "role": "illustration",
+        "displayName": "Sombra del Castor",
+        "canonical": "#6e3f1f",
+        "oklch": "oklch(41.8% 0.080 53)",
+        "tonalRamp": [
+          "#170600",
+          "#3b1901",
+          "#603211",
+          "#815030",
+          "#a3704f",
+          "#c69170",
+          "#eeb694",
+          "#feeade"
+        ]
+      },
+      "castor-hocico": {
+        "role": "illustration",
+        "displayName": "Hocico del Castor",
+        "canonical": "#e2b07a",
+        "oklch": "oklch(79.1% 0.091 68)",
+        "tonalRamp": [
+          "#140800",
+          "#351e02",
+          "#5b3603",
+          "#7f531b",
+          "#a1723d",
+          "#c4945e",
+          "#ecb983",
+          "#feebd8"
+        ]
+      },
+      "mandil": {
+        "role": "illustration",
+        "displayName": "Mandil",
+        "canonical": "#f8f3ea",
+        "oklch": "oklch(96.6% 0.013 82)",
+        "tonalRamp": [
+          "#0e0b06",
+          "#27241d",
+          "#433f38",
+          "#615d55",
+          "#817d75",
+          "#a29e95",
+          "#c8c3bb",
+          "#f3eee5"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titular del Inicio sobre el mantel."
+      },
+      "display-portada": {
+        "displayName": "Display Portada",
+        "purpose": "h1 de la portada de cada página y de la calculadora."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Encabezado de cada sección (titulo-seccion)."
+      },
+      "headline-tema": {
+        "displayName": "Headline Tema",
+        "purpose": "h1 de cada tema de salud."
+      },
+      "title-lg": {
+        "displayName": "Title Lg",
+        "purpose": "Título de la nota del día y del video destacado."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Título de fila en índices, datos, videos y recursos."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Frase bajo el titular de portada."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prosa y descripciones de tema, máximo 68ch."
+      },
+      "body-sm": {
+        "displayName": "Body Sm",
+        "purpose": "Descripciones de fila, pie, estados vacíos."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Etiquetas de campo, leyendas, progreso y menú."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Números de fila, pregunta, dato, porcentajes e IMC; cifras tabulares."
+      }
+    },
+    "shadows": [
+      {
+        "name": "plato",
+        "value": "drop-shadow(0 28px 34px rgba(0, 38, 19, 0.4))",
+        "purpose": "Filtro solo para el plato; en el tema 4 sobre blanco, drop-shadow(0 20px 26px rgba(0, 38, 19, 0.22))."
+      },
+      {
+        "name": "sombra-ficha",
+        "value": "0 18px 40px rgba(0, 38, 19, 0.28)",
+        "purpose": "Superficies blancas sobre el mantel: ficha de IMC, calculadora, nota del día, video destacado."
+      },
+      {
+        "name": "foto",
+        "value": "0 24px 44px rgba(0, 38, 19, 0.35)",
+        "purpose": "Foto enmarcada en la portada de ¿Quiénes somos?."
+      },
+      {
+        "name": "menu",
+        "value": "0 18px 40px rgba(15, 42, 28, 0.18), 0 2px 6px rgba(15, 42, 28, 0.08)",
+        "purpose": "Menú desplegable."
+      },
+      {
+        "name": "boton",
+        "value": "0 6px 14px rgba(0, 107, 53, 0.28)",
+        "purpose": "Botón primario en reposo; hover 0 10px 20px rgba(0, 107, 53, 0.32)."
+      },
+      {
+        "name": "boton-blanco",
+        "value": "0 8px 18px rgba(0, 38, 19, 0.28)",
+        "purpose": "Botones blancos sobre el mantel; hover 0 12px 24px rgba(0, 38, 19, 0.32)."
+      },
+      {
+        "name": "globo",
+        "value": "0 10px 24px rgba(0, 38, 19, 0.28)",
+        "purpose": "Globo del castor sobre el mantel (0.2 en castor-dice; 0.12 sobre blanco)."
+      },
+      {
+        "name": "encabezado",
+        "value": "0 1px 0 rgba(15, 42, 28, 0.08), 0 6px 18px rgba(15, 42, 28, 0.06)",
+        "purpose": "Línea y halo bajo el encabezado blanco."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-salida",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Curva única para levantes, subrayados, flechas y entradas."
+      },
+      {
+        "name": "color",
+        "value": "0.2s ease",
+        "purpose": "Cambios de color y borde."
+      },
+      {
+        "name": "levante",
+        "value": "0.25s var(--ease-salida)",
+        "purpose": "Hover/active de botones y flechas."
+      },
+      {
+        "name": "subrayado",
+        "value": "0.35s var(--ease-salida)",
+        "purpose": "Subrayado del menú."
+      },
+      {
+        "name": "entrada",
+        "value": "0.5s-0.55s var(--ease-salida)",
+        "purpose": "Cambio de texto del globo y de la nota del día: translateY(6-8px) + blur(2px) a reposo."
+      },
+      {
+        "name": "sector",
+        "value": "0.6s var(--ease-salida)",
+        "purpose": "Sector del plato que se separa y barras del comparador."
+      },
+      {
+        "name": "marca-imc",
+        "value": "0.8s var(--ease-salida)",
+        "purpose": "Marcador que recorre la escala de IMC."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "Con prefers-reduced-motion se anulan animaciones, transiciones y scroll suave."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "escritorio-estrecho",
+        "value": "1100px"
+      },
+      {
+        "name": "tableta",
+        "value": "900px"
+      },
+      {
+        "name": "video-una-columna",
+        "value": "640px"
+      },
+      {
+        "name": "celular",
+        "value": "520px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón primario",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal sobre blanco o pozo (boton-mantel).",
+      "html": "<button class=\"ds-btn-primario\">Calcular</button>",
+      "css": ".ds-btn-primario{font-family:'Poppins','Segoe UI',system-ui,sans-serif;display:inline-flex;align-items:center;gap:.55rem;min-height:52px;padding:0 1.5rem;font-size:1rem;font-weight:600;color:#fff;background:#008744;border:none;border-radius:12px;cursor:pointer;box-shadow:0 6px 14px rgba(0,107,53,0.28);transition:background-color .2s ease,transform .25s cubic-bezier(0.16,1,0.3,1),box-shadow .25s ease}.ds-btn-primario:hover{background:#006b35;transform:translateY(-1px);box-shadow:0 10px 20px rgba(0,107,53,0.32)}.ds-btn-primario:active{transform:translateY(1px)}.ds-btn-primario:focus-visible{outline:3px solid #0f2a1c;outline-offset:3px}"
+    },
+    {
+      "name": "Botón blanco",
+      "kind": "button",
+      "refersTo": "button-blanco",
+      "description": "Acción sobre el mantel verde.",
+      "html": "<div class=\"ds-mantel\"><a href=\"#\" class=\"ds-btn-blanco\">Calcular mi IMC</a></div>",
+      "css": ".ds-mantel{background:#008744;padding:24px}.ds-btn-blanco{font-family:'Poppins','Segoe UI',system-ui,sans-serif;display:inline-flex;align-items:center;min-height:52px;padding:0 1.6rem;font-weight:600;color:#0f2a1c;background:#fff;border-radius:12px;text-decoration:none;box-shadow:0 8px 18px rgba(0,38,19,0.28);transition:transform .25s cubic-bezier(0.16,1,0.3,1),box-shadow .25s ease}.ds-btn-blanco:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(0,38,19,0.32)}.ds-btn-blanco:focus-visible{outline:3px solid #f2b705;outline-offset:3px;border-radius:12px}"
+    },
+    {
+      "name": "Enlace con flecha",
+      "kind": "custom",
+      "refersTo": "enlace-flecha",
+      "description": "Acción secundaria de texto; la flecha avanza en hover.",
+      "html": "<a href=\"#\" class=\"ds-enlace-flecha\">Ver todos los datos curiosos <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-enlace-flecha{font-family:'Poppins','Segoe UI',system-ui,sans-serif;display:inline-flex;align-items:center;gap:.45rem;font-weight:600;color:#006b35;text-underline-offset:.2em}.ds-enlace-flecha svg{transition:transform .25s cubic-bezier(0.16,1,0.3,1)}.ds-enlace-flecha:hover svg{transform:translateX(3px)}.ds-enlace-flecha:focus-visible{outline:3px solid #0f2a1c;outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Campo con unidad",
+      "kind": "input",
+      "refersTo": "input-campo",
+      "description": "Campo numérico hundido en pozo con unidad superpuesta.",
+      "html": "<div class=\"ds-campo\"><label for=\"ds-peso\">Peso</label><div class=\"ds-campo-control\"><input id=\"ds-peso\" type=\"number\" placeholder=\"68\"><span>kg</span></div></div>",
+      "css": ".ds-campo{font-family:'Poppins','Segoe UI',system-ui,sans-serif;max-width:220px}.ds-campo label{display:block;margin-bottom:.35rem;font-size:.85rem;font-weight:500;color:#3f5648}.ds-campo-control{position:relative}.ds-campo-control input{width:100%;box-sizing:border-box;height:52px;padding:0 2.6rem 0 .9rem;font:inherit;font-size:1.15rem;font-weight:600;color:#0f2a1c;background:#eef3ee;border:2px solid transparent;border-radius:12px;appearance:textfield;transition:border-color .2s ease,background-color .2s ease}.ds-campo-control input::placeholder{color:#52665a;font-weight:400}.ds-campo-control input:hover{border-color:#cfdcd2}.ds-campo-control input:focus{outline:none;background:#fff;border-color:#008744}.ds-campo-control input[aria-invalid=\"true\"]{border-color:#d62839;background:#fff}.ds-campo-control span{position:absolute;right:.9rem;top:50%;transform:translateY(-50%);font-size:.9rem;font-weight:500;color:#3f5648;pointer-events:none}"
+    },
+    {
+      "name": "Filtro",
+      "kind": "chip",
+      "refersTo": "chip-filtro",
+      "description": "Píldora de filtro con conteo (¿Sabías qué?, Videos); la misma piel sirve a las opciones de la encuesta.",
+      "html": "<div class=\"ds-filtros\"><button class=\"ds-filtro\" aria-pressed=\"true\">Todos <span>40</span></button><button class=\"ds-filtro\" aria-pressed=\"false\">Nutrición <span>9</span></button><button class=\"ds-filtro\" aria-pressed=\"false\">Hidratación <span>6</span></button></div>",
+      "css": ".ds-filtros{font-family:'Poppins','Segoe UI',system-ui,sans-serif;display:flex;flex-wrap:wrap;gap:.6rem}.ds-filtro{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:0 1rem;font:inherit;font-size:.92rem;font-weight:500;color:#0f2a1c;background:#eef3ee;border:2px solid transparent;border-radius:999px;cursor:pointer;transition:background-color .2s ease,border-color .2s ease}.ds-filtro span{font-size:.8rem;font-weight:600;opacity:.8}.ds-filtro:hover{border-color:#cfdcd2}.ds-filtro[aria-pressed=\"true\"]{color:#fff;background:#008744}.ds-filtro:focus-visible{outline:3px solid #0f2a1c;outline-offset:3px}"
+    },
+    {
+      "name": "Categoría de IMC",
+      "kind": "chip",
+      "refersTo": "chip-categoria",
+      "description": "Píldora del rango de IMC; versiones oscuras de las tintas para el texto blanco.",
+      "html": "<span class=\"ds-chip ds-chip-bajo\">Bajo peso</span> <span class=\"ds-chip\">Peso normal</span> <span class=\"ds-chip ds-chip-sobre\">Sobrepeso</span> <span class=\"ds-chip ds-chip-obes\">Obesidad</span>",
+      "css": ".ds-chip{font-family:'Poppins','Segoe UI',system-ui,sans-serif;display:inline-block;padding:.35rem .75rem;font-size:.9rem;font-weight:600;border-radius:999px;color:#fff;background:#15803d}.ds-chip-bajo{background:#f2b705;color:#0f2a1c}.ds-chip-sobre{background:#c2410c}.ds-chip-obes{background:#d62839}"
+    },
+    {
+      "name": "Navegación",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Enlaces del encabezado blanco con subrayado verde que crece.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link activo\">Inicio</a><a href=\"#\" class=\"ds-nav-link\">¿Quiénes somos?</a><a href=\"#\" class=\"ds-nav-link\">Temas</a></nav>",
+      "css": ".ds-nav{font-family:'Poppins','Segoe UI',system-ui,sans-serif;display:flex;gap:1.5rem;padding:.6rem 1rem;background:#fff;box-shadow:0 1px 0 rgba(15,42,28,0.08),0 6px 18px rgba(15,42,28,0.06)}.ds-nav-link{position:relative;padding:.5rem 0;font-size:.92rem;font-weight:500;color:#0f2a1c;text-decoration:none;transition:color .2s ease}.ds-nav-link::after{content:\"\";position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:3px;background:#008744;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(0.16,1,0.3,1)}.ds-nav-link:hover{color:#008744}.ds-nav-link:hover::after,.ds-nav-link.activo::after{transform:scaleX(1)}.ds-nav-link.activo{font-weight:600}.ds-nav-link:focus-visible{outline:3px solid #0f2a1c;outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Portada",
+      "kind": "custom",
+      "refersTo": "portada",
+      "description": "Banda de mantel con el título de cada página; el foco cambia a amarillo.",
+      "html": "<header class=\"ds-portada\"><h1>¿Sabías qué?</h1><p>Datos breves sobre tu cuerpo, lo que comes y cómo te mueves.</p><a href=\"#\" class=\"ds-enlace-claro\">Ver todos los datos <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a></header>",
+      "css": ".ds-portada{font-family:'Poppins','Segoe UI',system-ui,sans-serif;padding:clamp(2rem,6vh,3.5rem) clamp(16px,5vw,3rem);background:#008744;color:#fff}.ds-portada h1{margin:0;max-width:16ch;font-size:clamp(2.2rem,4.8vw,3.6rem);font-weight:800;line-height:1.04;letter-spacing:-0.03em}.ds-portada p{max-width:52ch;margin:1.1rem 0 1.5rem;font-size:1.1rem;line-height:1.6}.ds-enlace-claro{display:inline-flex;align-items:center;gap:.45rem;font-weight:600;color:#fff;text-underline-offset:.2em}.ds-enlace-claro svg{transition:transform .25s cubic-bezier(0.16,1,0.3,1)}.ds-enlace-claro:hover svg{transform:translateX(3px)}.ds-enlace-claro:focus-visible{outline:3px solid #f2b705;outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Ficha",
+      "kind": "card",
+      "refersTo": "ficha",
+      "description": "Superficie blanca de trabajo sobre el mantel (ficha de IMC).",
+      "html": "<div class=\"ds-mantel-f\"><div class=\"ds-ficha\"><h3>Calcula tu índice de masa corporal</h3><p>Escribe tu peso y estatura; el resultado aparece aquí mismo.</p></div></div>",
+      "css": ".ds-mantel-f{background:#008744;padding:24px}.ds-ficha{font-family:'Poppins','Segoe UI',system-ui,sans-serif;max-width:560px;padding:clamp(1.25rem,2.4vw,1.75rem);background:#fff;color:#0f2a1c;border-radius:20px;box-shadow:0 18px 40px rgba(0,38,19,0.28)}.ds-ficha h3{margin:0 0 1rem;font-size:1.05rem;font-weight:600;line-height:1.3}.ds-ficha p{margin:0;padding-top:1rem;border-top:1px solid #e3ebe5;font-size:.92rem;color:#3f5648}"
+    },
+    {
+      "name": "Índice con filetes",
+      "kind": "custom",
+      "refersTo": "indice-filetes",
+      "description": "Firma: filas con filete, numeral 800 y flecha; la forma de toda lista del sitio en lugar de cuadrículas de tarjetas.",
+      "html": "<ol class=\"ds-indice\"><li><a href=\"#\"><span class=\"ds-num\">1</span><span class=\"ds-txt\"><strong>Alimentación saludable</strong><span>Recomendaciones del INCMNSZ para comer mejor.</span></span><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a></li><li><a href=\"#\"><span class=\"ds-num\">2</span><span class=\"ds-txt\"><strong>Guías alimentarias</strong><span>Qué y cuánto comer según las guías mexicanas.</span></span><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a></li></ol>",
+      "css": ".ds-indice{font-family:'Poppins','Segoe UI',system-ui,sans-serif;list-style:none;margin:0;padding:0;max-width:460px;font-variant-numeric:tabular-nums}.ds-indice a{display:grid;grid-template-columns:2.4rem 1fr auto;gap:1rem;align-items:start;padding:1.25rem .75rem 1.25rem .25rem;color:#0f2a1c;text-decoration:none;border-top:1px solid #dfe8e1;transition:background-color .25s ease}.ds-num{font-size:1.6rem;font-weight:800;line-height:1;color:#008744}.ds-txt strong{display:block;font-size:1.05rem;font-weight:600;line-height:1.3}.ds-txt span{display:block;margin-top:.3rem;font-size:.92rem;line-height:1.5;color:#3f5648}.ds-indice svg{margin-top:.3rem;color:#008744;transition:transform .3s cubic-bezier(0.16,1,0.3,1)}.ds-indice a:hover{background:#eef3ee}.ds-indice a:hover svg{transform:translateX(4px)}.ds-indice a:focus-visible{outline:3px solid #0f2a1c;outline-offset:3px;border-radius:4px}.ds-indice li:last-child a{border-bottom:1px solid #dfe8e1}"
+    },
+    {
+      "name": "Globo del castor",
+      "kind": "custom",
+      "refersTo": "globo-castor",
+      "description": "Globo blanco del castor guía; la esquina inferior izquierda casi recta apunta al castor (el castor es Resources/marca/castor.svg).",
+      "html": "<div class=\"ds-mantel-g\"><div class=\"ds-castor-dice\"><p class=\"ds-globo\">Elige un grupo del plato y te digo cuánto espacio debe ocupar.</p></div></div>",
+      "css": ".ds-mantel-g{background:#008744;padding:24px}.ds-castor-dice{font-family:'Poppins','Segoe UI',system-ui,sans-serif;display:flex;align-items:flex-end;gap:.5rem}.ds-castor-dice svg{flex:none}.ds-globo{max-width:300px;margin:0 0 2.5rem;padding:.85rem 1rem;font-size:.92rem;line-height:1.5;color:#0f2a1c;background:#fff;border-radius:16px 16px 16px 4px;box-shadow:0 10px 24px rgba(0,38,19,0.28)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Mantel y el Plato",
+    "overview": "WellDataLab se ve como una mesa servida vista desde arriba. El verde de identidad (#008744) es el mantel: un campo plano que llega hasta los bordes y sirve de suelo a la portada de cada página y a las secciones importantes. Encima va el plato blanco, que es donde vive todo lo que se lee o se usa (fichas, formularios, globos de diálogo, el video destacado). Los cinco grupos del Plato del Bien Comer aportan las tintas fuertes del sistema, y siempre como ribete, número o indicador, nunca como relleno de fondo.\n\nLa densidad es generosa y editorial: titulares grandes en Poppins 800 con tracking cerrado, texto en Poppins 400/500 y cifras tabulares. Las listas son índices separados por filetes finos (temas, herramientas, recursos, datos curiosos, preguntas de la encuesta), no filas de tarjetas iguales. El castor es el guía de la casa: aparece junto a la información con un globo de diálogo blanco y habla en segunda persona. El mismo plato fotográfico del Inicio se reutiliza en el tema 4.\n\nTodas las páginas comparten el mismo mundo. Las variables y los componentes comunes viven en `Styles/sitio.css`, declarados sobre `body.sitio`; cada página añade su hoja propia (`inicio.css`, `quienes_somos.css`, `temas.css`, `sabias_que.css`, `calculadora.css`, `videos.css`, `recursos.css`, `tu_opinion.css`). `Styles/Style_components.css` solo sobrevive como base heredada de los componentes de tema que dibuja `Js/temas.js`, y `temas.css` los reajusta al sistema; no es referencia visual.",
+    "keyCharacteristics": [
+      "Mantel verde plano a sangre como suelo (portada de cada página, secciones de cierre); blanco como superficie de trabajo.",
+      "Tintas de los grupos alimenticios y de semáforo como acento funcional (ribetes, números, escalas, categorías).",
+      "Poppins autoalojada (400, 500, 600, 800); 800 para titulares y numerales.",
+      "Índices con filetes de 1px en lugar de cuadrículas de tarjetas.",
+      "Sombras teñidas de verde profundo; nada de negro neutro.",
+      "Marca e ilustración planas en SVG propio: plato, logotipo y castor.",
+      "Movimiento corto de salida suave; respeta `prefers-reduced-motion`.",
+      "Sin degradados ni pasteles."
+    ],
+    "rules": [
+      {
+        "name": "La Regla del Mantel",
+        "body": "El verde `--mantel` se usa como campo plano a sangre o como relleno de un control, nunca en degradado ni en versión pastel. Las secciones alternan mantel, plato y pozo, y el pie cierra en tinta.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de la Tinta de Grupo",
+        "body": "Las tintas del plato y del semáforo son información (qué grupo, qué rango, qué categoría) y se usan como ribete, numeral, tramo de escala, punto o píldora. Para texto blanco pequeño se usan las versiones oscuras (`tinta-verde`, `tinta-naranja`, `error-texto`); `ribete-verduras` y `ribete-leguminosas` con texto blanco solo cumplen en numerales grandes y gráficos (3:1).",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Foco Amarillo",
+        "body": "Sobre mantel o tinta, el foco visible es amarillo; sobre blanco o pozo es tinta. Siempre 3px con 3px de separación.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Número",
+        "body": "Todo lo que es secuencia o cantidad (grupos 1–5, temas, preguntas, datos, %, IMC, calorías) se escribe en numeral Poppins 800. El número sustituye al ícono.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Equilibrio",
+        "body": "`h1` y `h2` llevan `text-wrap: balance` y los párrafos `text-wrap: pretty`.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de la Sombra Verde",
+        "body": "Ninguna sombra es negra o gris neutra: toda sombra lleva el matiz del mantel.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla del Levante",
+        "body": "El estado activo o hover se expresa levantando el objeto (translateY(-1px a -2px), sombra mayor, sector del plato desplazado hacia afuera), y al presionar baja (translateY(1px)). Las filas de índice no se levantan: toman fondo `--pozo` y su flecha avanza.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** abrir cada página con una portada de `--mantel` a sangre y usar blanco (`--plato`) para todo lo que se lee o se llena.",
+      "**Do** tomar variables y componentes de `Styles/sitio.css` (`body.sitio`) y dejar en la hoja de cada página solo lo que es propio de ella.",
+      "**Do** escribir secuencias y cantidades en numeral Poppins 800 con cifras tabulares.",
+      "**Do** separar listas con filetes de 1px y numerarlas en lugar de usar cuadrículas de tarjetas iguales.",
+      "**Do** teñir todas las sombras con verde profundo (rgba(0, 38, 19, …)).",
+      "**Do** usar foco de 3px con separación de 3px: amarillo sobre mantel o tinta y `--tinta` sobre blanco.",
+      "**Do** limitar los radios a 8, 12, 16 y 20px más la píldora de 999px.",
+      "**Do** animar con `--ease-salida` (cubic-bezier(0.16, 1, 0.3, 1)) entre 0.2s y 0.8s, y anular las duraciones con `prefers-reduced-motion`.",
+      "**Do** dar a los controles de formulario y botones al menos 52px (44px mínimo en chips y controles de icono).",
+      "**Do** usar las versiones oscuras de las tintas (`tinta-verde`, `tinta-naranja`, `error-texto`) cuando lleven texto blanco pequeño o sean texto sobre blanco.",
+      "**Do** usar los SVG de `Resources/marca/` para logotipo, ícono y castor."
+    ],
+    "donts": [
+      "**Don't** usar degradados ni rellenos pastel del verde o de las tintas.",
+      "**Don't** usar sombras negras o grises neutras.",
+      "**Don't** armar cuadrículas de tarjetas iguales con un ícono en baldosa.",
+      "**Don't** poner etiquetas o antetítulos encima de los titulares; la categoría o el canal van después del título.",
+      "**Don't** usar bordes laterales de color de más de 1px para marcar tarjetas o avisos.",
+      "**Don't** girar notas o tarjetas para simular papel pegado.",
+      "**Don't** usar emoji como íconos.",
+      "**Don't** poner texto blanco pequeño sobre `ribete-verduras` (3.30:1) o `ribete-leguminosas` (3.58:1).",
+      "**Don't** introducir una segunda familia tipográfica ni cargar Poppins desde un CDN; ya está autoalojada en `Resources/fonts`.",
+      "**Don't** tomar `Styles/Style_components.css` ni los colores #09BA00 / #660900 de la tesina como referencia visual."
+    ]
+  }
+}

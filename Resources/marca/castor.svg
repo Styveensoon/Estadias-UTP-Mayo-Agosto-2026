@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 300" role="img" aria-labelledby="t">
+  <title id="t">El castor de WellDataLab saludando</title>
+  <defs>
+    <clipPath id="cola">
+      <ellipse cx="196" cy="252" rx="54" ry="24" transform="rotate(-20 196 252)"/>
+    </clipPath>
+  </defs>
+
+  <!-- Cola -->
+  <ellipse cx="196" cy="252" rx="54" ry="24" transform="rotate(-20 196 252)" fill="#5a3a22"/>
+  <g clip-path="url(#cola)" stroke="#462c19" stroke-width="2.5">
+    <path d="M150 230l90 50M150 250l90 50M150 210l90 50M170 200l-30 90M190 195l-30 90M210 190l-30 90M230 185l-30 90"/>
+  </g>
+
+  <!-- Patas -->
+  <ellipse cx="102" cy="284" rx="26" ry="10" fill="#6e3f1f"/>
+  <ellipse cx="158" cy="284" rx="26" ry="10" fill="#6e3f1f"/>
+
+  <!-- Cuerpo -->
+  <path d="M130 122c-50 0-68 50-64 95 4 45 34 68 64 68s60-23 64-68c4-45-14-95-64-95z" fill="#9a5b2e"/>
+
+  <!-- Mandil -->
+  <path d="M96 168h68l8 100c-22 12-62 12-84 0z" fill="#f8f3ea"/>
+  <path d="M96 168h68" stroke="#e3d6c0" stroke-width="3"/>
+  <rect x="110" y="214" width="40" height="26" rx="6" fill="none" stroke="#e3d6c0" stroke-width="3"/>
+  <path d="M116 222h28" stroke="#008744" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Brazo izquierdo (abajo) -->
+  <path d="M84 182c-14 18-16 38-8 54" fill="none" stroke="#9a5b2e" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="77" cy="240" r="12" fill="#8a5028"/>
+
+  <!-- Brazo derecho (saludando) -->
+  <path d="M176 178c22-12 32-34 30-60" fill="none" stroke="#9a5b2e" stroke-width="22" stroke-linecap="round"/>
+  <!-- Patita abierta y redonda, con almohadillas en la palma -->
+  <circle cx="206" cy="108" r="17" fill="#8a5028"/>
+  <ellipse cx="206" cy="113" rx="7.5" ry="6" fill="#e2b07a"/>
+  <circle cx="198.5" cy="102" r="3" fill="#e2b07a"/>
+  <circle cx="206" cy="99" r="3" fill="#e2b07a"/>
+  <circle cx="213.5" cy="102" r="3" fill="#e2b07a"/>
+  <!-- Líneas de saludo -->
+  <path d="M231 98q6 10 0 20M239 92q10 16 0 32" fill="none" stroke="#f2b705" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Orejas -->
+  <circle cx="86" cy="54" r="15" fill="#6e3f1f"/>
+  <circle cx="86" cy="54" r="7" fill="#e2b07a"/>
+  <circle cx="174" cy="54" r="15" fill="#6e3f1f"/>
+  <circle cx="174" cy="54" r="7" fill="#e2b07a"/>
+
+  <!-- Cabeza -->
+  <circle cx="130" cy="96" r="58" fill="#9a5b2e"/>
+  <ellipse cx="130" cy="122" rx="36" ry="27" fill="#e2b07a"/>
+
+  <!-- Gorro de chef -->
+  <g stroke="#e3d6c0" stroke-width="2">
+    <circle cx="108" cy="30" r="17" fill="#ffffff"/>
+    <circle cx="152" cy="30" r="17" fill="#ffffff"/>
+    <circle cx="130" cy="21" r="21" fill="#ffffff"/>
+    <rect x="98" y="34" width="64" height="26" rx="7" fill="#ffffff"/>
+  </g>
+  <path d="M106 34h48v8h-48z" fill="#ffffff"/>
+  <path d="M100 52h60" stroke="#008744" stroke-width="5" stroke-linecap="round"/>
+  <path d="M116 28v12M130 22v18M144 28v12" stroke="#e3d6c0" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Mejillas -->
+  <ellipse cx="96" cy="114" rx="10" ry="6.5" fill="#f08a6b" opacity="0.5"/>
+  <ellipse cx="164" cy="114" rx="10" ry="6.5" fill="#f08a6b" opacity="0.5"/>
+
+  <!-- Ojos -->
+  <circle cx="108" cy="90" r="7.5" fill="#2b1a10"/>
+  <circle cx="152" cy="90" r="7.5" fill="#2b1a10"/>
+  <circle cx="110.5" cy="87" r="2.6" fill="#ffffff"/>
+  <circle cx="154.5" cy="87" r="2.6" fill="#ffffff"/>
+
+  <!-- Nariz, boca y dientes -->
+  <ellipse cx="130" cy="108" rx="13" ry="9" fill="#2b1a10"/>
+  <ellipse cx="126" cy="105" rx="4" ry="2.4" fill="#ffffff" opacity="0.35"/>
+  <path d="M118 121q12 9 24 0" fill="none" stroke="#2b1a10" stroke-width="3" stroke-linecap="round"/>
+  <rect x="122.5" y="124" width="7" height="12" rx="2" fill="#ffffff" stroke="#e3d6c0" stroke-width="1.2"/>
+  <rect x="130.5" y="124" width="7" height="12" rx="2" fill="#ffffff" stroke="#e3d6c0" stroke-width="1.2"/>
+
+  <!-- Pañoleta verde -->
+  <path d="M90 144c26 10 54 10 80 0l-10 14c-20 6-40 6-60 0z" fill="#006b35"/>
+  <path d="M104 154h52l-26 30z" fill="#008744"/>
+  <circle cx="130" cy="156" r="6" fill="#006b35"/>
+</svg>
