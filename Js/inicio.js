@@ -253,18 +253,22 @@ function initImcRapido() {
     categoria.dataset.nivel = nivel;
     vacio.hidden = true;
 
-    // Obesidad: el sitio pasa a rojo unos segundos y el castor da un mensaje de apoyo
+    // El sitio toma unos segundos el color del semáforo y el castor da un mensaje según el nivel
+    const alertas = {
+      bajo: "Tu resultado está en bajo peso. Asegúrate de comer lo suficiente de cada grupo del plato y platícalo con un profesional de salud.",
+      normal: "¡Muy bien! Tu peso está en el rango saludable. Sigue armando tu plato, tomando agua y moviéndote todos los días.",
+      sobre: "Tu resultado está en sobrepeso. Vas a tiempo: más verduras, agua simple y 30 minutos de actividad al día hacen la diferencia.",
+      obes: "Tu resultado está en obesidad. No te preocupes: cada pequeño cambio cuenta. Platícalo con un profesional de salud y empieza por armar tu plato."
+    };
     clearTimeout(form._alerta);
-    document.body.classList.toggle("alerta-obesidad", nivel === "obes");
-    if (nivel === "obes") {
-      form._alerta = setTimeout(() => document.body.classList.remove("alerta-obesidad"), 4000);
-      const globo = document.getElementById("castor-globo");
-      if (globo) {
-        globo.textContent = "Tu resultado está en obesidad. No te preocupes: cada pequeño cambio cuenta. Platícalo con un profesional de salud y empieza por armar tu plato.";
-        globo.classList.remove("cambia");
-        void globo.offsetWidth;
-        globo.classList.add("cambia");
-      }
+    Object.keys(alertas).forEach((n) => document.body.classList.toggle(`alerta-${n}`, n === nivel));
+    form._alerta = setTimeout(() => document.body.classList.remove(`alerta-${nivel}`), 4000);
+    const globo = document.getElementById("castor-globo");
+    if (globo) {
+      globo.textContent = alertas[nivel];
+      globo.classList.remove("cambia");
+      void globo.offsetWidth;
+      globo.classList.add("cambia");
     }
     lectura.hidden = false;
     requestAnimationFrame(() => { marca.style.left = `${posicion}%`; });

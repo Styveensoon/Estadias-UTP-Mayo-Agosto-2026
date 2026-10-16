@@ -676,11 +676,24 @@
 }
 
 /* ==========================================
-   ALERTA DE OBESIDAD
-   Cuando el IMC rápido da obesidad, el mantel pasa a rojo unos segundos
-   (una transición suave, sin parpadeo) y vuelve al verde.
+   ALERTA DEL SEMÁFORO DE IMC
+   Al calcular el IMC rápido, el mantel toma unos segundos el color del
+   nivel (una transición suave, sin parpadeo) y vuelve al verde.
+   Tonos oscurecidos para que el texto blanco conserve contraste AA.
    ========================================== */
-.page-inicio.alerta-obesidad {
+.page-inicio.alerta-bajo {
+  --mantel: #8f6500;
+  --mantel-hondo: #6e4d00;
+}
+.page-inicio.alerta-normal {
+  --mantel: #15803d;
+  --mantel-hondo: #0f5f2d;
+}
+.page-inicio.alerta-sobre {
+  --mantel: #c2410c;
+  --mantel-hondo: #9a3309;
+}
+.page-inicio.alerta-obes {
   --mantel: #b3162a;
   --mantel-hondo: #8c1121;
 }
