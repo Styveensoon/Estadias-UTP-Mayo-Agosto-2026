@@ -64,19 +64,36 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 3. Respuestas con el texto de cada pregunta, para leerlas fácil en el correo
+    // 3. Correo legible: asunto con el resumen, datos clave primero y
+    //    después cada respuesta con un título corto (data-corto en el HTML)
+    const respuestaDe = (p) => {
+      const elegidas = Array.from(p.querySelectorAll("input:checked")).map((x) => x.value);
+      return elegidas.length ? elegidas.join(", ") : "Sin respuesta";
+    };
+    const porTitulo = (corto) => {
+      const p = preguntas.find((x) => x.dataset.corto === corto);
+      return p ? respuestaDe(p) : "Sin respuesta";
+    };
+    const satisfaccion = porTitulo("Satisfacción general");
+    const recomendaria = porTitulo("¿Recomendaría el sitio?");
+    const comentario = form.elements.comentario.value.trim();
+    const fecha = new Date().toLocaleString("es-MX", { dateStyle: "long", timeStyle: "short" });
+    const dispositivo = window.matchMedia("(max-width: 900px)").matches ? "Celular o tableta" : "Computadora";
+
     const datos = {
-      _subject: "Nueva opinión sobre WellDataLab",
+      _subject: `Opinión WellDataLab · ${satisfaccion} · Recomendaría: ${recomendaria}`,
       _template: "table",
-      _captcha: "false"
+      _captcha: "false",
+      "★ Satisfacción general": satisfaccion,
+      "★ ¿Recomendaría el sitio?": recomendaria,
+      "★ Comentario": comentario || "Sin comentario",
+      "Fecha": fecha,
+      "Dispositivo": dispositivo
     };
     preguntas.forEach((p, i) => {
-      const titulo = p.dataset.pregunta;
-      if (!titulo) return;
-      const elegidas = Array.from(p.querySelectorAll("input:checked")).map((x) => x.value);
-      datos[`${i + 1}. ${titulo}`] = elegidas.length ? elegidas.join(", ") : "Sin respuesta";
+      if (!p.dataset.corto) return;
+      datos[`${String(i + 1).padStart(2, "0")} · ${p.dataset.corto}`] = respuestaDe(p);
     });
-    datos["Comentario"] = form.elements.comentario.value.trim() || "Sin comentario";
 
     enviar.disabled = true;
     enviar.innerHTML = 'Enviando… <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
