@@ -652,3 +652,16 @@
 .tema-area .sost-card-title {
   text-align: left;
 }
+
+/* Jarra: la nota de proporciones va debajo del dibujo */
+.tema-area .jarra-visual-col {
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.tema-area .jarra-nota {
+  max-width: 30ch;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--tinta-suave);
+}

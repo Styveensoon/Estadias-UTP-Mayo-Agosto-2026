@@ -292,26 +292,27 @@ function getTema3HTML() {
         <div class="jarra-visual-col">
           <svg viewBox="0 0 200 260" class="jarra-svg" xmlns="http://www.w3.org/2000/svg">
             <!-- Asa -->
-            <path d="M 155,70 C 188,70 188,190 150,195" fill="none" stroke="#2e7d32" stroke-width="8" stroke-linecap="round"/>
-            <!-- Contorno Vidrio -->
-            <path d="M 30,30 L 170,30 L 150,230 Q 150,240 130,240 L 70,240 Q 50,240 50,230 Z" fill="none" stroke="#2e7d32" stroke-width="6" stroke-linejoin="round"/>
-            
-            <!-- CAPAS RELLENABLES -->
-            <path id="svg-level-1" class="jarra-layer active" d="M 52,185 L 148,185 L 150,230 Q 150,238 130,238 L 70,238 Q 50,238 50,230 Z" fill="#2563eb" data-level="1"/>
-            <path id="svg-level-2" class="jarra-layer" d="M 50,155 L 150,155 L 148,185 L 52,185 Z" fill="#9333ea" data-level="2"/>
-            <path id="svg-level-3" class="jarra-layer" d="M 47,125 L 153,125 L 150,155 L 50,155 Z" fill="#eab308" data-level="3"/>
-            <path id="svg-level-4" class="jarra-layer" d="M 43,95 L 157,95 L 153,125 L 47,125 Z" fill="#f97316" data-level="4"/>
-            <path id="svg-level-5" class="jarra-layer" d="M 40,65 L 160,65 L 157,95 L 43,95 Z" fill="#ef4444" data-level="5"/>
-            <path id="svg-level-6" class="jarra-layer" d="M 35,38 L 165,38 L 160,65 L 40,65 Z" fill="#16a34a" data-level="6"/>
+            <path d="M 156,70 C 190,70 190,190 150,196" fill="none" stroke="#008744" stroke-width="8" stroke-linecap="round"/>
+            <!-- Contorno del vidrio -->
+            <path d="M 30,30 L 170,30 L 150,230 Q 150,240 130,240 L 70,240 Q 50,240 50,230 Z" fill="none" stroke="#008744" stroke-width="6" stroke-linejoin="round"/>
+
+            <!-- CAPAS: la altura de cada nivel es proporcional a lo recomendado al día -->
+            <path id="svg-level-1" class="jarra-layer active" d="M 46.4,154 L 153.6,154 L 146.4,226 Q 146.4,236 130,236 L 70,236 Q 53.6,236 53.6,226 Z" fill="#2563eb" stroke="#ffffff" stroke-width="1.5" data-level="1"/>
+            <path id="svg-level-2" class="jarra-layer" d="M 44.35,133.5 L 155.65,133.5 L 153.6,154 L 46.4,154 Z" fill="#9333ea" stroke="#ffffff" stroke-width="1.5" data-level="2"/>
+            <path id="svg-level-3" class="jarra-layer" d="M 40.25,92.5 L 159.75,92.5 L 155.65,133.5 L 44.35,133.5 Z" fill="#eab308" stroke="#ffffff" stroke-width="1.5" data-level="3"/>
+            <path id="svg-level-4" class="jarra-layer" d="M 38.2,72 L 161.8,72 L 159.75,92.5 L 40.25,92.5 Z" fill="#f97316" stroke="#ffffff" stroke-width="1.5" data-level="4"/>
+            <path id="svg-level-5" class="jarra-layer" d="M 36.6,56 L 163.4,56 L 161.8,72 L 38.2,72 Z" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" data-level="5"/>
+            <path id="svg-level-6" class="jarra-layer" d="M 35,40 L 165,40 L 163.4,56 L 36.6,56 Z" fill="#16a34a" stroke="#ffffff" stroke-width="1.5" data-level="6"/>
 
             <!-- TEXTOS DE NIVELES -->
-            <text x="100" y="212" class="jarra-text-lbl">Nivel 1</text>
-            <text x="100" y="173" class="jarra-text-lbl">Nivel 2</text>
-            <text x="100" y="143" class="jarra-text-lbl">Nivel 3</text>
-            <text x="100" y="113" class="jarra-text-lbl">Nivel 4</text>
-            <text x="100" y="83" class="jarra-text-lbl">Nivel 5</text>
-            <text x="100" y="53" class="jarra-text-lbl">Nivel 6</text>
+            <text x="100" y="198.5" class="jarra-text-lbl">Nivel 1</text>
+            <text x="100" y="147.3" class="jarra-text-lbl">Nivel 2</text>
+            <text x="100" y="116.5" class="jarra-text-lbl">Nivel 3</text>
+            <text x="100" y="85.8" class="jarra-text-lbl">Nivel 4</text>
+            <text x="100" y="67.5" class="jarra-text-lbl">Nivel 5</text>
+            <text x="100" y="51.5" class="jarra-text-lbl">Nivel 6</text>
           </svg>
+          <p class="jarra-nota">La altura de cada nivel es proporcional a lo que se recomienda tomar al día.</p>
         </div>
 
         <!-- COLUMNA 3: INFORMACIÓN Y SELECTORES -->
