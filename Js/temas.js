@@ -167,6 +167,7 @@ function getTema2HTML() {
 
     <div class="grid-5-col">
       <div class="feature-card">
+        <img src="../Resources/temas/guias/lactancia.jpg" alt="Madre sonriente cargando a su bebé recién nacido" class="guia-foto" width="800" height="600" loading="lazy" decoding="async">
         <div class="card-header-flex">
           <div class="card-num light-green-badge">1</div>
           <i class="fa-solid fa-baby card-icon"></i>
@@ -176,6 +177,7 @@ function getTema2HTML() {
       </div>
 
       <div class="feature-card">
+        <img src="../Resources/temas/guias/verduras.jpg" alt="Puesto de mercado con verduras y frutas frescas" class="guia-foto" width="800" height="600" loading="lazy" decoding="async">
         <div class="card-header-flex">
           <div class="card-num light-green-badge">2</div>
           <i class="fa-solid fa-carrot card-icon"></i>
@@ -185,6 +187,7 @@ function getTema2HTML() {
       </div>
 
       <div class="feature-card">
+        <img src="../Resources/temas/guias/leguminosas.jpg" alt="Canastas con distintos tipos de frijoles a granel" class="guia-foto" width="800" height="600" loading="lazy" decoding="async">
         <div class="card-header-flex">
           <div class="card-num light-green-badge">3</div>
           <i class="fa-solid fa-seedling card-icon"></i>
@@ -194,6 +197,7 @@ function getTema2HTML() {
       </div>
 
       <div class="feature-card">
+        <img src="../Resources/temas/guias/cereales.jpg" alt="Tortillas de maíz recién hechas envueltas en papel" class="guia-foto" width="800" height="600" loading="lazy" decoding="async">
         <div class="card-header-flex">
           <div class="card-num light-green-badge">4</div>
           <i class="fa-solid fa-bowl-rice card-icon"></i>
@@ -203,6 +207,7 @@ function getTema2HTML() {
       </div>
 
       <div class="feature-card">
+        <img src="../Resources/temas/guias/embutidos.jpg" alt="Paquete de salchichas, un embutido procesado" class="guia-foto" width="800" height="600" loading="lazy" decoding="async">
         <div class="card-header-flex">
           <div class="card-num light-green-badge">5</div>
           <i class="fa-solid fa-drumstick-bite card-icon"></i>
@@ -212,6 +217,7 @@ function getTema2HTML() {
       </div>
 
       <div class="feature-card">
+        <img src="../Resources/temas/guias/refrescos.jpg" alt="Anaquel de supermercado lleno de refrescos embotellados" class="guia-foto" width="800" height="600" loading="lazy" decoding="async">
         <div class="card-header-flex">
           <div class="card-num light-green-badge">6</div>
           <i class="fa-solid fa-bottle-water card-icon"></i>
@@ -221,6 +227,7 @@ function getTema2HTML() {
       </div>
 
       <div class="feature-card">
+        <img src="../Resources/temas/guias/alcohol.jpg" alt="Vaso de cerveza y vaso de whisky sobre una mesa" class="guia-foto" width="800" height="600" loading="lazy" decoding="async">
         <div class="card-header-flex">
           <div class="card-num light-green-badge">7</div>
           <i class="fa-solid fa-wine-glass-empty card-icon"></i>
@@ -230,6 +237,7 @@ function getTema2HTML() {
       </div>
 
       <div class="feature-card">
+        <img src="../Resources/temas/guias/actividad.jpg" alt="Personas corriendo en un parque" class="guia-foto" width="800" height="600" loading="lazy" decoding="async">
         <div class="card-header-flex">
           <div class="card-num light-green-badge">8</div>
           <i class="fa-solid fa-person-running card-icon"></i>
@@ -239,6 +247,7 @@ function getTema2HTML() {
       </div>
 
       <div class="feature-card">
+        <img src="../Resources/temas/guias/agua.jpg" alt="Vaso de agua natural sobre una mesa al aire libre" class="guia-foto" width="800" height="600" loading="lazy" decoding="async">
         <div class="card-header-flex">
           <div class="card-num light-green-badge">9</div>
           <i class="fa-solid fa-glass-water card-icon"></i>
@@ -248,6 +257,7 @@ function getTema2HTML() {
       </div>
 
       <div class="feature-card">
+        <img src="../Resources/temas/guias/familia.jpg" alt="Familia comiendo junta alrededor de la mesa" class="guia-foto" width="800" height="600" loading="lazy" decoding="async">
         <div class="card-header-flex">
           <div class="card-num light-green-badge">10</div>
           <i class="fa-solid fa-people-roof card-icon"></i>
@@ -256,6 +266,8 @@ function getTema2HTML() {
         <p>Disfruta de tus alimentos en compañía y sin distracciones como pantallas.</p>
       </div>
     </div>
+
+    <p class="guia-creditos">Fotografías: Wikimedia Commons. Lactancia, Sgt. Christopher Gaylord (dominio público); verduras y frutas, FranHogan (CC BY-SA 4.0); leguminosas, Marek Ślusarczyk (CC BY 3.0); tortillas, ProtoplasmaKid (CC BY-SA 3.0); embutidos, Pingnova (CC0); refrescos, SMC (dominio público); alcohol, JIP (CC BY-SA 4.0); actividad física, Marlin Keesler (CC BY 2.0); agua, Kurt Kaiser (CC0); comida en familia, National Cancer Institute (dominio público).</p>
 
     <div class="topic-footer-action">
       <a href="https://www.gob.mx/salud" target="_blank" rel="noopener noreferrer" class="video-btn">
