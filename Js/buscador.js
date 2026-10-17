@@ -1,6 +1,6 @@
 /* ==========================================
    BUSCADOR GENERAL DEL SITIO
-   Agrega el botón "Buscar" al encabezado y abre un panel que busca en todo WellDataLab:
+   Agrega el botón "Buscar" al encabezado y abre un panel que busca en todo Cheficas UTP:
    temas y sus apartados, páginas, alimentos del SMAE, datos curiosos, videos y recursos.
    El índice (Js/buscador-indice.js) se genera con scripts/generar-indice-buscador.js y,
    junto con la base del SMAE, se carga solo la primera vez que se abre el buscador.
@@ -205,7 +205,7 @@
     dialogo.setAttribute("aria-labelledby", "buscador-titulo");
     dialogo.innerHTML = `
       <div class="buscador-hoja">
-        <h2 class="sr-only" id="buscador-titulo">Buscar en WellDataLab</h2>
+        <h2 class="sr-only" id="buscador-titulo">Buscar en Cheficas UTP</h2>
         <form class="buscador-barra" role="search" autocomplete="off">
           <label class="sr-only" for="buscador-campo">Escribe lo que buscas</label>
           <i class="fa-solid fa-magnifying-glass buscador-lupa" aria-hidden="true"></i>

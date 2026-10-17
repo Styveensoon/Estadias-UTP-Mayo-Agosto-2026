@@ -10,7 +10,7 @@ web
 Primero la comunidad de la Universidad Tecnológica de Puebla (estudiantes, docentes y personal), expuesta a alta exigencia académica, sedentarismo y comida rápida; también cualquier persona del público general que busque orientación de salud confiable. Llegan desde el celular o la computadora para entender cómo está su cuerpo (IMC) y qué cambiar en su alimentación, hidratación y actividad física.
 
 ## Product Purpose
-WellDataLab es una plataforma web gratuita de educación nutricional y autocuidado. Reúne herramientas de autoevaluación (calculadora de IMC, TMB, requerimiento hídrico y masa muscular estimada) con contenido educativo respaldado en fuentes oficiales mexicanas, para facilitar la adopción de hábitos saludables y prevenir enfermedades derivadas del sobrepeso y el sedentarismo. El éxito es que el usuario se autoevalúe, entienda una guía oficial y regrese.
+Cheficas UTP es una plataforma web gratuita de educación nutricional y autocuidado. Reúne herramientas de autoevaluación (calculadora de IMC, TMB, requerimiento hídrico y masa muscular estimada) con contenido educativo respaldado en fuentes oficiales mexicanas, para facilitar la adopción de hábitos saludables y prevenir enfermedades derivadas del sobrepeso y el sedentarismo. El éxito es que el usuario se autoevalúe, entienda una guía oficial y regrese.
 
 ## Positioning
 Proyecto académico de la UTP que convierte guías oficiales de salud mexicanas (Plato del Bien Comer, Jarra del Buen Beber, INCMNSZ, IMSS, NOM) en herramientas interactivas gratuitas, frente a la desinformación de redes sociales.
@@ -24,7 +24,7 @@ Sitio estático (HTML, CSS y JavaScript sin framework) en `index.html` y `Views/
 - Debe funcionar en navegadores modernos de escritorio y móvil.
 
 ## Brand Commitments
-- Nombre: WellDataLab, en colaboración con la Universidad Tecnológica de Puebla. Logo de la UTP en `Resources/logo-utp.png`; logo de WellDataLab (marca de plato + nombre en Poppins 800) en `Resources/marca/` como SVG, con versión clara para fondos oscuros e ícono.
+- Nombre: Cheficas UTP, en colaboración con la Universidad Tecnológica de Puebla. Logo de la UTP en `Resources/logo-utp.png`; logo de Cheficas UTP (marca de plato + nombre en Poppins 800) en `Resources/marca/` como SVG, con versión clara para fondos oscuros e ícono. Antes se llamaba WellDataLab; la mascota comparte el nombre del proyecto.
 - Color de identidad confirmado por el usuario: verde `#008744` (con `#2e7d32` como verde de variables CSS). No se adopta el `#09BA00`/`#660900` mencionado en partes de la tesina.
 - Tipografía declarada en la tesina: Poppins.
 - Mascota: Cheficas UTP, el castor con pañoleta verde y mandil (antes «El Castor Nutritivo»), ilustración vectorial plana en `Resources/marca/castor.svg` (saludando) y `Resources/marca/castor-sabio.svg` (con lentes y libro).

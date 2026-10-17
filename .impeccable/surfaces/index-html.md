@@ -15,7 +15,7 @@ THESIS: El Inicio es el Plato del Bien Comer visto desde arriba; sus sectores en
 
 OWN-WORLD: Mantel verde #008744 a sangre como suelo; plato blanco con cinco sectores fotográficos a proporción real (50/22/15/8/5) ribeteados en tintas puras (#16a34a, #f2b705, #f2711c, #e03131, #b7791f); tinta #0f2a1c sobre blanco; Poppins 800 para titulares, 400/500 para texto; cifras tabulares; sin degradados ni pasteles.
 
-STORY: Entiendo en un vistazo qué es WellDataLab, calculo mi IMC sin salir de la página, exploro el plato grupo por grupo con el castor como guía, y elijo un tema del índice numerado.
+STORY: Entiendo en un vistazo qué es Cheficas UTP, calculo mi IMC sin salir de la página, exploro el plato grupo por grupo con el castor como guía, y elijo un tema del índice numerado.
 
 FIRST VIEWPORT: Encabezado delgado sobre el mantel con logos y menú. Izquierda (~45%): titular "Tu salud, tu mejor inversión." en blanco, frase corta, y la ficha blanca de IMC (peso, estatura, Calcular) con resultado en línea. Derecha: plato enorme (~70vh) cortado por el borde derecho; leyenda numerada 1–5 junto al plato; castor con globo de diálogo al pie del plato.
 

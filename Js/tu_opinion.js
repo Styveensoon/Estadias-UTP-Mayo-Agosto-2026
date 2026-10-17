@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (form.elements._honey.value) return;
 
     if (!CORREO_OPINIONES) {
-      errorGeneral.textContent = "El envío todavía no está configurado. Avisa al equipo de WellDataLab.";
+      errorGeneral.textContent = "El envío todavía no está configurado. Avisa al equipo de Cheficas UTP.";
       return;
     }
 
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dispositivo = window.matchMedia("(max-width: 900px)").matches ? "Celular o tableta" : "Computadora";
 
     const datos = {
-      _subject: `Opinión WellDataLab · ${satisfaccion} · Recomendaría: ${recomendaria}`,
+      _subject: `Opinión Cheficas UTP · ${satisfaccion} · Recomendaría: ${recomendaria}`,
       _template: "table",
       _captcha: "false",
       "★ Satisfacción general": satisfaccion,

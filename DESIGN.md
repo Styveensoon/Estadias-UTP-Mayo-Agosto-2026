@@ -1,5 +1,5 @@
 ---
-name: WellDataLab
+name: Cheficas UTP
 description: Educación nutricional y autocuidado de la UTP, servida sobre un mantel verde y un Plato del Bien Comer interactivo.
 colors:
   mantel: "#008744"
@@ -180,13 +180,13 @@ components:
     padding: "clamp(2.5rem, 6vh, 3.5rem) clamp(16px, 5vw, 5rem) 1.5rem"
 ---
 
-# Design System: WellDataLab
+# Design System: Cheficas UTP
 
 ## Overview
 
 **Creative North Star: "El Mantel y el Plato"**
 
-WellDataLab se ve como una mesa servida vista desde arriba. El verde de identidad (#008744) es el mantel: un campo plano que llega hasta los bordes y sirve de suelo a la portada de cada página y a las secciones importantes. Encima va el plato blanco, que es donde vive todo lo que se lee o se usa (fichas, formularios, globos de diálogo, el video destacado). Los cinco grupos del Plato del Bien Comer aportan las tintas fuertes del sistema, y siempre como ribete, número o indicador, nunca como relleno de fondo.
+Cheficas UTP se ve como una mesa servida vista desde arriba. El verde de identidad (#008744) es el mantel: un campo plano que llega hasta los bordes y sirve de suelo a la portada de cada página y a las secciones importantes. Encima va el plato blanco, que es donde vive todo lo que se lee o se usa (fichas, formularios, globos de diálogo, el video destacado). Los cinco grupos del Plato del Bien Comer aportan las tintas fuertes del sistema, y siempre como ribete, número o indicador, nunca como relleno de fondo.
 
 La densidad es generosa y editorial: titulares grandes en Poppins 800 con tracking cerrado, texto en Poppins 400/500 y cifras tabulares. Las listas son índices separados por filetes finos (temas, herramientas, recursos, datos curiosos, preguntas de la encuesta), no filas de tarjetas iguales. El castor, Cheficas UTP, es el guía de la casa: aparece junto a la información con un globo de diálogo blanco y habla en segunda persona. El mismo plato fotográfico del Inicio se reutiliza en el tema 4.
 
@@ -237,7 +237,7 @@ Las tintas de ribete se escriben en hex en el CSS y en los `data-color` del plat
 - **Borde Hover** (`borde-hover`): borde de 2px que aparece en hover sobre campos, filtros, opciones y segmentos; también el contorno interior de la etiqueta "Web" de recursos.
 
 ### Ilustración
-El logotipo y el castor son SVG propios en `Resources/marca/`, de estilo plano sin trazos ni degradados. El castor usa **Pelo** (`castor-pelo`), **Sombra** (`castor-sombra`), **Hocico** (`castor-hocico`), un **Mandil** crema (`mandil`) y una pañoleta en `--mantel` / `--mantel-hondo`. El logotipo es la marca del plato (círculo `--mantel`, plato blanco y tres sectores verduras/cereal/leguminosas) seguida de "WellData" en `--tinta` y "Lab" en `--mantel`, Poppins 800 trazada; la versión clara para el pie va sobre `--tinta`.
+El logotipo y el castor son SVG propios en `Resources/marca/`, de estilo plano sin trazos ni degradados. El castor usa **Pelo** (`castor-pelo`), **Sombra** (`castor-sombra`), **Hocico** (`castor-hocico`), un **Mandil** crema (`mandil`) y una pañoleta en `--mantel` / `--mantel-hondo`. El logotipo es la marca del plato (círculo `--mantel`, plato blanco y tres sectores verduras/cereal/leguminosas) seguida de "Cheficas" en `--tinta` y "UTP" en `--mantel`, Poppins 800 trazada; la versión clara para el pie va sobre `--tinta`.
 
 ### Named Rules
 **La Regla del Mantel.** El verde `--mantel` se usa como campo plano a sangre o como relleno de un control, nunca en degradado ni en versión pastel. Las secciones alternan mantel, plato y pozo, y el pie cierra en tinta.
@@ -340,7 +340,7 @@ Tienen un carácter táctil y firme.
 - **Error:** borde `--rojo` y fondo blanco; el mensaje va debajo en `error-texto` 0.88–0.92rem/500 con `role="alert"`.
 
 ### Navigation
-- **Encabezado:** blanco y fijo, con los logos UTP (52px de alto) y WellDataLab (40px) a la izquierda; 42px y 30px en celular.
+- **Encabezado:** blanco y fijo, con los logos UTP (52px de alto) y Cheficas UTP (40px) a la izquierda; 42px y 30px en celular.
 - **Enlaces:** `--tinta` 500 a 0.92rem. En hover pasan a `--mantel` y aparece un subrayado de 3px que crece desde la izquierda (0.35s). El enlace activo va en 600 con el subrayado fijo.
 - **Desplegable de temas:** panel blanco de 16px de radio con la sombra Menú; los ítems tienen 8px de radio y en hover cambian a fondo `--pozo` con texto `--mantel-hondo`.
 - **Celular (≤900px):** botón de menú de 44px y lista a pantalla con filetes. El desplegable se integra en línea sin sombra y el enlace activo va en `--mantel`.

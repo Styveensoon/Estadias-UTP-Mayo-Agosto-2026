@@ -247,7 +247,7 @@
     el.ambito.hidden = !cat;
     if (cat) el.ambitoNombre.textContent = cat.nombre;
     el.limpiar.hidden = !estado.q;
-    document.title = (cat ? `${cat.nombre} - ` : q ? `«${q}» - ` : "") + "Directorio de alimentos - WellDataLab";
+    document.title = (cat ? `${cat.nombre} - ` : q ? `«${q}» - ` : "") + "Directorio de alimentos - Cheficas UTP";
 
     if (soloLista) { dibujarLista(cat, q, { conservarScroll }); return; }
 

@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try { localStorage.setItem('selectedTopic', topicId); } catch (err) { /* sin almacenamiento */ }
-    document.title = `${TITULOS_TEMAS[topicId]} - Temas - WellDataLab`;
+    document.title = `${TITULOS_TEMAS[topicId]} - Temas - Cheficas UTP`;
 
     const direccion = `#tema-${topicId}`;
     if (historial && window.location.hash !== direccion) {
@@ -299,7 +299,7 @@ function getTema3HTML() {
             ¡Hola! Soy Cheficas UTP. Haz clic en los niveles de la jarra para enseñarte a hidratarte como un experto.
           </div>
           <div class="castor-img-wrapper">
-            <img src="../Resources/marca/castor.svg" alt="Cheficas UTP, el castor de WellDataLab" class="castor-jarra-img">
+            <img src="../Resources/marca/castor.svg" alt="Cheficas UTP, el castor guía" class="castor-jarra-img">
           </div>
         </div>
 
