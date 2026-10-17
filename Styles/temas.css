@@ -707,3 +707,610 @@
 @media (prefers-reduced-motion: reduce) {
   .tema-area .guia-foto { transition: none; }
 }
+
+/* ==========================================
+   FORMAS DE PREPARAR LOS ALIMENTOS (tema 10, Js/preparacion.js)
+   Índice de métodos + ficha con foto que entra en recorte circular,
+   medidores, ventajas/desventajas y el "Reto en la cocina" sobre el mantel.
+   ========================================== */
+.prep {
+  --bueno: #15803d;
+  --malo: #b3162a;
+}
+.prep-filtros {
+  margin: 0 0 1.75rem;
+}
+.prep-punto {
+  display: inline-block;
+  flex: none;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+}
+.prep-punto-recomendado { background: var(--bueno); }
+.prep-punto-moderado { background: var(--amarillo); }
+.prep-punto-ocasional { background: var(--malo); }
+.filtro[aria-pressed="true"] .prep-punto {
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.prep-cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+/* --- Índice de métodos --- */
+.prep-lista {
+  position: sticky;
+  top: calc(var(--header-alto) + 1.5rem);
+  list-style: none;
+  border-bottom: 1px solid #dfe8e1;
+}
+.prep-lista li {
+  border-top: 1px solid #dfe8e1;
+}
+.prep-item {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+  gap: 0.85rem;
+  align-items: center;
+  width: 100%;
+  min-height: 64px;
+  padding: 0.8rem 0.6rem;
+  font: inherit;
+  text-align: left;
+  color: var(--tinta);
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.prep-item:hover {
+  background: var(--pozo);
+}
+.prep-num {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--mantel-hondo);
+  border-radius: 50%;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.35s var(--ease-salida);
+}
+.prep-item-texto strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.prep-item-texto span {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--tinta-suave);
+}
+.prep-item[aria-pressed="true"] {
+  background: var(--pozo);
+}
+.prep-item[aria-pressed="true"] .prep-num {
+  color: #fff;
+  background: var(--mantel);
+  transform: scale(1.06);
+  animation: marcar 0.3s var(--ease-salida);
+}
+.prep-item[aria-pressed="true"] strong {
+  color: var(--mantel-hondo);
+}
+
+/* --- Ficha del método --- */
+.prep-ficha {
+  min-width: 0;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  background: #fff;
+  border: 1px solid #dfe8e1;
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(0, 38, 19, 0.1);
+  scroll-margin-top: calc(var(--header-alto) + 4.5rem);
+}
+.prep-ficha:focus {
+  outline: none;
+}
+.prep-ficha[data-nivel="recomendado"] { --nivel: var(--bueno); }
+.prep-ficha[data-nivel="moderado"] { --nivel: #8a5a00; }
+.prep-ficha[data-nivel="ocasional"] { --nivel: var(--malo); }
+
+.prep-foto {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--pozo);
+  border-radius: 16px;
+  touch-action: pan-y;
+}
+.prep-foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.prep-foto-nueva {
+  animation: prep-revela 0.75s var(--ease-salida) both;
+}
+.prep-foto-vieja {
+  animation: prep-se-va 0.75s ease-out both;
+}
+@keyframes prep-revela {
+  from { clip-path: circle(0% at var(--x, 50%) var(--y, 50%)); transform: scale(1.08); }
+  to { clip-path: circle(150% at var(--x, 50%) var(--y, 50%)); transform: none; }
+}
+@keyframes prep-se-va {
+  to { filter: blur(4px) brightness(0.8); transform: scale(0.97); }
+}
+
+/* La hornilla: flamas encendidas según el calor del método */
+.prep-fuego {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(15, 42, 28, 0.82);
+  border-radius: 999px;
+}
+.prep-fuego span {
+  margin-left: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+}
+.prep-fuego .encendida {
+  color: var(--amarillo);
+  transform-origin: 50% 100%;
+  animation: prep-flama 0.9s ease-in-out 3 both;
+  animation-delay: calc(var(--i) * 90ms);
+}
+.prep-fuego .encendida:nth-child(3) { color: #f08a3c; }
+.prep-fuego .encendida:nth-child(4) { color: #ff6b6b; }
+@keyframes prep-flama {
+  0%, 100% { transform: none; }
+  50% { transform: scaleY(1.18) translateY(-1px); }
+}
+
+.prep-flechas {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 2;
+  display: flex;
+  gap: 0.5rem;
+}
+.prep-flecha {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  font-size: 1rem;
+  color: var(--tinta);
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 38, 19, 0.28);
+  transition: transform 0.25s var(--ease-salida), box-shadow 0.25s ease;
+}
+.prep-flecha:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 38, 19, 0.32);
+}
+.prep-flecha:active {
+  transform: translateY(1px);
+}
+.prep-foto :focus-visible {
+  outline-color: var(--amarillo);
+}
+
+.prep-ficha-cuerpo {
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(0.4rem, 1.2vw, 0.9rem) 0.5rem;
+}
+.prep-titulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+}
+.tema-area .prep-titulo h2 {
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  animation: titulo-sube 0.55s var(--ease-salida) both;
+}
+.prep-titulo h2 i {
+  margin-right: 0.2rem;
+  font-size: 0.8em;
+  color: var(--nivel, var(--mantel));
+}
+.prep-titulo .semaforo {
+  margin-left: 0;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  animation: marcar-grande 0.45s var(--ease-salida) 0.1s both;
+}
+.prep-resumen {
+  margin-top: 0.5rem;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--tinta-suave);
+}
+
+.prep-medidores {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  background: var(--pozo);
+  border-radius: 16px;
+}
+.prep-medidor {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr) 5.5rem;
+  gap: 0.9rem;
+  align-items: center;
+  font-size: 0.88rem;
+}
+.prep-medidor-nombre {
+  font-weight: 500;
+  color: var(--tinta-suave);
+}
+.prep-medidor-valor {
+  font-weight: 600;
+  text-align: right;
+}
+.prep-segs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+.prep-seg {
+  height: 10px;
+  background: #d4e0d7;
+  border-radius: 3px;
+}
+.prep-seg.lleno {
+  background: var(--tono);
+  transform-origin: left center;
+  animation: crecer 0.45s var(--ease-salida) both;
+  animation-delay: calc(0.15s + var(--i) * 80ms);
+}
+.prep-tono-bueno { --tono: var(--bueno); }
+.prep-tono-medio { --tono: var(--amarillo); }
+.prep-tono-malo { --tono: var(--malo); }
+
+.prep-pros-contras {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem clamp(1.25rem, 2.5vw, 2rem);
+  margin-top: 1.5rem;
+}
+.tema-area .prep-columna h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.prep-pros h3 i { color: var(--bueno); }
+.prep-contras h3 i { color: var(--malo); }
+.prep-columna ul {
+  list-style: none;
+}
+.prep-columna li {
+  display: grid;
+  grid-template-columns: 1.4rem minmax(0, 1fr);
+  gap: 0.5rem;
+  padding: 0.65rem 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--tinta);
+  border-top: 1px solid #e3ebe5;
+}
+.prep-columna li i {
+  display: grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: 0.05rem;
+  font-size: 0.7rem;
+  color: #fff;
+  border-radius: 50%;
+}
+.prep-pros li i { background: var(--bueno); }
+.prep-contras li i { background: var(--malo); }
+
+.prep-ideal {
+  margin-top: 1.25rem;
+}
+.tema-area .prep-ideal h3 {
+  margin-bottom: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+}
+.prep-ideal ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  list-style: none;
+}
+.prep-ideal li {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  background: var(--pozo);
+  border-radius: 999px;
+}
+
+.prep-castor {
+  margin-top: 1rem;
+}
+.castor-dice.prep-castor img {
+  width: clamp(92px, 9vw, 120px);
+}
+.castor-dice.prep-castor p {
+  margin-bottom: 1.5rem;
+  border: 1px solid #e3ebe5;
+  box-shadow: 0 10px 24px rgba(0, 38, 19, 0.12);
+}
+
+.prep .guia-creditos {
+  margin: 1.25rem auto 0;
+}
+
+/* --- Reto en la cocina --- */
+.prep-reto {
+  margin-top: clamp(2.5rem, 6vh, 3.5rem);
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  color: #fff;
+  background: var(--mantel);
+  border-radius: 20px;
+}
+.prep-reto :focus-visible {
+  outline-color: var(--amarillo);
+}
+.tema-area .prep-reto h2 {
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.prep-reto-cabeza p {
+  max-width: 52ch;
+  margin-top: 0.5rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+}
+.prep-reto-juego {
+  margin-top: 1.5rem;
+}
+.prep-reto-entra .prep-reto-alimento,
+.prep-reto-entra .prep-opcion {
+  animation: aparecer 0.5s var(--ease-salida) both;
+}
+.prep-reto-entra .prep-opcion:nth-child(2) { animation-delay: 60ms; }
+.prep-reto-entra .prep-opcion:nth-child(3) { animation-delay: 120ms; }
+
+.prep-reto-progreso {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  max-width: 22rem;
+}
+.prep-reto-progreso span {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+.prep-reto-progreso .actual { background: #fff; }
+.prep-reto-progreso .hecho { background: var(--amarillo); }
+
+.prep-reto-ronda {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+}
+.tema-area .prep-reto-alimento {
+  margin-top: 0.25rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.prep-reto-opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+.prep-opcion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0 1.4rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--tinta);
+  background: #fff;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 38, 19, 0.28);
+  transition: transform 0.25s var(--ease-salida), box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+}
+.prep-opcion:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 38, 19, 0.32);
+}
+.prep-opcion:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.prep-opcion:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+.prep-opcion.correcta,
+.prep-opcion.incorrecta {
+  opacity: 1;
+  color: #fff;
+}
+.prep-opcion.correcta {
+  background: var(--tinta);
+  animation: marcar 0.3s var(--ease-salida);
+}
+.prep-opcion.correcta::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.95rem;
+  margin: -0.2rem 0.15rem 0 0;
+  border: solid var(--amarillo);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+.prep-opcion.incorrecta {
+  background: var(--malo);
+  animation: prep-no 0.4s ease-in-out;
+}
+@keyframes prep-no {
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.prep-reto-respuesta:empty {
+  display: none;
+}
+.prep-reto-respuesta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  animation: aparecer 0.45s var(--ease-salida) both;
+}
+.prep-reto-veredicto {
+  display: flex;
+  flex: 1 1 22rem;
+  gap: 0.6rem;
+  padding: 0.95rem 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--tinta);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0, 38, 19, 0.2);
+}
+.prep-reto-veredicto i {
+  margin-top: 0.15rem;
+  font-size: 1.15rem;
+}
+.prep-reto-veredicto.bien i { color: var(--bueno); }
+.prep-reto-veredicto.mal i { color: var(--malo); }
+.prep-reto .boton-mantel {
+  color: var(--tinta);
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(0, 38, 19, 0.28);
+}
+.prep-reto .boton-mantel:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 38, 19, 0.32);
+}
+
+.prep-reto-final {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.5rem 2rem;
+  align-items: end;
+  margin-top: 1.25rem;
+}
+.prep-reto-marcador {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.prep-reto-cifra {
+  font-size: clamp(4rem, 9vw, 6rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--amarillo);
+}
+.prep-reto-final .prep-castor {
+  margin-top: 0;
+}
+.prep-reto-final .castor-dice.prep-castor p {
+  border: none;
+  box-shadow: 0 10px 24px rgba(0, 38, 19, 0.28);
+}
+.prep-reto-final .boton-mantel {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+@media (max-width: 1100px) {
+  .prep-cuerpo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .prep-lista {
+    position: static;
+  }
+}
+@media (max-width: 640px) {
+  .prep-pros-contras {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .prep-medidor {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.35rem 0.75rem;
+  }
+  .prep-segs {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .prep-fuego span {
+    display: none;
+  }
+  .prep-reto-final {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prep-foto-nueva,
+  .prep-foto-vieja,
+  .prep-fuego .encendida,
+  .prep-seg.lleno,
+  .prep-opcion.incorrecta,
+  .tema-area .prep-titulo h2,
+  .prep-reto-entra .prep-reto-alimento,
+  .prep-reto-entra .prep-opcion,
+  .prep-reto-respuesta {
+    animation: none;
+  }
+}

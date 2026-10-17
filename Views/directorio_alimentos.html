@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Directorio de alimentos - WellDataLab</title>
+  <meta name="description" content="Directorio interactivo de 2,323 alimentos del Sistema Mexicano de Alimentos Equivalentes (SMAE): energía, proteína, lípidos e hidratos de carbono por equivalente.">
+
+  <link rel="icon" type="image/svg+xml" href="../Resources/marca/icono-welldatalab.svg">
+  <link rel="icon" type="image/png" href="../Resources/marca/icono-welldatalab.png">
+  <link rel="preload" href="../Resources/fonts/poppins-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Font Awesome para los íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos: componentes heredados, sistema compartido y estilos propios de la página -->
+  <link rel="stylesheet" href="../Styles/Style_components.css">
+  <link rel="stylesheet" href="../Styles/sitio.css">
+  <link rel="stylesheet" href="../Styles/calculadora_alimentos.css">
+  <link rel="stylesheet" href="../Styles/directorio_alimentos.css">
+</head>
+<body class="sitio pagina-calc-alimentos pagina-directorio">
+
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- ENCABEZADO CON LOGOS Y NAVEGACIÓN -->
+  <header class="header-site">
+    <div class="header-bar">
+      <a class="header-logos" href="../index.html" aria-label="WellDataLab, ir al inicio">
+        <img src="../Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla" width="52" height="52">
+        <img src="../Resources/marca/logo-welldatalab.svg" alt="WellDataLab" class="logo-wdl" width="227" height="40">
+      </a>
+
+      <nav class="navbar" aria-label="Navegación principal">
+        <div class="nav-container">
+          <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-controls="nav-menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+
+          <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
+            <li class="nav-item"><a href="quienes_somos.html" class="nav-link">¿Quiénes somos?</a></li>
+
+            <!-- APARTADO DE TEMAS CON MENÚ DESPLEGABLE -->
+            <li class="nav-item dropdown-item">
+              <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a>
+              <ul class="dropdown-menu" id="topics-dropdown">
+                <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
+                <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
+                <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
+                <li><a href="temas.html" data-topic="4">El Plato del Bien Comer</a></li>
+                <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
+                <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
+                <li><a href="temas.html" data-topic="7">Recetas fáciles y saludables</a></li>
+                <li><a href="temas.html" data-topic="8">Marco normativo y hábitos</a></li>
+                <li><a href="temas.html" data-topic="9">Comparador de alimentos</a></li>
+                <li><a href="temas.html" data-topic="10">Formas de preparar alimentos</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a href="sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
+            <li class="nav-item dropdown-item">
+              <a href="directorio_alimentos.html" class="nav-link active" aria-current="page">Alimentos <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="directorio_alimentos.html" aria-current="page">Directorio de alimentos</a></li>
+                <li><a href="calculadora_alimentos.html">Calculadora de alimentos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="videos.html" class="nav-link">Videos</a></li>
+            <li class="nav-item"><a href="recursos.html" class="nav-link">Recursos</a></li>
+            <li class="nav-item"><a href="tu_opinion.html" class="nav-link">Tu opinión</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- PORTADA -->
+    <section class="portada portada-sola da-portada" aria-labelledby="titulo-da">
+      <div>
+        <h1 id="titulo-da">Directorio de alimentos</h1>
+        <p class="portada-lead">Consulta la energía, la proteína, los lípidos y los hidratos de carbono de <strong id="da-total">2,323</strong> alimentos del Sistema Mexicano de Alimentos Equivalentes (SMAE). Busca por nombre o explora por categoría.</p>
+      </div>
+    </section>
+
+    <div class="da-pagina">
+
+      <!-- BUSCADOR GLOBAL -->
+      <div class="da-buscador-zona" id="da-buscador-zona">
+        <div class="da-buscador" role="search">
+          <label for="da-buscar" class="sr-only">Buscar alimentos</label>
+          <i class="fa-solid fa-magnifying-glass da-buscador-icono" aria-hidden="true"></i>
+          <input type="search" id="da-buscar" placeholder="Buscar alimentos..." autocomplete="off" spellcheck="false" aria-describedby="da-atajo">
+          <span class="da-ambito" id="da-ambito" hidden>
+            en <strong id="da-ambito-nombre"></strong>
+            <button type="button" id="da-ambito-quitar" aria-label="Buscar en todo el directorio"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+          </span>
+          <button type="button" class="da-limpiar" id="da-limpiar" aria-label="Borrar búsqueda" hidden><i class="fa-solid fa-circle-xmark" aria-hidden="true"></i></button>
+          <kbd class="da-atajo" id="da-atajo" title="Atajo de teclado para buscar">/</kbd>
+        </div>
+        <p class="sr-only" id="da-anuncio" role="status" aria-live="polite"></p>
+      </div>
+
+      <!-- INICIO: GRID DE CATEGORÍAS -->
+      <section class="da-inicio" id="da-inicio" aria-labelledby="titulo-categorias">
+        <h2 id="titulo-categorias" class="da-titulo">Explora por categoría</h2>
+        <ul class="da-grid" id="da-grid"></ul>
+        <button type="button" class="da-otros" id="da-otros">
+          <i class="fa-solid fa-candy-cane" aria-hidden="true"></i>
+          <span>Azúcares, dulces y condimentos <span class="da-otros-conteo">(<strong>0</strong> alimentos)</span></span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+      </section>
+
+      <!-- VISTA DE CATEGORÍA O DE RESULTADOS -->
+      <section class="da-vista" id="da-vista" aria-live="off" hidden></section>
+
+      <p class="da-nota">Datos por un equivalente del SMAE, 4a. edición (Pérez Lizaur, Palacios González, Castro Becerra y Flores Galicia; Fomento de Nutrición y Salud, 2014). ND = dato no disponible en el libro. La barra de color de cada alimento muestra de dónde viene su energía: <span class="da-leyenda m-p"></span> proteína, <span class="da-leyenda m-l"></span> lípidos y <span class="da-leyenda m-h"></span> hidratos de carbono. ¿Vas a cocinar? Calcula tu receta en la <a href="calculadora_alimentos.html">Calculadora de alimentos</a>.</p>
+    </div>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer-site">
+    <div class="footer-container">
+      <div class="footer-marca">
+        <p class="footer-title"><img src="../Resources/marca/logo-welldatalab-claro.svg" alt="WellDataLab" width="182" height="32"></p>
+        <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      </div>
+      <ul class="footer-enlaces" aria-label="Secciones">
+        <li><a href="quienes_somos.html">¿Quiénes somos?</a></li>
+        <li><a href="calculadora.html">Calculadora</a></li>
+        <li><a href="calculadora_alimentos.html">Calculadora de alimentos</a></li>
+        <li><a href="directorio_alimentos.html">Directorio de alimentos</a></li>
+        <li><a href="sabias_que.html">¿Sabías qué?</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="recursos.html">Recursos</a></li>
+        <li><a href="tu_opinion.html">Tu opinión</a></li>
+      </ul>
+      <p class="copyright">© 2026 WellDataLab - UTP. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ARCHIVOS JAVASCRIPT -->
+  <script src="../Js/main.js"></script>
+  <script src="../Js/movimiento.js"></script>
+  <script src="../Js/smae-datos.js"></script>
+  <script src="../Js/directorio_alimentos.js"></script>
+</body>
+</html>

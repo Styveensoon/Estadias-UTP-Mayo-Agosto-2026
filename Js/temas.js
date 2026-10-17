@@ -12,7 +12,8 @@ const TITULOS_TEMAS = {
   "6": "Recomendaciones de ejercicio",
   "7": "Recetas fáciles y saludables",
   "8": "Marco normativo y hábitos",
-  "9": "Comparador de alimentos"
+  "9": "Comparador de alimentos",
+  "10": "Formas de preparar tus alimentos"
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const area = document.getElementById('tema-area');
 
   function temaDeLaDireccion() {
-    const coincidencia = window.location.hash.match(/^#tema-(\d)$/);
+    const coincidencia = window.location.hash.match(/^#tema-(\d+)$/);
     return coincidencia && TITULOS_TEMAS[coincidencia[1]] ? coincidencia[1] : null;
   }
 
@@ -47,12 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
       case '7': container.innerHTML = getTema7HTML(); break;
       case '8': container.innerHTML = getTema8FallbackHTML(); break;
       case '9': container.innerHTML = getTema9HTML(); break;
+      case '10': container.innerHTML = getTema10HTML(); break;
     }
 
     // Interactividad del tema recién dibujado (una sola vez por tema)
     if (typeof initDynamicComponents === 'function') initDynamicComponents();
     if (topicId === '4' && typeof initPlato === 'function') initPlato({ porScroll: false });
     if (topicId === '9' && typeof initComparadorAlimentos === 'function') initComparadorAlimentos();
+    if (topicId === '10' && typeof initPreparacion === 'function') initPreparacion();
   }
 
   function mostrar(topicId, { historial = false, enfocar = false } = {}) {

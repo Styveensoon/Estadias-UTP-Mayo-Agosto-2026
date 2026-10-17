@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de alimentos - WellDataLab</title>
+  <meta name="description" content="Calcula insumos, equivalentes, energía y macronutrimentos de tus recetas con las tablas del Sistema Mexicano de Alimentos Equivalentes (SMAE).">
+
+  <link rel="icon" type="image/svg+xml" href="../Resources/marca/icono-welldatalab.svg">
+  <link rel="icon" type="image/png" href="../Resources/marca/icono-welldatalab.png">
+  <link rel="preload" href="../Resources/fonts/poppins-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Font Awesome para los íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos: componentes heredados, sistema compartido y estilos propios de la página -->
+  <link rel="stylesheet" href="../Styles/Style_components.css">
+  <link rel="stylesheet" href="../Styles/sitio.css">
+  <link rel="stylesheet" href="../Styles/calculadora_alimentos.css">
+</head>
+<body class="sitio pagina-calc-alimentos">
+
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- ENCABEZADO CON LOGOS Y NAVEGACIÓN -->
+  <header class="header-site">
+    <div class="header-bar">
+      <a class="header-logos" href="../index.html" aria-label="WellDataLab, ir al inicio">
+        <img src="../Resources/logo-utp.png" alt="Universidad Tecnológica de Puebla" width="52" height="52">
+        <img src="../Resources/marca/logo-welldatalab.svg" alt="WellDataLab" class="logo-wdl" width="227" height="40">
+      </a>
+
+      <nav class="navbar" aria-label="Navegación principal">
+        <div class="nav-container">
+          <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-controls="nav-menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+
+          <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item"><a href="../index.html" class="nav-link">Inicio</a></li>
+            <li class="nav-item"><a href="quienes_somos.html" class="nav-link">¿Quiénes somos?</a></li>
+
+            <!-- APARTADO DE TEMAS CON MENÚ DESPLEGABLE -->
+            <li class="nav-item dropdown-item">
+              <a href="temas.html" class="nav-link">Temas <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a>
+              <ul class="dropdown-menu" id="topics-dropdown">
+                <li><a href="temas.html" data-topic="1">Alimentación saludable (INCMNSZ)</a></li>
+                <li><a href="temas.html" data-topic="2">Guías alimentarias</a></li>
+                <li><a href="temas.html" data-topic="3">Hidratación y la Jarra del Buen Beber</a></li>
+                <li><a href="temas.html" data-topic="4">El Plato del Bien Comer</a></li>
+                <li><a href="temas.html" data-topic="5">Sostenibilidad alimentaria</a></li>
+                <li><a href="temas.html" data-topic="6">Recomendaciones de ejercicio</a></li>
+                <li><a href="temas.html" data-topic="7">Recetas fáciles y saludables</a></li>
+                <li><a href="temas.html" data-topic="8">Marco normativo y hábitos</a></li>
+                <li><a href="temas.html" data-topic="9">Comparador de alimentos</a></li>
+                <li><a href="temas.html" data-topic="10">Formas de preparar alimentos</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a href="sabias_que.html" class="nav-link">¿Sabías qué?</a></li>
+            <li class="nav-item dropdown-item">
+              <a href="directorio_alimentos.html" class="nav-link active" aria-current="page">Alimentos <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="directorio_alimentos.html">Directorio de alimentos</a></li>
+                <li><a href="calculadora_alimentos.html" aria-current="page">Calculadora de alimentos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="videos.html" class="nav-link">Videos</a></li>
+            <li class="nav-item"><a href="recursos.html" class="nav-link">Recursos</a></li>
+            <li class="nav-item"><a href="tu_opinion.html" class="nav-link">Tu opinión</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- PORTADA -->
+    <section class="portada portada-sola ca-portada" aria-labelledby="titulo-ca">
+      <div>
+        <h1 id="titulo-ca">Calculadora de alimentos</h1>
+        <p class="portada-lead">Sube una receta o una lista de compras y calcula los insumos, los equivalentes y el aporte nutrimental de cada ingrediente con las tablas del Sistema Mexicano de Alimentos Equivalentes (SMAE).</p>
+        <p class="ca-portada-nota"><strong id="ca-total-alimentos">2,323</strong> alimentos del SMAE, 4a. edición: verduras, frutas, cereales, leguminosas, origen animal, leches, aceites, azúcares, libres en energía y bebidas alcohólicas.</p>
+      </div>
+    </section>
+
+    <div class="ca-pagina">
+
+      <!-- ENTRADA DE DATOS -->
+      <section class="ca-entrada" aria-labelledby="titulo-entrada">
+        <h2 id="titulo-entrada" class="ca-titulo">Tu receta</h2>
+
+        <div class="ca-carga">
+        <div class="ca-zona" id="ca-zona">
+          <input type="file" id="ca-archivo" class="ca-archivo" accept="application/pdf,image/*,.txt,text/plain" aria-describedby="ca-zona-ayuda">
+          <label for="ca-archivo" class="ca-zona-cuerpo">
+            <i class="fa-solid fa-file-arrow-up ca-zona-icono" aria-hidden="true"></i>
+            <span class="ca-zona-titulo">Arrastra aquí tu receta o <u>elige un archivo</u></span>
+            <span class="ca-zona-ayuda" id="ca-zona-ayuda">PDF, foto (JPG o PNG) o texto. El texto de las fotos y de los PDF escaneados se reconoce en tu navegador.</span>
+          </label>
+          <div class="ca-progreso" id="ca-progreso" hidden><span></span></div>
+        </div>
+        <p class="ca-estado" id="ca-estado" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="ca-texto-bloque">
+          <label for="ca-texto" class="ca-etiqueta">Texto de la receta</label>
+          <textarea id="ca-texto" class="ca-texto" rows="8" spellcheck="false" placeholder="Un ingrediente por renglón, por ejemplo:&#10;1 taza de arroz crudo&#10;400 g de pechuga de pollo&#10;2 jitomates&#10;Rinde 4 porciones"></textarea>
+          <p class="ca-ayuda">Aquí aparece lo que se leyó del archivo; corrígelo si hace falta y vuelve a analizar.</p>
+          <div class="ca-acciones">
+            <button type="button" class="boton-mantel" id="ca-analizar"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Analizar receta</button>
+            <button type="button" class="ca-boton-suave" id="ca-ejemplo">Probar con un ejemplo</button>
+          </div>
+        </div>
+
+        <form class="ca-agregar" id="ca-agregar-form" autocomplete="off">
+          <h3 class="ca-subtitulo">Agregar un alimento a mano</h3>
+          <div class="ca-agregar-campos">
+            <div class="campo ca-campo-buscar">
+              <label for="ca-buscar">Alimento del SMAE</label>
+              <div class="ca-buscador">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input type="text" id="ca-buscar" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ca-sugerencias" placeholder="Ej. avena, pechuga, frijol">
+                <ul class="ca-sugerencias" id="ca-sugerencias" role="listbox" aria-label="Alimentos que coinciden" hidden></ul>
+              </div>
+            </div>
+            <div class="campo">
+              <label for="ca-agregar-cant">Cantidad</label>
+              <input type="text" id="ca-agregar-cant" class="ca-input" inputmode="decimal" placeholder="1">
+            </div>
+            <div class="campo">
+              <label for="ca-agregar-unidad">Unidad</label>
+              <select id="ca-agregar-unidad" class="campo-select"></select>
+            </div>
+            <button type="submit" class="boton-mantel ca-agregar-boton" id="ca-agregar"><i class="fa-solid fa-plus" aria-hidden="true"></i> Agregar</button>
+          </div>
+          <p class="ca-ayuda" id="ca-agregar-ayuda" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- RESULTADOS -->
+      <section class="ca-resultados" id="ca-resultados" aria-labelledby="titulo-resultados" tabindex="-1">
+        <div class="ca-resultados-cabeza">
+          <h2 id="titulo-resultados" class="ca-titulo">Desglose nutrimental</h2>
+          <span class="ca-conteo" id="ca-conteo"></span>
+        </div>
+
+        <div class="ca-porciones">
+          <div class="ca-paso">
+            <label for="ca-porciones">La receta rinde</label>
+            <div class="ca-stepper">
+              <button type="button" data-paso="-1" data-objetivo="ca-porciones" aria-label="Una porción menos en el rendimiento"><i class="fa-solid fa-minus" aria-hidden="true"></i></button>
+              <input type="number" id="ca-porciones" min="1" max="500" value="1" inputmode="numeric">
+              <button type="button" data-paso="1" data-objetivo="ca-porciones" aria-label="Una porción más en el rendimiento"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+            </div>
+            <span class="ca-paso-unidad">porciones</span>
+          </div>
+          <i class="fa-solid fa-arrow-right ca-porciones-flecha" aria-hidden="true"></i>
+          <div class="ca-paso">
+            <label for="ca-preparar">Quiero preparar</label>
+            <div class="ca-stepper">
+              <button type="button" data-paso="-1" data-objetivo="ca-preparar" aria-label="Preparar una porción menos"><i class="fa-solid fa-minus" aria-hidden="true"></i></button>
+              <input type="number" id="ca-preparar" min="1" max="500" value="1" inputmode="numeric">
+              <button type="button" data-paso="1" data-objetivo="ca-preparar" aria-label="Preparar una porción más"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+            </div>
+            <span class="ca-paso-unidad">porciones</span>
+          </div>
+          <span class="ca-factor" id="ca-factor" aria-live="polite">Receta original</span>
+        </div>
+
+        <div class="ca-totales" id="ca-totales">
+          <div class="ca-total ca-total-principal">
+            <p class="ca-total-etiqueta">Energía de la receta</p>
+            <p class="ca-total-valor"><span id="tot-e">0</span> <small>kcal</small></p>
+            <p class="ca-total-nota"><span id="tot-e-porcion">0</span> kcal por porción · <span id="tot-neto">0</span> g netos en total</p>
+          </div>
+          <div class="ca-total">
+            <p class="ca-total-etiqueta"><span class="ca-punto" style="--c:#b3162a"></span>Proteína</p>
+            <p class="ca-total-valor"><span id="tot-p">0</span> <small>g</small></p>
+            <p class="ca-total-nota">por porción · <span id="pct-p">—</span> de la energía</p>
+          </div>
+          <div class="ca-total">
+            <p class="ca-total-etiqueta"><span class="ca-punto" style="--c:#9a6a00"></span>Lípidos</p>
+            <p class="ca-total-valor"><span id="tot-l">0</span> <small>g</small></p>
+            <p class="ca-total-nota">por porción · <span id="pct-l">—</span> de la energía</p>
+          </div>
+          <div class="ca-total">
+            <p class="ca-total-etiqueta"><span class="ca-punto" style="--c:#f2b705"></span>Hidratos de carbono</p>
+            <p class="ca-total-valor"><span id="tot-h">0</span> <small>g</small></p>
+            <p class="ca-total-nota">por porción · <span id="pct-h">—</span> de la energía</p>
+          </div>
+          <div class="ca-barra vacia" id="ca-barra" role="img" aria-label="Distribución de la energía entre proteína, lípidos e hidratos de carbono">
+            <span data-macro="p"></span><span data-macro="l"></span><span data-macro="h"></span>
+          </div>
+        </div>
+
+        <p class="ca-vacio" id="ca-vacio">Todavía no hay ingredientes. Sube un archivo, pega el texto de tu receta o agrega alimentos a mano.</p>
+
+        <div class="ca-tabla-caja" id="ca-tabla-caja" hidden>
+          <div class="ca-tabla-scroll" tabindex="0" role="region" aria-label="Tabla de desglose, se desplaza a los lados">
+            <table class="ca-tabla">
+              <caption class="sr-only">Desglose por ingrediente para las porciones elegidas</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Ingrediente y alimento SMAE</th>
+                  <th scope="col">Cantidad en la receta</th>
+                  <th scope="col" class="num">Peso neto <span>(g)</span></th>
+                  <th scope="col" class="num">Peso bruto <span>(g, compra)</span></th>
+                  <th scope="col" class="num">Equiv.</th>
+                  <th scope="col" class="num">Energía <span>(kcal)</span></th>
+                  <th scope="col" class="num">Proteína <span>(g)</span></th>
+                  <th scope="col" class="num">Lípidos <span>(g)</span></th>
+                  <th scope="col" class="num">HC <span>(g)</span></th>
+                  <th scope="col"><span class="sr-only">Quitar</span></th>
+                </tr>
+              </thead>
+              <tbody id="ca-cuerpo"></tbody>
+              <tfoot id="ca-pie"></tfoot>
+            </table>
+          </div>
+
+          <div class="ca-bajo-tabla">
+            <div class="ca-grupos-bloque">
+              <h3 class="ca-subtitulo">Equivalentes por porción</h3>
+              <ul class="ca-grupos" id="ca-grupos"></ul>
+            </div>
+            <div class="ca-herramientas">
+              <button type="button" class="ca-boton-suave" id="ca-csv"><i class="fa-solid fa-file-csv" aria-hidden="true"></i> Descargar CSV</button>
+              <button type="button" class="ca-boton-suave" id="ca-imprimir"><i class="fa-solid fa-print" aria-hidden="true"></i> Imprimir</button>
+              <button type="button" class="ca-boton-suave ca-boton-peligro" id="ca-limpiar"><i class="fa-solid fa-trash-can" aria-hidden="true"></i> Vaciar receta</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="ca-nota">Los valores salen de las tablas del SMAE (4a. edición, Fomento de Nutrición y Salud, 2014). El peso neto es la parte comestible y el peso bruto lo que compras con cáscara, hueso o merma. Las conversiones usan 1 taza = 240 ml, 1 cucharada = 15 ml y 1 cucharadita = 5 ml. Son cálculos orientativos para la práctica escolar.</p>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer-site">
+    <div class="footer-container">
+      <div class="footer-marca">
+        <p class="footer-title"><img src="../Resources/marca/logo-welldatalab-claro.svg" alt="WellDataLab" width="182" height="32"></p>
+        <p>Plataforma interactiva para el cuidado de la salud y nutrición. Desarrollado en colaboración con la Universidad Tecnológica de Puebla.</p>
+      </div>
+      <ul class="footer-enlaces" aria-label="Secciones">
+        <li><a href="quienes_somos.html">¿Quiénes somos?</a></li>
+        <li><a href="calculadora.html">Calculadora</a></li>
+        <li><a href="calculadora_alimentos.html">Calculadora de alimentos</a></li>
+        <li><a href="directorio_alimentos.html">Directorio de alimentos</a></li>
+        <li><a href="sabias_que.html">¿Sabías qué?</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="recursos.html">Recursos</a></li>
+        <li><a href="tu_opinion.html">Tu opinión</a></li>
+      </ul>
+      <p class="copyright">© 2026 WellDataLab - UTP. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ARCHIVOS JAVASCRIPT -->
+  <script src="../Js/main.js"></script>
+  <script src="../Js/movimiento.js"></script>
+  <script src="../Js/smae-datos.js"></script>
+  <script src="../Js/calculadora_alimentos.js"></script>
+</body>
+</html>

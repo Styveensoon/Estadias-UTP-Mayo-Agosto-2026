@@ -974,3 +974,87 @@ html:has(.sitio) {
   margin-inline: calc(-1 * var(--margen-lateral));
   padding-inline: var(--margen-lateral);
 }
+
+/* ==========================================
+   MENÚ PLEGABLE EN PANTALLAS MEDIANAS
+   Con ocho secciones el menú ya no cabe en una fila por debajo de 1200px:
+   se usa el mismo menú desplegable del celular (los logos conservan su tamaño hasta 900px).
+   ========================================== */
+@media (min-width: 1201px) {
+  .sitio .nav-link {
+    white-space: nowrap;
+  }
+}
+@media (min-width: 1201px) and (max-width: 1360px) {
+  .sitio .nav-menu {
+    gap: 1rem;
+  }
+  .sitio .nav-link {
+    font-size: 0.86rem;
+  }
+}
+@media (max-width: 1200px) {
+  .sitio .nav-container {
+    justify-content: flex-end;
+  }
+  .sitio .nav-toggle {
+    display: grid;
+    place-items: center;
+  }
+  .sitio .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem clamp(16px, 4vw, 3.5rem) 1rem;
+    background: var(--plato);
+    box-shadow: 0 16px 24px rgba(15, 42, 28, 0.14);
+    max-height: calc(100svh - var(--header-alto));
+    overflow-y: auto;
+  }
+  .sitio .nav-menu.active {
+    display: flex;
+    animation: menu-baja 0.3s var(--ease-salida) both;
+  }
+  .sitio .nav-item {
+    text-align: left;
+    border-bottom: 1px solid #e3ebe5;
+  }
+  .sitio .nav-link {
+    display: block;
+    padding: 0.9rem 0;
+    font-size: 1rem;
+  }
+  .sitio .nav-link::after {
+    display: none;
+  }
+  .sitio .nav-link.active {
+    color: var(--mantel);
+  }
+  .sitio .dropdown-menu {
+    display: block;
+    position: static;
+    min-width: 0;
+    padding: 0 0 0.75rem;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .sitio .dropdown-menu::before {
+    display: none;
+  }
+  .sitio .dropdown-menu li a {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.92rem;
+    color: var(--tinta-suave);
+  }
+}
+@media (max-width: 1200px) and (prefers-reduced-motion: reduce) {
+  .sitio .nav-menu.active {
+    animation: none;
+  }
+}

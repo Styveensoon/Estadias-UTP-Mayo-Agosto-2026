@@ -22,7 +22,7 @@ function contarHasta(el, valor, { decimales = 0, duracion = 700 } = {}) {
   const inicio = performance.now();
   cancelAnimationFrame(el._conteo);
   const paso = (ahora) => {
-    const t = Math.min(1, (ahora - inicio) / duracion);
+    const t = Math.min(1, Math.max(0, (ahora - inicio) / duracion));
     const suave = 1 - Math.pow(1 - t, 4); // desaceleración natural
     el.textContent = formato(valor * suave);
     if (t < 1) el._conteo = requestAnimationFrame(paso);
