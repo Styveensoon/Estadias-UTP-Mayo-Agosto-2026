@@ -27,7 +27,7 @@ Sitio estático (HTML, CSS y JavaScript sin framework) en `index.html` y `Views/
 - Nombre: WellDataLab, en colaboración con la Universidad Tecnológica de Puebla. Logo de la UTP en `Resources/logo-utp.png`; logo de WellDataLab (marca de plato + nombre en Poppins 800) en `Resources/marca/` como SVG, con versión clara para fondos oscuros e ícono.
 - Color de identidad confirmado por el usuario: verde `#008744` (con `#2e7d32` como verde de variables CSS). No se adopta el `#09BA00`/`#660900` mencionado en partes de la tesina.
 - Tipografía declarada en la tesina: Poppins.
-- Mascota: el castor con pañoleta verde y mandil, ilustración vectorial plana en `Resources/marca/castor.svg` (saludando) y `Resources/marca/castor-sabio.svg` (con lentes y libro).
+- Mascota: Cheficas UTP, el castor con pañoleta verde y mandil (antes «El Castor Nutritivo»), ilustración vectorial plana en `Resources/marca/castor.svg` (saludando) y `Resources/marca/castor-sabio.svg` (con lentes y libro).
 - Nombre oficial de la guía: «Plato del Bien Comer» (NOM-043); la bebida es la «Jarra del Buen Beber».
 - Voz: cercana, motivadora y en español de México, tuteando al usuario.
 

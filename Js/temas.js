@@ -296,10 +296,10 @@ function getTema3HTML() {
         <!-- COLUMNA 1: CASTOR Y GLOBO DE DIÁLOGO -->
         <div class="mascot-col">
           <div class="speech-bubble" id="castor-bubble">
-            ¡Hola! Soy el Castor Nutritivo. Haz clic en los niveles de la jarra para enseñarte a hidratarte como un experto.
+            ¡Hola! Soy Cheficas UTP. Haz clic en los niveles de la jarra para enseñarte a hidratarte como un experto.
           </div>
           <div class="castor-img-wrapper">
-            <img src="../Resources/marca/castor.svg" alt="El Castor Nutritivo" class="castor-jarra-img">
+            <img src="../Resources/marca/castor.svg" alt="Cheficas UTP, el castor de WellDataLab" class="castor-jarra-img">
           </div>
         </div>
 
@@ -948,7 +948,7 @@ function getTema5HTML() {
 
           <!-- Imagen Ilustrativa del Castor Sabio -->
 
-          <img src="../Resources/marca/castor-sabio.svg" alt="Castor Sabías Que" class="castor-saber-img">
+          <img src="../Resources/marca/castor-sabio.svg" alt="Cheficas UTP con un libro de datos curiosos" class="castor-saber-img">
 
         </div>
 

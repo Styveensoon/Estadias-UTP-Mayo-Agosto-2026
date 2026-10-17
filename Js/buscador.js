@@ -252,7 +252,7 @@
     function pintarInicio() {
       const recientes = leerRecientes();
       resultados.innerHTML = `
-        ${castor("¿Qué quieres aprender hoy? Escribe un tema, un alimento o una duda y te llevo a donde está.")}
+        ${castor("¡Hola, soy Cheficas UTP! ¿Qué quieres aprender hoy? Escribe un tema, un alimento o una duda y te llevo a donde está.")}
         ${recientes.length ? `
           <div class="buscador-sugerencias">
             <p class="buscador-subtitulo">Lo que buscaste antes</p>
